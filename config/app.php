@@ -179,6 +179,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        'Barryvdh\Debugbar\ServiceProvider',
 
     ],
 
@@ -235,6 +236,7 @@ return [
         'Html'         => Collective\Html\HtmlFacade::class,
         'Flash'        => Laracasts\Flash\Flash::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Debugbar' => 'Barryvdh\Debugbar\Facade',
     ],
 
 ];
