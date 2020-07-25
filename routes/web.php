@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->middleware('verified');
 
 
 Route::resource('users', 'UserController')->middleware('auth');
+Route::resource('contacts', 'ContactController')->middleware('auth');
 
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
