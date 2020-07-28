@@ -4,36 +4,37 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Contact;
 
 /**
- * Class Contact
+ * Class Channel
  * @package App\Models
- * @version July 25, 2020, 2:21 pm UTC
+ * @version July 26, 2020, 3:32 am UTC
  *
  * @property string $code
  * @property string $name
- * @property string $phone
- * @property string $fax
- * @property string $mobile
+ * @property integer $type
  * @property string $note
  */
-class Contact extends Model
+class Channel extends Model
 {
     use SoftDeletes;
 
-    public $table = 'contacts';
-    
+    public $table = 'channels';
+    public function contacts()
+    {
+        return $this->belongsToMany(Contact::class);
+    }
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
+        
         'code',
         'name',
-        'phone',
-        'fax',
-        'mobile',
+        'type',
         'note'
     ];
 
@@ -44,7 +45,9 @@ class Contact extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'code' => 'string',
         'name' => 'string',
+        'type' => 'enum',
         'note' => 'string'
     ];
 
@@ -55,7 +58,9 @@ class Contact extends Model
      */
     public static $rules = [
         'code' => 'required|unique:channels',
-        'name' => 'required|unique:channels',
+        'name' => 'required|unique:channels,name',
+        'type' => 'required',
+        'contacts' => 'required',
     ];
 
     
