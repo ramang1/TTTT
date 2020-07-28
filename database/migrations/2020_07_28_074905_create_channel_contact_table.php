@@ -19,15 +19,15 @@ class CreateChannelContactTable extends Migration
             $table->integer('channel_id')->unsigned();
             $table->integer('contact_id')->unsigned();
            
-            // $table->foreign('channel_id')
-            // ->references('id')->on('channels')
-            // ->onUpdate('CASCADE')
-            // ->onDelete('CASCADE');
+            $table->foreign('channel_id')
+            ->references('id')->on('channels')
+            ->onUpdate('CASCADE')
+            ->onDelete('CASCADE');
 
-            // $table->foreign('contact_id')
-            // ->references('id')->on('contacts')
-            // ->onUpdate('CASCADE')
-            // ->onDelete('CASCADE');
+            $table->foreign('contact_id')
+            ->references('id')->on('contacts')
+            ->onUpdate('CASCADE')
+            ->onDelete('CASCADE');
             $table->timestamps();
 
         });

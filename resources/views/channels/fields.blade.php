@@ -27,8 +27,8 @@
     <br>
     @foreach($contacts as $contact)
    
-<input type="checkbox" id = {{$contact->code}} name="contacts[]" value="{{$contact->code}}"> 
-<label for = "{{$contact->code}}">{{$contact->name}} ({{$contact->code}})</label><br>
+<input type="checkbox" id = {{$contact->id}} name="contacts[]" value="{{$contact->id}}"> 
+<label for = "{{$contact->id}}">{{$contact->name}} ({{$contact->code}})</label><br>
     @endforeach
   
 </div>

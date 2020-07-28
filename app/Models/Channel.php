@@ -18,7 +18,7 @@ use App\Contact;
  */
 class Channel extends Model
 {
-    use SoftDeletes;
+   // use SoftDeletes;
 
     public $table = 'channels';
     public function contacts()

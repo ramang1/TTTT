@@ -23,7 +23,7 @@ class CreateContactsTable extends Migration
             $table->mediumText('mobile')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+           // $table->softDeletes();
         });
     }
 

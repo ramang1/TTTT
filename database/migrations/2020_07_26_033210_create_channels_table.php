@@ -22,7 +22,7 @@ class CreateChannelsTable extends Migration
             $table->enum('type', ['de_trung_binh','de_nhat','easy', 'hard', 'hardest']);
             $table->text('note')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+            //$table->softDeletes();
         });
     }
 
