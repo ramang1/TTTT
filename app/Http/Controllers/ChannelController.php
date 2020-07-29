@@ -63,15 +63,7 @@ class ChannelController extends AppBaseController
         $channel = $this->channelRepository->create($input);
         
         $contacts = $input['contacts'];
-        // foreach ($contacts as $contact) {
-           
-        //         ChannelContact::create([
-        //             'channel_id' => $channel->id,
-        //             'contact_id' => $contact
-        //         ]);
-        
-        // }
-
+       
         $channel->contacts()->attach($contacts);
 
        // dd($channel_contact);
@@ -99,8 +91,11 @@ class ChannelController extends AppBaseController
 
             return redirect(route('channels.index'));
         }
-
-        return view('channels.show')->with('channel', $channel);
+        //Lay tat ca danh sach contacts trong channels 
+        $contacts = $channel->contacts;
+      
+       
+        return view('channels.show')->with(['channel'=> $channel, 'contacts' => $contacts]);
     }
 
     /**
@@ -119,8 +114,15 @@ class ChannelController extends AppBaseController
 
             return redirect(route('channels.index'));
         }
+        $types = General::getEnumValues('channels', 'type'); 
+      
+        $contacts = Contact::orderBy('code', 'asc')->get();       
 
-        return view('channels.edit')->with('channel', $channel);
+        \Debugbar::info($channel->type);
+        \Debugbar::info($channel);
+       
+
+        return view('channels.edit')->with(['channel' => $channel, 'types' => $types, 'contacts' => $contacts]);
     }
 
     /**
@@ -133,6 +135,7 @@ class ChannelController extends AppBaseController
      */
     public function update($id, UpdateChannelRequest $request)
     {
+        $input = $request->all();
         $channel = $this->channelRepository->find($id);
 
         if (empty($channel)) {
@@ -142,7 +145,9 @@ class ChannelController extends AppBaseController
         }
 
         $channel = $this->channelRepository->update($request->all(), $id);
-
+        $contacts = $input['contacts'];
+       
+        $channel->contacts()->sync($contacts);
         Flash::success('Channel updated successfully.');
 
         return redirect(route('channels.index'));

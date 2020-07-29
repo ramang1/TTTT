@@ -54,8 +54,12 @@ class Contact extends Model
      * @var array
      */
     public static $rules = [
-        'code' => 'required|unique:channels',
-        'name' => 'required|unique:channels',
+        // 'code' => 'required|unique:contacts',
+        // 'name' => 'required|unique:contacts',
+
+        'code' => 'required',
+        'name' => 'required',
+        
     ];
 
     

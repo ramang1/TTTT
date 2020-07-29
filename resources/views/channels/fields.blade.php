@@ -12,12 +12,12 @@
 
 
 <div class="form-group col-sm-12 col-lg-12">
-{!!Form::label('type', 'Channel Type:') !!}
-<br>
-@foreach($types as $type)
-<input type = "radio" id = {{$type}} name = "type" value = {{$type}}>
-<label for = "{{$type}}">{{$type}}</label><br>
-@endforeach
+    {!!Form::label('type', 'Channel Type:') !!}
+    <br>
+    @foreach($types as $type)
+    <input type="radio" id={{$type}} name="type" value={{$type}}>
+    <label for="{{$type}}">{{$type}}</label><br>
+    @endforeach
 
 </div>
 <!-- Contact Field -->
@@ -26,11 +26,11 @@
     {!! Form::label('note', 'List contact:') !!}
     <br>
     @foreach($contacts as $contact)
-   
-<input type="checkbox" id = {{$contact->id}} name="contacts[]" value="{{$contact->id}}"> 
-<label for = "{{$contact->id}}">{{$contact->name}} ({{$contact->code}})</label><br>
+
+    <input type="checkbox" id={{$contact->id}} name="contacts[]" value="{{$contact->id}}"}>
+    <label for="{{$contact->id}}">{{$contact->name}} ({{$contact->code}})</label><br>
     @endforeach
-  
+
 </div>
 
 <!-- Note Field -->

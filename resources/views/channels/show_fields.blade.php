@@ -22,6 +22,19 @@
     <p>{{ $channel->type }}</p>
 </div>
 
+<!-- MANY ONE -->
+<div class="form-group">
+    {!! Form::label('contats', 'Number of Contacts:') !!}
+    <p>{{count($contacts)}}</p>
+</div>
+
+<!-- List contact -->
+<div class="form-group">
+    {!! Form::label('contact', 'Contacts:') !!}
+    @foreach ($contacts as $contact)
+        <p>{{$contact->name}} ({{$contact->code}})</p>    
+    @endforeach
+</div>
 <!-- Note Field -->
 <div class="form-group">
     {!! Form::label('note', 'Note:') !!}

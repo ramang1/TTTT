@@ -57,8 +57,13 @@ class Channel extends Model
      * @var array
      */
     public static $rules = [
-        'code' => 'required|unique:channels',
-        'name' => 'required|unique:channels,name',
+        // 'code' => 'required|unique:channels',
+        // 'name' => 'required|unique:channels,name',
+        // 'type' => 'required',
+        // 'contacts' => 'required',
+
+         'code' => 'required',
+        'name' => 'required',
         'type' => 'required',
         'contacts' => 'required',
     ];

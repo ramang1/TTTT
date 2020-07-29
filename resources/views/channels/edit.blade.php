@@ -17,14 +17,6 @@
 
                    {!! Form::close() !!}
                </div>
-
-                 <div class="row">
-                   {!! Form::model($contact, ['route' => ['contacts.update', $contact->id], 'method' => 'patch']) !!}
-
-                        @include('contacts.fields')
-
-                   {!! Form::close() !!}
-               </div>
            </div>
        </div>
    </div>
