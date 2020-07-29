@@ -15,6 +15,7 @@
 @section('content')
 
 {{-- Box content --}}
+
 @include('dashboard.box')
 @include('dashboard.card');
 

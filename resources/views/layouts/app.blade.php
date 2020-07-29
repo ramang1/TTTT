@@ -30,6 +30,7 @@
 <body class="skin-blue sidebar-mini">
 @if (!Auth::guest())
     <div class="wrapper">
+        
         <!-- Main Header -->
         <header class="main-header">
 
