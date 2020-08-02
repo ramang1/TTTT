@@ -22,9 +22,15 @@ Auth::routes(['verify' => true]);
 Route::get('/dashboard', 'DashboardController@index')->middleware('verified');
 Route::get('/', 'DashboardController@index')->middleware('verified');
 
+Route::get('//dashboard/get_total', 'DashboardController@get_total')->middleware('verified');
 
 Route::resource('users', 'UserController')->middleware('auth');
 Route::resource('contacts', 'ContactController')->middleware('auth');
+
+Route::resource('channels', 'ChannelController');
+
+Route::resource('inboxes', 'InboxController');
+
 
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
@@ -42,6 +48,3 @@ Route::post(
     '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile'
 )->name('io_generator_builder_generate_from_file');
 
-Route::resource('channels', 'ChannelController');
-
-Route::resource('inboxes', 'InboxController');

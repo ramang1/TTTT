@@ -19,4 +19,12 @@
 @include('dashboard.box')
 @include('dashboard.card');
 
+
+
 @endsection
+
+
+@push('scripts')
+<script src="{{ asset('js/dashboard.js') }}"></script>
+   
+@endpush
