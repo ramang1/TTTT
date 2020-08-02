@@ -61,6 +61,9 @@ class Contact extends Model
         'name' => 'required',
         
     ];
-
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
+    }
     
 }

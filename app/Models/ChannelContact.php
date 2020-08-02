@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,11 +18,11 @@ class ChannelContact extends Model
     ];
     public function contact()
     {
-        return $this->belongsTo('App\Contact');
+        return $this->belongsTo('App\Models\Contact');
     }
     public function channel()
     {
-        return $this->belongsTo('App\Channel');
+        return $this->belongsTo('App\Models\Channel');
     }
 
 }

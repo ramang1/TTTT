@@ -10,8 +10,8 @@ use App\Repositories\ChannelRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use App\Libraries\General;
-use App\Contact;
-use App\ChannelContact;
+use App\Models\Contact;
+use App\Models\ChannelContact;
 use Response;
 
 class ChannelController extends AppBaseController

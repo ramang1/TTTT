@@ -13,3 +13,7 @@
     <a href="{{ route('channels.index') }}"><i class="fa fa-users"></i><span>Channels</span></a>
 </li>
 
+<li class="{{ Request::is('inboxes*') ? 'active' : '' }}">
+    <a href="{{ route('inboxes.index') }}"><i class="fa fa-edit"></i><span>Inboxes</span></a>
+</li>
+
