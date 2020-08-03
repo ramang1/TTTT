@@ -28,6 +28,7 @@ class Inbox extends Model
 
 
     public $fillable = [
+        'hash',
         'name',
         'path',
         'size',

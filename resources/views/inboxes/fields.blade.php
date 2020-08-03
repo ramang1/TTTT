@@ -1,3 +1,9 @@
+<!-- hash Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('hash', 'Hash:') !!}
+    {!! Form::text('hash', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('name', 'Name:') !!}
@@ -27,6 +33,14 @@
     {!! Form::label('contact_id', 'Contact Id:') !!}
     {!! Form::text('contact_id', null, ['class' => 'form-control']) !!}
 </div>
+
+<!-- Contact Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('created_at', 'Created at:') !!}
+    {!! Form::text('created_at', null, ['class' => 'form-control']) !!}
+</div>
+
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

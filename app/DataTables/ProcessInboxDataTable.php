@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Inbox;
+use App\Models\ProcessInbox;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class InboxDataTable extends DataTable
+class ProcessInboxDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,20 +18,16 @@ class InboxDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        // return $dataTable->editColumn('created_at', '$dataTable->created_at')
-        // ->addColumn('action', 'inboxes.datatables_actions');
-
-         return $dataTable ->addColumn('action', 'inboxes.datatables_actions');
-        
+        return $dataTable->addColumn('action', 'process_inboxes.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Inbox $model
+     * @param \App\Models\ProcessInbox $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Inbox $model)
+    public function query(ProcessInbox $model)
     {
         return $model->newQuery();
     }
@@ -69,14 +65,11 @@ class InboxDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'hash' => ['searchable' => false],
-            'name',
-            'path',
-            'size',
-            'type',
-            'contact_id',
-            'created_at'
-
+            'process_type',
+            'inbox_hash',
+            'user_id',
+            'note',
+            'description'
         ];
     }
 
@@ -87,6 +80,6 @@ class InboxDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'inboxes_datatable_' . time();
+        return 'process_inboxes_datatable_' . time();
     }
 }

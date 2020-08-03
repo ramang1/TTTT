@@ -48,3 +48,6 @@ Route::post(
     '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile'
 )->name('io_generator_builder_generate_from_file');
 
+
+
+Route::resource('processInboxes', 'ProcessInboxController');

@@ -24,3 +24,5 @@ Route::resource('contacts', 'ContactAPIController');
 Route::resource('channels', 'ChannelAPIController');
 
 Route::resource('inboxes', 'InboxAPIController');
+
+Route::resource('process_inboxes', 'ProcessInboxAPIController');

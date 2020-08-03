@@ -36,6 +36,7 @@ class CreateActivityLogTable extends Migration
      */
     public function down()
     {
-        Schema::connection(config('activitylog.database_connection'))->dropIfExists(config('activitylog.table_name'));
+       // Schema::connection(config('activitylog.database_connection'))->dropIfExists(config('activitylog.table_name'));
+       Schema::dropIfExists('activity_log');
     }
 }

@@ -15,7 +15,7 @@ class CreateInboxesTable extends Migration
     public function up()
     {
         Schema::create('inboxes', function (Blueprint $table) {
-            $table->string('hash');
+            $table->string('hash')->primary();
             $table->string('name');
             $table->string('path');
             $table->string('size', 10);
