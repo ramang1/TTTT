@@ -11,9 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
         $user = factory(App\User::class, 5)->create();
         $contact = factory(App\Models\Contact::class, 10)->create();
-        //$phones = factory(App\Phone::class, 20)->create();
+        $inboxes = factory(App\Models\Inbox::class, 10)->create();
+        
     }
 }
