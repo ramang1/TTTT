@@ -6,8 +6,8 @@
 
 <!-- Process Type Field -->
 <div class="form-group">
-    {!! Form::label('process_type', 'Process Type:') !!}
-    <p>{{ $processInbox->process_type }}</p>
+    {!! Form::label('action', 'Process Type:') !!}
+    <p>{{ $processInbox->action }}</p>
 </div>
 
 <!-- Inbox Hash Field -->

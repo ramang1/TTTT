@@ -21,3 +21,7 @@
     <a href="{{ route('processInboxes.index') }}"><i class="fa fa-edit"></i><span>Process Inboxes</span></a>
 </li>
 
+<li class="{{ Request::is('outboxes*') ? 'active' : '' }}">
+    <a href="{{ route('outboxes.index') }}"><i class="fa fa-edit"></i><span>Outboxes</span></a>
+</li>
+

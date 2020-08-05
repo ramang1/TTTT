@@ -51,3 +51,5 @@ Route::post(
 
 
 Route::resource('processInboxes', 'ProcessInboxController');
+
+Route::resource('outboxes', 'OutboxController');

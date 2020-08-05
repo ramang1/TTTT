@@ -38,7 +38,7 @@ class DashboardController extends Controller
    
        //Dem so dien chua dich
        $totalUnread = Inbox::whereNotIn('hash', function($process_hash){
-        $process_hash->select('inbox_hash')->from('process_inbox')->where('process_type', '=', 'giai_nen_zip');
+        $process_hash->select('inbox_hash')->from('process_inbox')->where('action', '=', 'giai_nen_zip');
        })->count();
 
        //Group count dien den

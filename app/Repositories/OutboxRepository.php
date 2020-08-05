@@ -2,26 +2,26 @@
 
 namespace App\Repositories;
 
-use App\Models\ProcessInbox;
+use App\Models\Outbox;
 use App\Repositories\BaseRepository;
 
 /**
- * Class ProcessInboxRepository
+ * Class OutboxRepository
  * @package App\Repositories
- * @version August 3, 2020, 9:54 am UTC
+ * @version August 5, 2020, 2:16 am UTC
 */
 
-class ProcessInboxRepository extends BaseRepository
+class OutboxRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'action',
-        'inbox_hash',
-        'user_id',
-        'note',
-        'description'
+        'name',
+        'path',
+        'size',
+        'type',
+        'contact_id'
     ];
 
     /**
@@ -39,6 +39,6 @@ class ProcessInboxRepository extends BaseRepository
      **/
     public function model()
     {
-        return ProcessInbox::class;
+        return Outbox::class;
     }
 }

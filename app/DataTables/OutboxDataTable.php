@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\ProcessInbox;
+use App\Models\Outbox;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class ProcessInboxDataTable extends DataTable
+class OutboxDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,16 +18,16 @@ class ProcessInboxDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'process_inboxes.datatables_actions');
+        return $dataTable->addColumn('action', 'outboxes.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ProcessInbox $model
+     * @param \App\Models\Outbox $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ProcessInbox $model)
+    public function query(Outbox $model)
     {
         return $model->newQuery();
     }
@@ -65,11 +65,12 @@ class ProcessInboxDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'action',
-            'inbox_hash',
-            'user_id',
-            'note',
-            'description'
+            'hash' => ['searchable' => false],
+            'name',
+            'path',
+            'size',
+            'type',
+            'contact_id'
         ];
     }
 
@@ -80,6 +81,6 @@ class ProcessInboxDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'process_inboxes_datatable_' . time();
+        return 'outboxes_datatable_' . time();
     }
 }

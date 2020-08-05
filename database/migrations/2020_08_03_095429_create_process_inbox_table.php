@@ -17,7 +17,7 @@ class CreateProcessInboxTable extends Migration
         Schema::create('process_inbox', function (Blueprint $table) {
             $table->bigInteger('id');
            
-            $table->enum('process_type', ['giai_nen_zip','nhan_mai','giai_nen_rar']);
+            $table->enum('action', ['giai_nen_zip','nhan_mai','giai_nen_rar']);
 
 
             $table->string('inbox_hash');

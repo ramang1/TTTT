@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property \App\Models\Inbox $hash
  * @property \App\Models\User $id
- * @property string $process_type
+ * @property string $action
  * @property string $inbox_hash
  * @property integer $user_id
  * @property string $note
@@ -30,7 +30,7 @@ class ProcessInbox extends Model
 
 
     public $fillable = [
-        'process_type',
+        'action',
         'inbox_hash',
         'user_id',
         'note',
@@ -44,7 +44,7 @@ class ProcessInbox extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'process_type' => 'string',
+        'action' => 'string',
         'inbox_hash' => 'string',
         'user_id' => 'integer',
         'note' => 'string',

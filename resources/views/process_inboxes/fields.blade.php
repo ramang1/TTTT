@@ -1,7 +1,7 @@
 <!-- Process Type Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('process_type', 'Process Type:') !!}
-    {!! Form::text('process_type', null, ['class' => 'form-control']) !!}
+    {!! Form::label('action', 'Process Type:') !!}
+    {!! Form::text('action', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Inbox Hash Field -->
