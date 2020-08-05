@@ -17,8 +17,8 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
           //  Schema::dropIfExists('contacts');
             $table->increments('id');
-            $table->mediumText('code')->unique();
-            $table->text('name')->unique();
+            $table->mediumText('code')->unique()->comment = "Ma danh ba";
+            $table->text('name')->unique()->comment = "Ten danh ma";
             $table->mediumText('phone')->nullable();
             $table->mediumText('fax')->nullable();
             $table->mediumText('mobile')->nullable();

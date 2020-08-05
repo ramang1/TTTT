@@ -15,12 +15,13 @@ class CreateInboxesTable extends Migration
     public function up()
     {
         Schema::create('inboxes', function (Blueprint $table) {
-            $table->string('hash')->primary();
-            $table->string('name');
-            $table->string('path');
-            $table->string('size', 10);
-            $table->smallInteger('type');
-            $table->integer('contact_id')->unsigned();
+            $table->id();
+            $table->string('hash')->unique();
+            $table->string('name')->comment ="Tên file đến";
+            $table->string('path')->comment = "Thư mục lưu";
+            $table->string('size', 10)->comment = "Kích thước file";
+            $table->smallInteger('type')->commment = "Kiểu nhận về: mạng, pstn";
+            $table->integer('contact_id')->unsigned()->comment = "Mã nơi gửi";
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('contact_id')->references('id')->on('contacts');

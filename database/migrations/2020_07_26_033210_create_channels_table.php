@@ -16,10 +16,10 @@ class CreateChannelsTable extends Migration
     {
         Schema::create('channels', function (Blueprint $table) {
             $table->increments('id');
-            $table->mediumText('code');
-            $table->text('name');
+            $table->mediumText('code')->unique();
+            $table->text('name')->comment = "Ten Group";
             // $table->integer('type');
-            $table->enum('type', ['de_trung_binh','de_nhat','easy', 'hard', 'hardest']);
+            $table->enum('type', ['de_trung_binh','de_nhat','easy', 'hard', 'hardest'])->comment = "Kiểu tương thích của group";
             $table->text('note')->nullable();
             $table->timestamps();
             //$table->softDeletes();

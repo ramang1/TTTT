@@ -16,8 +16,8 @@ class CreateChannelContactTable extends Migration
         Schema::create('channel_contact', function (Blueprint $table) {
             Schema::dropIfExists('channel_contact');
             $table->increments('id');
-            $table->integer('channel_id')->unsigned();
-            $table->integer('contact_id')->unsigned();
+            $table->integer('channel_id')->unsigned()->comment = "Ma Group";
+            $table->integer('contact_id')->unsigned()->comment = "Ma danh ba";
            
             $table->foreign('channel_id')
             ->references('id')->on('channels')

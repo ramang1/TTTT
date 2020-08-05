@@ -15,16 +15,17 @@ class CreateOutboxesTable extends Migration
     public function up()
     {
         Schema::create('outboxes', function (Blueprint $table) {
-           
-            $table->string('hash')->primary();
-            $table->string('name');
-            $table->string('path');
-            $table->string('size', 10);
-            $table->smallInteger('type');
-            $table->integer('contact_id')->unsigned();
+            $table->id();
+            $table->string('hash')->unique();
+            $table->string('name')->comment = "Tên file send";
+            $table->string('path')->comment = "Đường dẫn";
+            $table->string('size', 10)->comment = "Kích thước";
+            $table->smallInteger('type')->comment = "Gửi IP hay PSTN";
+            //Ma cua nhom nhan mail
+            $table->integer('channel_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('contact_id')->references('id')->on('contacts');
+            $table->foreign('channel_id')->references('id')->on('channels');
         });
     }
 

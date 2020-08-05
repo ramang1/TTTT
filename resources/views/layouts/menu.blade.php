@@ -25,3 +25,7 @@
     <a href="{{ route('outboxes.index') }}"><i class="fa fa-edit"></i><span>Outboxes</span></a>
 </li>
 
+<li class="{{ Request::is('outboxProcesses*') ? 'active' : '' }}">
+    <a href="{{ route('outboxProcesses.index') }}"><i class="fa fa-edit"></i><span>Outbox Processes</span></a>
+</li>
+

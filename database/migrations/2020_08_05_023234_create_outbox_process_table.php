@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProcessInboxTable extends Migration
+class CreateOutboxProcessTable extends Migration
 {
 
     /**
@@ -14,18 +14,23 @@ class CreateProcessInboxTable extends Migration
      */
     public function up()
     {
-        Schema::create('process_inbox', function (Blueprint $table) {
+        Schema::create('outbox_process', function (Blueprint $table) {
+            
+
             $table->id();
-            $table->enum('action', ['giai_nen_zip','nhan_mai','giai_nen_rar'])->comment = 'Giải nén hay nhận mail';
-            $table->string('inbox_hash');
+            $table->enum('action', ['nen_zip','gui_mai','nen_rar'])->comment = 'nén file hay truyền file';
+            //id cua outbox
+            $table->bigInteger('outbox_id')->unsigned()->comment = 'id hash của file';
+            
+            //Ma nguoi gui
             $table->unsignedBigInteger('user_id');
             $table->string('note')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('inbox_hash')
-            ->references('hash')->on('inboxes')
+            $table->foreign('outbox_id')
+            ->references('id')->on('outboxes')
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE');
 
@@ -33,8 +38,6 @@ class CreateProcessInboxTable extends Migration
             ->references('id')->on('users')
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE');
-            
-            
         });
     }
 
@@ -45,6 +48,6 @@ class CreateProcessInboxTable extends Migration
      */
     public function down()
     {
-        Schema::drop('process_inbox');
+        Schema::drop('outbox_process');
     }
 }
