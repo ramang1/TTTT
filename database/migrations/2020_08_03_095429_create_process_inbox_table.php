@@ -17,15 +17,15 @@ class CreateProcessInboxTable extends Migration
         Schema::create('process_inbox', function (Blueprint $table) {
             $table->id();
             $table->enum('action', ['giai_nen_zip','nhan_mai','giai_nen_rar'])->comment = 'Giải nén hay nhận mail';
-            $table->string('inbox_hash');
+            $table->unsignedBigInteger('inboxes_id');
             $table->unsignedBigInteger('user_id');
             $table->string('note')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('inbox_hash')
-            ->references('hash')->on('inboxes')
+            $table->foreign('inboxes_id')
+            ->references('id')->on('inboxes')
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Inbox;
 use App\Models\Outbox;
+use App\Models\OutboxProcess;
 use Carbon\Carbon;
 use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
@@ -36,12 +37,12 @@ class DashboardController extends Controller
 
         //Dem tong so mail di, den trong ngay
         $totalInbox = Inbox::whereDate('created_at', Carbon::today())->count();
-        $totalOutbox = Outbox::whereDate('created_at', Carbon::today())->count();
+        $totalOutbox = OutboxProcess::whereDate('created_at', Carbon::today())->count();
 
         //Dem so mail chua doc
-       $totalUnread = Inbox::whereNotIn('hash', function($process_hash){
+       $totalUnread = Inbox::whereNotIn('id', function($process_hash){
         $process_hash
-        ->select('inbox_hash')
+        ->select('inboxes_id')
         ->from('process_inbox')
         ->whereNull('deleted_at')
         ->where('action', '=', 'giai_nen_zip')
@@ -50,9 +51,9 @@ class DashboardController extends Controller
        
        
        //Dem so mail chua gui
-       $totalUnsend = Outbox::whereNotIn('hash', function($process_hash){
+       $totalUnsend = Outbox::whereNotIn('id', function($process_hash){
         $process_hash
-        ->select('outbox_hash')
+        ->select('id')
         ->from('outbox_process')
         ->whereNull('deleted_at')
         ->where('action', '=', 'nen_zip')
@@ -78,7 +79,7 @@ class DashboardController extends Controller
        //Dem tong so mail den cua moi don vi
 
        $inbox_contact_info = DB::table('inboxes')
-        ->select('id','contacts.name', DB::raw('count(*) as total'))
+        ->select('inboxes.id','contacts.name', DB::raw('count(*) as total'))
         ->join('contacts', function ($join){
            $join->on('inboxes.contact_id', '=', 'contacts.id');})
         ->whereDate('inboxes.created_at', Carbon::today())   

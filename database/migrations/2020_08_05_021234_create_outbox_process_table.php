@@ -20,8 +20,8 @@ class CreateOutboxProcessTable extends Migration
             $table->id();
             $table->enum('action', ['nen_zip','gui_mai','nen_rar'])->comment = 'nén file hay truyền file';
             //id cua outbox
-            $table->bigInteger('outbox_id')->unsigned()->comment = 'id hash của file';
-            
+            //$table->bigInteger('outboxes_id')->unsigned()->comment = 'id hash của file';
+            $table->string('hash')->unique()->comment = 'Hash của file';
             //Ma nguoi gui
             $table->unsignedBigInteger('user_id');
             $table->string('note')->nullable();
@@ -29,10 +29,7 @@ class CreateOutboxProcessTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('outbox_id')
-            ->references('id')->on('outboxes')
-            ->onUpdate('CASCADE')
-            ->onDelete('CASCADE');
+           
 
             $table->foreign('user_id')
             ->references('id')->on('users')

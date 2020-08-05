@@ -16,7 +16,7 @@ class CreateOutboxesTable extends Migration
     {
         Schema::create('outboxes', function (Blueprint $table) {
             $table->id();
-            $table->string('hash')->unique();
+            $table->unsignedBigInteger('outbox_process_id');//->commnent = "ID của bảng outbox_process";
             $table->string('name')->comment = "Tên file send";
             $table->string('path')->comment = "Đường dẫn";
             $table->string('size', 10)->comment = "Kích thước";
@@ -25,7 +25,17 @@ class CreateOutboxesTable extends Migration
             $table->integer('channel_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('channel_id')->references('id')->on('channels');
+
+            $table->foreign('channel_id')->references('id')->on('channels')
+            ->onUpdate('CASCADE')
+            ->onDelete('CASCADE');
+
+            $table->foreign('outbox_process_id')
+            ->references('id')->on('outbox_process')
+            ->onUpdate('CASCADE')
+            ->onDelete('CASCADE');
+
+
         });
     }
 
