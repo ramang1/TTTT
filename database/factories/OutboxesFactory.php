@@ -10,16 +10,17 @@ $factory->define(App\Models\Outbox::class, function (Faker $faker) {
         //
         'hash' =>$faker->sha256,
         
-        'name' => $faker->unique(),
+        'name' => $faker->unique()->firstname(),
         'path' => $faker->text(20),
 
 
         'size' => $faker->numberBetween(100,10000),
         'type' => $faker->numberBetween(1,4),
-        'channel_id' => $faker->numberBetween(1,10),
-        'name' => $faker->unique()->firstName,
-        
+        'channel_id' => '1', //$faker->numberBetween(1,1),
+        'user_id' => $faker->numberBetween(1,4),
 
+        
+ 
 
     ];
 });

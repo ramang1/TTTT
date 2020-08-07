@@ -10,9 +10,8 @@ $factory->define(App\Models\Inbox::class, function (Faker $faker) {
         //
         'hash' =>$faker->sha256,
         
-        'name' => $faker->unique(),
+        // 'name' => $faker->unique(),
         'path' => $faker->text(20),
-
 
         'size' => $faker->numberBetween(100,10000),
         'type' => $faker->numberBetween(1,4),
