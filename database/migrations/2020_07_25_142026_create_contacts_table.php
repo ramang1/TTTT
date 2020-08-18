@@ -14,11 +14,12 @@ class CreateContactsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('contacts');
         Schema::create('contacts', function (Blueprint $table) {
           //  Schema::dropIfExists('contacts');
             $table->increments('id');
-            $table->mediumText('code')->unique()->comment = "Ma danh ba";
-            $table->text('name')->unique()->comment = "Ten danh ma";
+            $table->mediumText('code', 10);//->unique()->comment = "Ma danh ba";
+            $table->text('name', 10);//->unique()->comment = "Ten danh ma";
             $table->mediumText('phone')->nullable();
             $table->mediumText('fax')->nullable();
             $table->mediumText('mobile')->nullable();

@@ -14,9 +14,10 @@ class CreateChannelsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('channels');
         Schema::create('channels', function (Blueprint $table) {
             $table->increments('id');
-            $table->mediumText('code')->unique();
+            $table->mediumText('code');//->unique();
             $table->text('name')->comment = "Ten Group";
             // $table->integer('type');
             $table->enum('type', ['de_trung_binh','de_nhat','easy', 'hard', 'hardest'])->comment = "Kiểu tương thích của group";
