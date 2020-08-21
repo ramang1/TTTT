@@ -22,13 +22,18 @@ class CreateInboxesTable extends Migration
             $table->string('hash')->unique()->comment='has của file';
             $table->string('name')->comment ="Tên file đến";
             $table->string('path')->comment = "Thư mục lưu";
-            $table->string('size', 10)->comment = "Kích thước file";
+            $table->bigInteger('size')->comment = "Kích thước file";
             $table->smallInteger('type')->commment = "Kiểu nhận về: mạng, pstn";
             $table->integer('contact_id')->unsigned()->comment = "Mã nơi gửi";
+            $table->unsignedBigInteger('user_id')->comment = "id người nhận";
+            
             $table->string('note')->nullable()->comment = "Dự phòng";
             $table->timestamps();//->comment = 'Thời gian created_at and updated_at';
             $table->softDeletes()->comment = 'xoá mềm, deleted_at';
+
             $table->foreign('contact_id')->references('id')->on('contacts')->comment = 'Khoá ngoại, luôn tham chiếu đến khoá chính của bảng cha';
+            $table->foreign('user_id')->references('id')->on('users')->comment = 'Khoá ngoại, luôn tham chiếu đến khoá chính của bảng cha';
+
         });
     }
 

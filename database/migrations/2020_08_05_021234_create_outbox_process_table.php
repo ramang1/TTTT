@@ -20,7 +20,7 @@ class CreateOutboxProcessTable extends Migration
             //Các thông tin của việc truyền sẽ được lưu trong bảng này
             $table->id();
             $table->enum('action', ['nen_zip','gui_mai','nen_rar'])->comment = 'nén file hay truyền file';
-            $table->string('outbox_id')->unique()->comment = 'id của outbox, Hash của file';
+            $table->unsignedBigInteger('outbox_id')->comment = 'id của outbox, Hash của file';//->unique()->comment = 'id của outbox, Hash của file';
             //Ma nguoi gui
             $table->unsignedBigInteger('user_id')->comment = 'mã người gửi, nén';
             $table->string('note')->nullable()->comment = 'Dự phòng';
@@ -30,6 +30,12 @@ class CreateOutboxProcessTable extends Migration
             
             $table->foreign('user_id')
             ->references('id')->on('users')
+            ->onUpdate('CASCADE')
+            ->onDelete('CASCADE')->comment = 'Khoá ngoại';
+            
+
+            $table->foreign('outbox_id')
+            ->references('id')->on('outboxes')
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE')->comment = 'Khoá ngoại';
         });
