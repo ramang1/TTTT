@@ -19,8 +19,7 @@
     <!-- small box -->
     <div class="small-box bg-green">
       <div class="inner">
-        <h3 id = "totalInbox">0</h3>
-
+        <h3 id = "totalInbox">$totalInbox</h3>
         <p>Tổng thư đến</p>
       </div>
       <div class="icon">

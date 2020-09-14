@@ -19,8 +19,6 @@
 @include('dashboard.box')
 @include('dashboard.card');
 
-
-
 @endsection
 
 
