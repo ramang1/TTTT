@@ -2,8 +2,8 @@
 @section('content-header')
 <section class="content-header">
   <h1>
-    Hiển thị trang chính
-    <small>Điều khiển</small>
+    <!-- Hiển thị trang chính -->
+    <!-- <small>Điều khiển</small> -->
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>

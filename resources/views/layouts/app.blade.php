@@ -36,7 +36,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>InfyOm</b>
+                <b>PKT-2020</b>
             </a>
 
             <!-- Header Navbar -->

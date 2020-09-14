@@ -4,7 +4,7 @@
       <!-- MAP & BOX PANE -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Thư chưa dịch</h3>
+          <h3 class="box-title" style="font-weight: bold;font-size:200%">Thư chưa đọc</h3>
 
           <div class="box-tools pull-right">
             <div class="has-feedback">
@@ -42,27 +42,27 @@
               <tbody>
                 <thead>
                     <tr>
-                    <th style="width:20px;">
+                    <th style="width:10px;">
                     <!-- <label class="i-checks m-b-none">
                     <input type="checkbox"><i></i>
                     </label> -->
                     </th>
-                    <th>Tên thư chưa dịch</th>
-                    <th>Nơi gửi</th>
-                    <th>Kích thước</th>
-                    <th>Nơi lưu</th>
-                    <th>Thời gian</th>
+                    <th><h3 style="font-weight:bold">Tên thư chưa đọc</h3></th>
+                    <th><h3 style="font-weight:bold">Nơi gửi</h3></th>
+                    <th><h3 style="font-weight:bold">Kích thước</h3></th>
+                    <th><h3 style="font-weight:bold">Nơi lưu</h3></th>
+                    <th><h3 style="font-weight:bold">Thời gian</h3></th>
                     </tr>
                 </thead>
             @foreach($totalUnread_inbox as $key => $totalUnread_inbox_content)
 
             <tr>
-                <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
-                <td class="mailbox-name"><a href="read-mail.html">{{$totalUnread_inbox_content->name}}</a></td>
-                <td class="mailbox-star">{{$totalUnread_inbox_content->contact_id}}</i></a></td>
-                <td class="mailbox-subject">{{$totalUnread_inbox_content->size}}</td>
-                <td class="mailbox-attachment">{{$totalUnread_inbox_content->path}}</td>
-                <td class="mailbox-date">{{$totalUnread_inbox_content->created_at}}</td>
+                <td><div class="icheckbox_flat-blue"  aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
+                <td class="mailbox-name"style = "background:red; font-size:130%;font-weight: bold;"><a href="read-mail.html" style = "color: #FFFFFF;">{{$totalUnread_inbox_content->name}}</a></td>  
+                <td class="mailbox-star" style = ";background:red;font-size:130%;color: #FFFFFF;font-weight: bold;text-align: left">{{$totalUnread_inbox_content->contact_id}}</i></a></td>
+                <td class="mailbox-subject" style = "background:red;font-size:130%;color: #FFFFFF;font-weight: bold;">{{$totalUnread_inbox_content->size}}</td>
+                <td class="mailbox-attachment" style = "background:red;font-size:130%;color: #FFFFFF;font-weight: bold;">{{$totalUnread_inbox_content->path}}</td>
+                <td class="mailbox-date"  style = "background:red;font-size:130%;color: #FFFFFF;font-weight: bold;">{{$totalUnread_inbox_content->created_at}}</td>
               </tr>
             @endforeach
 
