@@ -40,5 +40,5 @@ function get_total() {
 }
 $(document).ready(function () {
 
-    var refreshId = setInterval(get_total, 1000);
+    var refreshId = setInterval(get_total, 10000000);
 });

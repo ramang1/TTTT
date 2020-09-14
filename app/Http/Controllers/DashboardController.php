@@ -29,8 +29,16 @@ class DashboardController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-        $data = DB::table('inboxes')->get();
-        return view('dashboard.index')->with('contacts', $contacts)->with('data',$data);
+        // $data = DB::table('inboxes')->get();
+        $totalUnread_inbox = Inbox::whereNotIn('id', function($process_hash){
+            $process_hash
+            ->select('inboxes_id')
+            ->from('process_inbox')
+            ->whereNull('deleted_at')
+            ->where('action', '=', 'giai_nen_zip')
+            ->orWhere('action', '=', 'giai_nen_rar');
+           })->get();
+        return view('dashboard.index')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
     }
 
     //Tra ve tong so mail den, di, chua doc
