@@ -44,136 +44,136 @@
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"></td>
-                <td class="mailbox-date">5 mins ago</td>
+                <td class="mailbox-date">5 phút trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">28 mins ago</td>
+                <td class="mailbox-date">28 phút trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">11 hours ago</td>
+                <td class="mailbox-date">11 giờ trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"></td>
-                <td class="mailbox-date">15 hours ago</td>
+                <td class="mailbox-date">15 giờ trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">Yesterday</td>
+                <td class="mailbox-date">Hôm qua</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">2 days ago</td>
+                <td class="mailbox-date">2 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">2 days ago</td>
+                <td class="mailbox-date">2 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"></td>
-                <td class="mailbox-date">2 days ago</td>
+                <td class="mailbox-date">2 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"></td>
-                <td class="mailbox-date">2 days ago</td>
+                <td class="mailbox-date">2 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"></td>
-                <td class="mailbox-date">2 days ago</td>
+                <td class="mailbox-date">2 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">4 days ago</td>
+                <td class="mailbox-date">4 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"></td>
-                <td class="mailbox-date">12 days ago</td>
+                <td class="mailbox-date">12 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">12 days ago</td>
+                <td class="mailbox-date">12 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">14 days ago</td>
+                <td class="mailbox-date">14 ngày trước</td>
               </tr>
               <tr>
                 <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                 <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                 <td class="mailbox-name"><a href="read-mail.html">Nơi gửi</a></td>
-                <td class="mailbox-subject"><b>Thư đến</b> Note here
+                <td class="mailbox-subject"><b>Thư đến</b> Ghi chú ở đây
                 </td>
                 <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                <td class="mailbox-date">15 days ago</td>
+                <td class="mailbox-date">15 ngày trước</td>
               </tr>
               </tbody>
             </table>
@@ -501,7 +501,7 @@
       </div>
       <!-- /.box -->
 
-     
+
     </div>
     <!-- /.col -->
 
@@ -595,7 +595,7 @@
       </div>
       <!-- /.info-box -->
 
-      
+
 
       <!-- PRODUCT LIST -->
       <div class="box box-primary">
