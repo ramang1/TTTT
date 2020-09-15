@@ -10,6 +10,8 @@ use App\Repositories\InboxRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\Contact;
+use App\Models\Inbox;
 
 class InboxController extends AppBaseController
 {
@@ -147,5 +149,19 @@ class InboxController extends AppBaseController
         Flash::success('Inbox deleted successfully.');
 
         return redirect(route('inboxes.index'));
+    }
+    public function inboxes_unread()
+    {
+        $contacts = Contact::all();
+        // $data = DB::table('inboxes')->get();
+        $totalUnread_inbox = Inbox::whereNotIn('id', function($process_hash){
+            $process_hash
+            ->select('inboxes_id')
+            ->from('process_inbox')
+            ->whereNull('deleted_at')
+            ->where('action', '=', 'giai_nen_zip')
+            ->orWhere('action', '=', 'giai_nen_rar');
+           })->get();
+        return view('inboxes.unread')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
     }
 }
