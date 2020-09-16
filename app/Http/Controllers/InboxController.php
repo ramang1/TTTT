@@ -12,6 +12,7 @@ use App\Http\Controllers\AppBaseController;
 use Response;
 use App\Models\Contact;
 use App\Models\Inbox;
+use Request;
 
 class InboxController extends AppBaseController
 {
@@ -163,5 +164,11 @@ class InboxController extends AppBaseController
             ->orWhere('action', '=', 'giai_nen_rar');
            })->get();
         return view('inboxes.unread')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
+        // return view('inboxes.test1')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
+
+    }
+    public function anydata(Request $request)
+    {
+        return Databases::of(Inbox::query())->make(true);
     }
 }

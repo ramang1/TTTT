@@ -32,6 +32,7 @@ Route::resource('channels', 'ChannelController');
 Route::resource('inboxes', 'InboxController');
 
 Route::get('inboxes-unread', 'InboxController@inboxes_unread');
+Route::get('anydata', 'InboxController@anydata')->name("users.anydata");
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
 
