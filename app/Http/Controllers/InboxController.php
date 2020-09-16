@@ -13,6 +13,8 @@ use Response;
 use App\Models\Contact;
 use App\Models\Inbox;
 use Request;
+use App\Http\Controllers\DB;
+use Yajra\DataTables\DataTables;
 
 class InboxController extends AppBaseController
 {
@@ -164,11 +166,19 @@ class InboxController extends AppBaseController
             ->orWhere('action', '=', 'giai_nen_rar');
            })->get();
         return view('inboxes.unread')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
-        // return view('inboxes.test1')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
-
     }
     public function anydata(Request $request)
     {
-        return Databases::of(Inbox::query())->make(true);
+       
+        $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
+        // ->array_push($result, [
+        //     'name' => $name,
+        //     'contact_id' => $contact_id,
+        //     'size' => $size,
+        //     'path' => $path,
+        //     'created_at' => $created_at,
+        // ]);
+  
+    return Datatables::of($result)->make(true);
     }
 }
