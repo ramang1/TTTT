@@ -163,7 +163,7 @@ class InboxController extends AppBaseController
         public function showinbox()
         {
             $data = DB::table('inboxes')->select([ 'name', 'path', 'created_at']);
-    
+
             return Datatables::of($data)
             ->editColumn('created_at', function ($data) {
                 if($data->created_at == null) {
@@ -173,11 +173,11 @@ class InboxController extends AppBaseController
                     Carbon::setLocale('vi');
                     return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
                 })
-                
+
                 ->filterColumn('created_at', function ($query, $keyword) {
                     $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
                 })
-                
+
                 ->make(true);
         }
 
@@ -196,7 +196,7 @@ class InboxController extends AppBaseController
             // ->editColumn('name', function ($model) {
             //     return \HTML::mailto($model->email, $model->name);
             // })
-            
+
             ->editColumn('created_at', function ($data) {
                 if($data->created_at == null) {
                     // $data->created_at = '1/1/1900';
@@ -204,15 +204,15 @@ class InboxController extends AppBaseController
                 }
                     Carbon::setLocale('vi');
                     return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
-                    
-                
+
+
                 // Carbon::setLocale('vi');
                 // return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
             ->setRowAttr([
                 'color' => 'red'
             ])
-            
+
             ->make(true);
     }
 
@@ -233,7 +233,7 @@ class InboxController extends AppBaseController
            })->get();
         return view('inboxes.unread')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
     }
-    public function anydata(Request $request)
+    public function anydata()
     {
 
         $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);

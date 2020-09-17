@@ -29,7 +29,7 @@
             <!-- /.pull-right -->
           </div>
           <div class="table-responsive mailbox-messages">
-            <table class="table table-hover table-striped" id="phu-table" >
+            <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
               <tbody>
                 </tbody><thead>
                     <tr>

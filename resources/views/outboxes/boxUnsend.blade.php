@@ -30,7 +30,7 @@
           </div>
           <div class="table-responsive mailbox-messagess">
             <!-- <table class="table table-hover table-stripedd" id="users-table" > -->
-            <table class="table table-bordered" id="users-table">
+            <table class="table table-hover table-bordered" id="users-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                 <thead>
                     <tr>
                     <th>Tên thư chưa gửi</th>
