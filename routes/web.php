@@ -55,3 +55,15 @@ Route::resource('processInboxes', 'ProcessInboxController');
 Route::resource('outboxes', 'OutboxController');
 
 Route::resource('outboxProcesses', 'OutboxProcessController');
+//TuanAnh
+// Route::get('/dashboard', 'DashboardController@show_inbox');
+//Hien thi
+// Route::get('/',function(){
+//     return view ('dashboard.card');
+// });
+Route::get('/','InboxController@DatatableInbox');
+//Lay du lieu qua ajax showmail
+Route::get('/listmail','InboxController@showinbox')->name('users.getData');
+//Lay du lieu Checkmail
+Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData');
+
