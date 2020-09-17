@@ -48,10 +48,10 @@ class OutboxDataTable extends DataTable
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
+                    // ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
+                    // ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                    // ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
+                    // ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
             ]);
@@ -65,12 +65,20 @@ class OutboxDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'hash' => ['searchable' => false],
-            'name',
-            'path',
-            'size',
-            'type',
-            'contact_id'
+            // 'hash' => ['searchable' => false],
+            // 'name',
+            // 'path',
+            // 'size',
+            // 'type',
+            // 'contact_id'
+            ['data' => 'id','title'=>'id'],
+            ['data' => 'name','title'=>'Tên thư đi'],
+            ['data' => 'channel_id','title'=>'Mã nơi nhận'],
+            ['data' => 'size','title'=>'Kích thước file'],
+            ['data' => 'path','title'=>'Thư mục lưu'],
+            ['data' => 'type','title'=>'Kiểu nén'],
+            ['data' => 'user_id','title'=>'Id của người thực hiện'],
+            ['data' => 'created_at','title'=>'Thời gian'],
         ];
     }
 

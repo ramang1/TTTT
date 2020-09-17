@@ -26,8 +26,8 @@
 
     <!-- Phu copy vao de hien thi datatables -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-
+    <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css"> -->
+     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     @yield('css')
 </head>
 
@@ -169,9 +169,11 @@
 
 
     <!-- jQuery  copy phuc vu datatables -->
-    <script src="//code.jquery.com/jquery.js"></script>
+        <script src="//code.jquery.com/jquery.js"></script>
+
         <!-- DataTables -->
-        <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+         <!-- <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script> -->
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <!-- Bootstrap JavaScript -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 

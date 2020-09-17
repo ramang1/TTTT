@@ -169,7 +169,7 @@ class InboxController extends AppBaseController
     }
     public function anydata(Request $request)
     {
-       
+
         $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
         // ->array_push($result, [
         //     'name' => $name,
@@ -178,7 +178,7 @@ class InboxController extends AppBaseController
         //     'path' => $path,
         //     'created_at' => $created_at,
         // ]);
-  
+
     return Datatables::of($result)->make(true);
     }
 }

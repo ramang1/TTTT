@@ -56,3 +56,7 @@ Route::resource('processInboxes', 'ProcessInboxController');
 Route::resource('outboxes', 'OutboxController');
 
 Route::resource('outboxProcesses', 'OutboxProcessController');
+
+//chi tiet thu chua gui
+Route::get('unsend', 'OutboxController@outbox_unsend');
+Route::get('unsend/unsenddata', 'OutboxController@unsenddata')->name("users.unsenddata");
