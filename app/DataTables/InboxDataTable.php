@@ -89,4 +89,7 @@ class InboxDataTable extends DataTable
     {
         return 'inboxes_datatable_' . time();
     }
+
+    // TuanAnh
+    protected $table="datatables_data";
 }

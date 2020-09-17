@@ -29,7 +29,12 @@ class DashboardController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-        return view('dashboard.index')->with('contacts', $contacts);;
+        $data=DB::table('inboxes')->orderby('created_at','desc')->get();
+        
+        // $expire_date_string = $data['created_at'];
+        // $carbonated_date = Carbon::parse($expire_date_string);
+        // $diff_date = $carbonated_date->diffForHumans(Carbon::now());
+        return view('dashboard.index')->with('contacts', $contacts)->with('data',$data); //->with('diff_date',$diff_date);
     }
 
     //Tra ve tong so mail den, di, chua doc
@@ -90,4 +95,16 @@ class DashboardController extends Controller
         return response()->json(array('totalInbox' => $totalInbox, 'totalOutbox' => $totalOutbox, 'totalUnsend' => $totalUnsend, 'totalUnread' => $totalUnread, 'inbox_contact_info' => $inbox_contact_info));
 
     }
+
+    //TuanAnh-ShowThuDen
+    // public function show_inbox(){
+        
+    //     $data=DB::table('inboxes')->orderby('id','desc')->get();
+    //     $all_inbox=view('dashboard.card')->with(['data',$data]);
+    //     return view('dashboard.index')->with('dashboard.card',$all_inbox);
+        
+    // }
+
+
+   
 }

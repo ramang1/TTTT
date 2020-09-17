@@ -9,7 +9,12 @@ use App\Http\Requests\UpdateInboxRequest;
 use App\Repositories\InboxRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Yajra\Datatables\Datatables;
+use App\Models\Inbox;
+use DB;
+use Carbon\Carbon;
 use Response;
+
 
 class InboxController extends AppBaseController
 {
@@ -148,4 +153,62 @@ class InboxController extends AppBaseController
 
         return redirect(route('inboxes.index'));
     }
+
+    //TuanAnh
+    //ShowInboxIndex
+        // public function showinbox(){
+        //     return Datatables::of(Inbox::query())->make(true);
+        // }
+        public function showinbox()
+        {
+            $data = DB::table('inboxes')->select([ 'name', 'path', 'created_at']);
+    
+            return Datatables::of($data)
+            ->editColumn('created_at', function ($data) {
+                if($data->created_at == null) {
+                    // $data->created_at = '1/1/1900';
+                    return $data->created_at ?  : 'Unknown';
+                }
+                    Carbon::setLocale('vi');
+                    return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+                })
+                
+                ->filterColumn('created_at', function ($query, $keyword) {
+                    $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
+                })
+                
+                ->make(true);
+        }
+
+
+    public function DatatableInbox()
+    {
+        return view('dashboard.index');
+    }
+    public function CheckMail()
+    {
+        $data = DB::table('process_inbox')->join('inboxes', 'process_inbox.inboxes_id', '=', 'inboxes.id')
+            ->select(['process_inbox.action', 'process_inbox.note', 'process_inbox.description', 'inboxes.name', 'process_inbox.created_at']);
+
+        return Datatables::of($data)
+            // ->editColumn('title', '{!! str_limit($title, 60) !!}')
+            // ->editColumn('name', function ($model) {
+            //     return \HTML::mailto($model->email, $model->name);
+            // })
+            
+            ->editColumn('created_at', function ($data) {
+                if($data->created_at == null) {
+                    // $data->created_at = '1/1/1900';
+                    return $data->created_at ?  : 'Unknown';
+                }
+                    Carbon::setLocale('vi');
+                    return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+                
+                // Carbon::setLocale('vi');
+                // return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+            ->make(true);
+    }
 }
+//  git config --global user.email "you@example.com"
+//   git config --global user.name "TuanAnh"
