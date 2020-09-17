@@ -68,3 +68,7 @@ Route::get('/listmail','InboxController@showinbox')->name('users.getData');
 //Lay du lieu Checkmail
 Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData');
 
+
+//chi tiet thu chua gui
+Route::get('unsend', 'OutboxController@outbox_unsend');
+Route::get('unsend/unsenddata', 'OutboxController@unsenddata')->name("users.unsenddata");

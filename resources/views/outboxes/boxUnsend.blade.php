@@ -2,7 +2,7 @@
       <!-- MAP & BOX PANE -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title" style="font-weight: bold;">Thư chưa đọc</h3>
+          <h3 class="box-title" style="font-weight: bold;">Thư chưa gửi</h3>
 
           <!-- <div class="box-tools pull-right">
             <div class="has-feedback">
@@ -28,54 +28,43 @@
             </div>
             <!-- /.pull-right -->
           </div>
-          <div class="table-responsive mailbox-messages">
-            <table class="table table-hover table-striped" id="phu-table" >
-              <tbody>
-                </tbody><thead>
+          <div class="table-responsive mailbox-messagess">
+            <!-- <table class="table table-hover table-stripedd" id="users-table" > -->
+            <table class="table table-bordered" id="users-table">
+                <thead>
                     <tr>
-                    <!-- <th style="width:10px;">
-                    <label class="i-checks m-b-none">
-                    <input type="checkbox"><i></i>
-                    </label>
-                    </th> -->
-                    <th>Tên thư chưa đọc</th>
-                    <th>Nơi gửi</th>
+                    <th>Tên thư chưa gửi</th>
+                    <th>ID</th>
+                    <th>Đường dẫn</th>
                     <th>Kích thước</th>
-                    <th>Nơi lưu</th>
+                    <th>Kiểu nén</th>\
+                    <th>ID của nhóm nhận</th>
                     <th>Thời gian</th>
                     </tr>
                 </thead>
-
-                <!-- @foreach($totalUnread_inbox as $key => $totalUnread_inbox_content) -->
-<!-- <tr>
-    <td><div class="icheckbox_flat-blue"  aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
-    <td class="mailbox-name"style = "background:Tomato;"><a href="read-mail.html" style = "color: #FFFFFF;">{{$totalUnread_inbox_content->name}}</a></td>
-    <td class="mailbox-star" style = ";background:Tomato;color: #FFFFFF;text-align: left">{{$totalUnread_inbox_content->contact_id}}</i></a></td>
-    <td class="mailbox-subject" style = "background:Tomato;color: #FFFFFF;">{{$totalUnread_inbox_content->size}}</td>
-    <td class="mailbox-attachment" style = "background:Tomato;color: #FFFFFF;">{{$totalUnread_inbox_content->path}}</td>
-    <td class="mailbox-date"  style = "background:Tomato;color: #FFFFFF;">{{$totalUnread_inbox_content->created_at}}</td>
-  </tr> -->
-<!-- @endforeach -->
               </tbody>
             </table>
+
             @push('scripts')
-            <script>
-                $(function() {
-                    $('#phu-table').DataTable({
-                        processing: true,
-                        serverSide: true,
-                        ajax: '{!! route('users.anydata') !!}',
-                        columns: [
-                            { data: 'name', name: 'name' },
-                            { data: 'contact_id', name: 'contact_id' },
-                            { data: 'size', name: 'size' },
-                            { data: 'path', name: 'path' },
-                            { data: 'created_at', name: 'created_at' }
-                        ]
+                <script>
+                    $(function() {
+                        $('#users-table').DataTable({
+                            processing: true,
+                            serverSide: true,
+                            ajax: '{!!route('users.unsenddata')!!}',
+                            columns: [
+                                { data: 'name', name: 'name' },
+                                { data: 'id', name: 'id' },
+                                { data: 'path', name: 'path' },
+                                { data: 'size', name: 'size' },
+                                { data: 'type', name: 'type' },
+                                { data: 'channel_id', name: 'channel_id' },
+                                { data: 'created_at', name: 'created_at' }
+                            ]
+                        });
                     });
-                });
-              </script>
-@endpush
+                </script>
+            @endpush
             <!-- /.table -->
           </div>
           <!-- /.mail-box-messages -->

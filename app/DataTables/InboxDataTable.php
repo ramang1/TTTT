@@ -5,6 +5,8 @@ namespace App\DataTables;
 use App\Models\Inbox;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\DataTables;
+use Yajra\DataTables\Html\Column;
 
 class InboxDataTable extends DataTable
 {
@@ -22,7 +24,6 @@ class InboxDataTable extends DataTable
         // ->addColumn('action', 'inboxes.datatables_actions');
 
          return $dataTable ->addColumn('action', 'inboxes.datatables_actions');
-        
     }
 
     /**
@@ -33,6 +34,14 @@ class InboxDataTable extends DataTable
      */
     public function query(Inbox $model)
     {
+        // return $model->newQuery()->with(['name',
+        // 'contact_id',
+        // 'size',
+        // 'path',
+        // 'created_at',
+        // 'type']);
+        // $model= Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
+        // return Datatables::of($model)->make(true);
         return $model->newQuery();
     }
 
@@ -52,10 +61,10 @@ class InboxDataTable extends DataTable
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
+                    // ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
+                    // ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                    // ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
+                    // ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
             ]);
@@ -68,16 +77,25 @@ class InboxDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
-            'hash' => ['searchable' => false],
-            'name',
-            'path',
-            'size',
-            'type',
-            'contact_id',
-            'created_at'
+        // $users = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
+        // return DataTables::of($users)->make(true);
 
+        return [
+            //'hash' => ['searchable' => false],
+            // ('name'),
+            // 'contact_id',
+            // 'size',
+            // 'path',
+            // 'created_at',
+            // 'type'
+            ['data' => 'name','title'=>'Tên thư đến'],
+            ['data' => 'contact_id','title'=>'Mã nơi gửi'],
+            ['data' => 'size','title'=>'Kích thước file'],
+            ['data' => 'path','title'=>'Thư mục lưu'],
+            ['data' => 'type','title'=>'Kiểu nhận về'],
+            ['data' => 'created_at','title'=>'Thời gian'],
         ];
+
     }
 
     /**

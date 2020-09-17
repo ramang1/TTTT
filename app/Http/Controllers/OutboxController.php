@@ -10,6 +10,11 @@ use App\Repositories\OutboxRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\Models\Contact;
+use Yajra\DataTables\DataTables;
+use App\Models\Outbox;
+use Request;
+
 
 class OutboxController extends AppBaseController
 {
@@ -147,5 +152,28 @@ class OutboxController extends AppBaseController
         Flash::success('Outbox deleted successfully.');
 
         return redirect(route('outboxes.index'));
+    }
+
+    // Ham thu chua gui
+
+    public function outbox_unsend()
+    {
+        $contacts = Contact::all();
+        // $data = DB::table('inboxes')->get();
+        $totalUnsend_outbox = Outbox::whereNotIn('id', function($process_hash){
+            $process_hash
+            ->select('id')
+            ->from('outbox_process')
+            ->whereNull('deleted_at')
+            ->where('action', '=', 'nen_zip')
+            ->orWhere('action', '=', 'nen_rar');
+           })->get();
+
+        return view('outboxes.unsend')->with('contacts', $contacts)->with('totalUnsend_outbox',$totalUnsend_outbox );
+    }
+    public function unsenddata(Request $request)
+    {
+        $result1 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at']);
+        return Datatables::of($result1)->make(true);
     }
 }
