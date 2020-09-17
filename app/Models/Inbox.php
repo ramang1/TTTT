@@ -58,6 +58,7 @@ class Inbox extends Model
     public static $rules = [
         
     ];
+    
 
     
 }

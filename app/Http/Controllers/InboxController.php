@@ -203,12 +203,18 @@ class InboxController extends AppBaseController
                 }
                     Carbon::setLocale('vi');
                     return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+                    
                 
                 // Carbon::setLocale('vi');
                 // return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
+            ->setRowAttr([
+                'color' => 'red'
+            ])
+            
             ->make(true);
     }
 }
 //  git config --global user.email "you@example.com"
 //   git config --global user.name "TuanAnh"
+

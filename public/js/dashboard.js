@@ -85,6 +85,7 @@ function check_mail(){
           setInterval(function() {
             table.ajax.reload();
             }, 10000 );
+            
           
 }
 

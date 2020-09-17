@@ -40,7 +40,7 @@
           </div>
           
           <div class="table-responsive mailbox-messages">
-            <table class="table table-hover table-striped" class="table" id="showinbox">
+            <table  class="table table-striped table-bordered" id="showinbox">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -127,7 +127,7 @@
         <!-- /.box-header -->
         <div class="box-body">
           <div class="table-responsive">
-            <table class="table no-margin" id="CheckMail">
+            <table class="table table-striped table-bordered" id="CheckMail">
               <thead>
               <tr>
                 <th>Name</th>
@@ -141,7 +141,7 @@
               <tr>
                 <td><a href="pages/examples/invoice.html"></a></td>
                 <td></td>
-                <td><span class="label label-success"></span></td>
+                <td><span class="label label-success" ></span></td>
                 <td>
                   <div class="sparkbar" data-color="#00a65a" data-height="20"><canvas width="34" height="20" style="display: inline-block; width: 34px; height: 20px; vertical-align: top;"></canvas></div>
                 </td>
