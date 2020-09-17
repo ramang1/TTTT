@@ -1,31 +1,31 @@
 <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
-    <a href="/dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+    <a href="/dashboard"><i class="fa fa-dashboard"></i><span>Trang chính</span></a>
 </li>
 
 <li class="{{ Request::is('users*') ? 'active' : '' }}">
-    <a href="{!! route('users.index') !!}"><i class="fa fa-user"></i><span>Users</span></a>
+    <a href="{!! route('users.index') !!}"><i class="fa fa-user"></i><span>Người dùng</span></a>
 </li>
 <li class="{{ Request::is('contacts*') ? 'active' : '' }}">
-    <a href="{{ route('contacts.index') }}"><i class="fa fa-address-card"></i><span>Contacts</span></a>
+    <a href="{{ route('contacts.index') }}"><i class="fa fa-address-card"></i><span>Liên hệ</span></a>
 </li>
 
 <li class="{{ Request::is('channels*') ? 'active' : '' }}">
-    <a href="{{ route('channels.index') }}"><i class="fa fa-users"></i><span>Channels</span></a>
+    <a href="{{ route('channels.index') }}"><i class="fa fa-users"></i><span>Tuyến</span></a>
 </li>
 
 <li class="{{ Request::is('inboxes*') ? 'active' : '' }}">
-    <a href="{{ route('inboxes.index') }}"><i class="fa fa-edit"></i><span>Inboxes</span></a>
+    <a href="{{ route('inboxes.index') }}"><i class="fa fa-edit"></i><span>Thư đến</span></a>
 </li>
 
 <li class="{{ Request::is('processInboxes*') ? 'active' : '' }}">
-    <a href="{{ route('processInboxes.index') }}"><i class="fa fa-edit"></i><span>Process Inboxes</span></a>
+    <a href="{{ route('processInboxes.index') }}"><i class="fa fa-edit"></i><span>Quá trình xử lý thư đến</span></a>
 </li>
 
 <li class="{{ Request::is('outboxes*') ? 'active' : '' }}">
-    <a href="{{ route('outboxes.index') }}"><i class="fa fa-edit"></i><span>Outboxes</span></a>
+    <a href="{{ route('outboxes.index') }}"><i class="fa fa-edit"></i><span>Thư đi</span></a>
 </li>
 
 <li class="{{ Request::is('outboxProcesses*') ? 'active' : '' }}">
-    <a href="{{ route('outboxProcesses.index') }}"><i class="fa fa-edit"></i><span>Outbox Processes</span></a>
+    <a href="{{ route('outboxProcesses.index') }}"><i class="fa fa-edit"></i><span>Quá trình xử lý thư đi</span></a>
 </li>
 

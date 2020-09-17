@@ -14,6 +14,7 @@ use App\Models\Inbox;
 use DB;
 use Carbon\Carbon;
 use Response;
+use App\Models\Contact;
 
 
 class InboxController extends AppBaseController
@@ -214,7 +215,36 @@ class InboxController extends AppBaseController
             
             ->make(true);
     }
-}
+
 //  git config --global user.email "you@example.com"
 //   git config --global user.name "TuanAnh"
 
+    public function inboxes_unread()
+    {
+        $contacts = Contact::all();
+        // $data = DB::table('inboxes')->get();
+        $totalUnread_inbox = Inbox::whereNotIn('id', function($process_hash){
+            $process_hash
+            ->select('inboxes_id')
+            ->from('process_inbox')
+            ->whereNull('deleted_at')
+            ->where('action', '=', 'giai_nen_zip')
+            ->orWhere('action', '=', 'giai_nen_rar');
+           })->get();
+        return view('inboxes.unread')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
+    }
+    public function anydata(Request $request)
+    {
+       
+        $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
+        // ->array_push($result, [
+        //     'name' => $name,
+        //     'contact_id' => $contact_id,
+        //     'size' => $size,
+        //     'path' => $path,
+        //     'created_at' => $created_at,
+        // ]);
+  
+    return Datatables::of($result)->make(true);
+    }
+}

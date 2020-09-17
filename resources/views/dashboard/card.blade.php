@@ -5,7 +5,7 @@
       <!-- MAP & BOX PANE -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Thư đến</h3>
+          <h3 class="box-title" style="font-weight: bold;">Thư chưa đọc</h3>
 
           <div class="box-tools pull-right">
             <div class="has-feedback">
@@ -116,7 +116,7 @@
       <!-- TABLE: LATEST ORDERS -->
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Thư đến</h3>
+          <h3 class="box-title">Tên thư đến</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -369,7 +369,7 @@
       </div>
       <!-- /.box -->
 
-     
+
     </div>
     <!-- /.col -->
 
@@ -463,7 +463,7 @@
       </div>
       <!-- /.info-box -->
 
-      
+
 
       <!-- PRODUCT LIST -->
       <div class="box box-primary">

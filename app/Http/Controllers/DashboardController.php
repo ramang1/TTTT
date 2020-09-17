@@ -29,23 +29,27 @@ class DashboardController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-        $data=DB::table('inboxes')->orderby('created_at','desc')->get();
-        
-        // $expire_date_string = $data['created_at'];
-        // $carbonated_date = Carbon::parse($expire_date_string);
-        // $diff_date = $carbonated_date->diffForHumans(Carbon::now());
-        return view('dashboard.index')->with('contacts', $contacts)->with('data',$data); //->with('diff_date',$diff_date);
+        // $data = DB::table('inboxes')->get();
+        $totalUnread_inbox = Inbox::whereNotIn('id', function($process_hash){
+            $process_hash
+            ->select('inboxes_id')
+            ->from('process_inbox')
+            ->whereNull('deleted_at')
+            ->where('action', '=', 'giai_nen_zip')
+            ->orWhere('action', '=', 'giai_nen_rar');
+           })->get();
+        return view('dashboard.index')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
     }
 
     //Tra ve tong so mail den, di, chua doc
     public function get_total(){
 
         //Dem tong so mail di, den trong ngay
-        $totalInbox = Inbox::whereDate('created_at', Carbon::today())->count();
+        $totalInbox = Inbox::whereDate('created_at',Carbon::today())->count();
         $totalOutbox = OutboxProcess::whereDate('created_at', Carbon::today())->count();
 
         //Dem so mail chua doc
-       $totalUnread = Inbox::whereNotIn('id', function($process_hash){
+        $totalUnread = Inbox::whereNotIn('id', function($process_hash){
         $process_hash
         ->select('inboxes_id')
         ->from('process_inbox')
@@ -53,8 +57,8 @@ class DashboardController extends Controller
         ->where('action', '=', 'giai_nen_zip')
         ->orWhere('action', '=', 'giai_nen_rar');
        })->count();
-       
-       
+
+
        //Dem so mail chua gui
        $totalUnsend = Outbox::whereNotIn('id', function($process_hash){
         $process_hash
@@ -70,11 +74,11 @@ class DashboardController extends Controller
        //Group count mail den
        //$inbox_info = DB::table('inboxes')->select('contact_id', DB::raw('count(*) as total'))->whereDate('created_at', Carbon::today())->groupBy('contact_id')->orderBy('total', 'DESC')->get();
        //$inbox_info = DB::table('inboxes')->select('contact_id', DB::raw('count(*) as total'))->join('contacts', 'contact_id', '=', 'contacts.id'); //->whereDate('created_at', Carbon::today())->groupBy('contact_id')->orderBy('total', 'DESC');
-       
+
     //    $temp = DB::raw(
     //     'SELECT count(*) as total, C.id, C.Name
     //     FROM inboxes
-    //     JOIN contacts 
+    //     JOIN contacts
     //       ON inboxes.contact_id = contacts.id
     //    GROUP BY inboxes.contact_id'
     //    );
@@ -87,10 +91,10 @@ class DashboardController extends Controller
         ->select('inboxes.id','contacts.name', DB::raw('count(*) as total'))
         ->join('contacts', function ($join){
            $join->on('inboxes.contact_id', '=', 'contacts.id');})
-        ->whereDate('inboxes.created_at', Carbon::today())   
+        ->whereDate('inboxes.created_at', Carbon::today())
         ->groupBy('contact_id')
         ->get();
-        
+
         \Debugbar::info($inbox_contact_info);
         return response()->json(array('totalInbox' => $totalInbox, 'totalOutbox' => $totalOutbox, 'totalUnsend' => $totalUnsend, 'totalUnread' => $totalUnread, 'inbox_contact_info' => $inbox_contact_info));
 

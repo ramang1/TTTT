@@ -15,7 +15,7 @@ function get_total() {
             if (data) {
 
 
-                $("#totalInbox").html(data.totalInbox);
+                $("#totalInbox").html(data.totalInbox); //set gia tri tren trang hTML the co ID la totalInbox thanh data.totalInbox= 0
                 $("#totalOutBox").html(data.totalOutbox);
                 $("#totalUnread").html(data.totalUnread);
                 $("#totalUnsend").html(data.totalUnsend);
@@ -42,7 +42,7 @@ function get_total() {
 }
 $(document).ready(function () {
 
-    var refreshId = setInterval(get_total, 100000);
+    var refreshId = setInterval(get_total, 10000000);
 });
 //TuanAnh
 function show_inbox(){
