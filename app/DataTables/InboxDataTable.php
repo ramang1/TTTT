@@ -7,7 +7,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\DataTables;
 use Yajra\DataTables\Html\Column;
-
+use Carbon\Carbon;
 class InboxDataTable extends DataTable
 {
     /**
@@ -23,7 +23,16 @@ class InboxDataTable extends DataTable
         // return $dataTable->editColumn('created_at', '$dataTable->created_at')
         // ->addColumn('action', 'inboxes.datatables_actions');
 
-         return $dataTable ->addColumn('action', 'inboxes.datatables_actions');
+         return $dataTable
+         ->editColumn('created_at', function ($result) {
+            if($result->created_at == null)
+            {
+                return $result->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $result->created_at->format('d-M-Y - H:i:s');
+            })
+         ->addColumn('action', 'inboxes.datatables_actions');
     }
 
     /**
@@ -34,14 +43,6 @@ class InboxDataTable extends DataTable
      */
     public function query(Inbox $model)
     {
-        // return $model->newQuery()->with(['name',
-        // 'contact_id',
-        // 'size',
-        // 'path',
-        // 'created_at',
-        // 'type']);
-        // $model= Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
-        // return Datatables::of($model)->make(true);
         return $model->newQuery();
     }
 

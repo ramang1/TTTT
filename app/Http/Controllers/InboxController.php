@@ -15,6 +15,7 @@ use DB;
 use Carbon\Carbon;
 use Response;
 use App\Models\Contact;
+use Request;
 
 
 class InboxController extends AppBaseController
@@ -219,10 +220,11 @@ class InboxController extends AppBaseController
 //  git config --global user.email "you@example.com"
 //   git config --global user.name "TuanAnh"
 
-    public function inboxes_unread()
+    public function inboxes_unread(Request $request)
     {
         $contacts = Contact::all();
         // $data = DB::table('inboxes')->get();
+
         $totalUnread_inbox = Inbox::whereNotIn('id', function($process_hash){
             $process_hash
             ->select('inboxes_id')
@@ -231,20 +233,51 @@ class InboxController extends AppBaseController
             ->where('action', '=', 'giai_nen_zip')
             ->orWhere('action', '=', 'giai_nen_rar');
            })->get();
+
         return view('inboxes.unread')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
     }
-    public function anydata()
+    public function getdataunread(Request $request)
     {
-
         $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
-        // ->array_push($result, [
-        //     'name' => $name,
-        //     'contact_id' => $contact_id,
-        //     'size' => $size,
-        //     'path' => $path,
-        //     'created_at' => $created_at,
-        // ]);
 
-    return Datatables::of($result)->make(true);
+        // if(request()->ajax())
+        // {
+        //     if(!empty($request->from_date))
+        //     {
+        //         $result= DB::table('inboxes')->whereBetween('created_at', array($request->from_date, $request->to_date))
+        //         ->get();
+        //     }
+        //     else
+        //     {
+        //          return Datatables::of($result)
+        //          ->editColumn('created_at', function ($result) {
+        //          if($result->created_at == null)
+        //          {
+        //              return $result->created_at ?  : 'Unknown';
+        //          }
+        //              Carbon::setLocale('vi');
+        //              return $result->created_at->format('d-M-Y - H:i:s');
+        //          })
+        //          ->make(true);
+        //     }
+        // }
+        // if(!empty($request->from_date))
+        //     {
+        //         $result= DB::table('inboxes')->whereBetween('created_at', array($request->from_date, $request->to_date))
+        //         ->get();
+        //     }
+        //  else
+        // {
+            return Datatables::of($result)
+            ->editColumn('created_at', function ($result) {
+            if($result->created_at == null)
+            {
+                return $result->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $result->created_at->format('d-M-Y - H:i:s');
+            })
+            ->make(true);
+        // }
     }
 }

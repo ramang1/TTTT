@@ -14,7 +14,7 @@ use App\Models\Contact;
 use Yajra\DataTables\DataTables;
 use App\Models\Outbox;
 use Request;
-
+use Carbon\Carbon;
 
 class OutboxController extends AppBaseController
 {
@@ -174,6 +174,15 @@ class OutboxController extends AppBaseController
     public function unsenddata(Request $request)
     {
         $result1 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at']);
-        return Datatables::of($result1)->make(true);
+        return Datatables::of($result1)
+        ->editColumn('created_at', function ($result) {
+            if($result->created_at == null)
+            {
+                return $result->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $result->created_at->format('d-M-Y - H:i:s');
+            })
+        ->make(true);
     }
 }

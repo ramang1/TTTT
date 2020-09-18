@@ -1,4 +1,5 @@
 <div class="col-md-20">
+
       <!-- MAP & BOX PANE -->
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -60,11 +61,17 @@
             </table>
             @push('scripts')
             <script>
+                // $(document).ready(function(){
+                //     $('.input-daterange').datepicker({
+                //     todayBtn:'linked',
+                //     format:'yyyy-mm-dd',
+                //     autoclose:true
+                //     });
                 $(function() {
                     $('#phu-table').DataTable({
                         processing: true,
                         serverSide: true,
-                        ajax: '{!! route('users.anydata') !!}',
+                        ajax: '{!! route('users.getdataunread') !!}',
                         columns: [
                             { data: 'name', name: 'name' },
                             { data: 'contact_id', name: 'contact_id' },
