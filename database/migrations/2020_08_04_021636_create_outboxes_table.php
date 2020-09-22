@@ -19,15 +19,23 @@ class CreateOutboxesTable extends Migration
             //Các thông tin về file và user thực hiện sẽ được ghi vào bảng này
 
             $table->id();
-            $table->string('hash')->unique()->comment='has của file';
+            $table->string('hash')->comment='has của file'; //Khong nhat thiet phai duy nhat
             
             $table->string('name')->comment = "Tên file send";
             $table->string('path')->comment = "Đường dẫn";
             $table->string('size', 10)->comment = "Kích thước";
-            $table->smallInteger('type')->comment = "nén zip hay nén rar";
+            $table->enum('type', ['nen_zip','nen_rar'])->comment = 'nén zip, rar';
+
+            //$table->smallInteger('type')->comment = "nén zip hay nén rar";
             //Ma cua nhom nhan mail
             $table->integer('channel_id')->unsigned()->comment = 'id của nhóm nhận mail';
+            
+            //Ma cua contact_id nhan mail
+            $table->integer('contact_id')->unsigned()->comment = 'contact id nhận mail';
+            
             $table->unsignedBigInteger('user_id')->comment = 'id của user thực hiện';
+
+
 
             $table->timestamps();//->comment = 'Thời gian created_at and updated_at';
             $table->softDeletes()->comment = 'xoá mềm, deleted_at';
@@ -35,6 +43,11 @@ class CreateOutboxesTable extends Migration
             $table->foreign('channel_id')->references('id')->on('channels')
             ->onUpdate('CASCADE')
             ->onDelete('CASCADE')->comment = 'Khoá ngoại';
+
+            $table->foreign('contact_id')->references('id')->on('contacts')
+            ->onUpdate('CASCADE')
+            ->onDelete('CASCADE')->comment = 'Khoá ngoại contact_id';
+
 
             $table->foreign('user_id')
             ->references('id')->on('users')
