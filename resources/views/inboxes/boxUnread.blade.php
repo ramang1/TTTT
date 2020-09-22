@@ -3,7 +3,7 @@
 </div>
 <div class="nav-tabs-horizontal">
     <ul class="nav nav-tabs" data-plugin="nav-tabs" role="tablist">
-
+    <!-- <ul class="nav nav-pills" data-plugin="nav-tabs" role="tablist"> -->
        <!-- /.tab1 -->
       <li class="active"
           role="presentation">
@@ -19,7 +19,7 @@
          <!-- /tab2 -->
       <li role="presentation">
           <a id="tab1"
-             data-parent="tab0"
+             data-parent="tab1"
              data-toggle="tab"
              href="#exampleTabsTwo"
              aria-controls="exampleTabsTwo"
@@ -31,7 +31,7 @@
        <!-- /tab3 -->
       <li role="presentation">
           <a id="tab2"
-             data-parent="tab0"
+             data-parent="tab2"
              data-toggle="tab"
              href="#exampleTabsThree"
              aria-controls="exampleTabsThree"
@@ -43,7 +43,7 @@
         <!-- /tab4 -->
       <li role="presentation">
           <a id="tab3"
-             data-parent="tab0"
+             data-parent="tab3"
              data-toggle="tab"
              href="#exampleTabsFour"
              aria-controls="exampleTabsFour"
@@ -54,13 +54,25 @@
         <!-- /tab5 -->
       <li role="presentation">
           <a id="tab4"
-             data-parent="tab0"
+             data-parent="tab4"
              data-toggle="tab"
              href="#exampleTabsFive"
              aria-controls="exampleTabsFive"
              role="tab">Thư theo năm
       </a></li>
-        <!-- /tab5 -->
+        <!-- /end tab5 -->
+
+        <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Tùy chọn 1</a>
+      <a class="dropdown-item" href="#">Tùy chọn 2</a>
+      <a class="dropdown-item" href="#">Làm cái gì đó</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Hành động</a>
+    </div>
+  </li>
+
     </ul>
 
     <div class="tab-content padding-top-20">
@@ -85,9 +97,9 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function() {
+                                            $(function getdataunread() {
 
-                                                $('#phu-table').DataTable({
+                                                var table = $('#phu-table').DataTable({
                                                     processing: true,
                                                     serverSide: true,
                                                     ajax: '{!! route('users.getdataunread') !!}',
@@ -99,6 +111,9 @@
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
+                                                setInterval(function() {
+                                                table.ajax.reload();
+                                                }, 120000 );
                                             });
                                         </script>
                                     @endpush
@@ -136,8 +151,8 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function() {
-                                                $('#phu-table1').DataTable({
+                                            $(function getdataunread1() {
+                                                var table1 = $('#phu-table1').DataTable({
                                                     processing: true,
                                                     serverSide: true,
                                                     ajax: '{!! route('users.getdataunread1') !!}',
@@ -149,6 +164,9 @@
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
+                                                setInterval(function() {
+                                                table1.ajax.reload();
+                                                }, 120000 );
                                             });
                                         </script>
                                     @endpush
@@ -184,8 +202,8 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function() {
-                                                $('#phu-table2').DataTable({
+                                            $(function getdataunread2() {
+                                                var table2 = $('#phu-table2').DataTable({
                                                     processing: true,
                                                     serverSide: true,
                                                     ajax: '{!! route('users.getdataunread2') !!}',
@@ -197,6 +215,9 @@
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
+                                                setInterval(function() {
+                                                table2.ajax.reload();
+                                                }, 120000 );
                                             });
                                         </script>
                                     @endpush
@@ -233,8 +254,8 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function() {
-                                                $('#phu-table3').DataTable({
+                                            $(function getdataunread3() {
+                                                var table3 = $('#phu-table3').DataTable({
                                                     processing: true,
                                                     serverSide: true,
                                                     ajax: '{!! route('users.getdataunread3') !!}',
@@ -246,6 +267,9 @@
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
+                                                setInterval(function() {
+                                                table3.ajax.reload();
+                                                }, 120000 );
                                             });
                                         </script>
                                     @endpush
@@ -282,8 +306,8 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function() {
-                                                $('#phu-table4').DataTable({
+                                            $(function getdataunread4() {
+                                                var table4 = $('#phu-table4').DataTable({
                                                     processing: true,
                                                     serverSide: true,
                                                     ajax: '{!! route('users.getdataunread4') !!}',
@@ -295,6 +319,9 @@
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
+                                                setInterval(function() {
+                                                table4.ajax.reload();
+                                                }, 120000 );
                                             });
                                         </script>
                                     @endpush

@@ -2,6 +2,11 @@ window.onload = function () {get_total();
     get_total();
     show_inbox();
     check_mail();
+    getdataunread();
+    getdataunread1();
+    getdataunread2();
+    getdataunread3();
+    getdataunread4();
 };
 
 function get_total() {
@@ -31,7 +36,7 @@ function get_total() {
                     }
                 }
                 //$('ul[class="nav nav-pills nav-stacked"]').append("<li><a href=\"mailbox.html\">Inbox<span class=\"label label-primary pull-right\">120</span></a></li>");
-               
+
 
             } else {
                 console.log('Không có dữ liệu cho tuyến liên lạc!!!');
@@ -46,14 +51,14 @@ $(document).ready(function () {
 });
 //TuanAnh
 function show_inbox(){
-    
+
     var table = $('#showinbox').DataTable({
         paging: false,
         stateSave: true,
         processing: true,
         serverSide: true,
         ajax: {
-                    url: 'http://127.0.0.1:8000/listmail'    
+                    url: 'http://127.0.0.1:8000/listmail'
                 },
         columns: [
             {data: 'name', name: 'name'},
@@ -85,7 +90,7 @@ function check_mail(){
           setInterval(function() {
             table.ajax.reload();
             }, 10000 );
-            
-          
+
+
 }
 
