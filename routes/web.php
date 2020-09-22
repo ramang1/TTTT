@@ -33,6 +33,12 @@ Route::resource('inboxes', 'InboxController');
 
 Route::get('inboxes-unread', 'InboxController@inboxes_unread');
 Route::get('inboxes-unread/getdataunread', 'InboxController@getdataunread')->name("users.getdataunread");
+//view in tab - of box 4
+Route::get('inboxes-unread/getdataunread1', 'InboxController@getdataunread1')->name("users.getdataunread1"); //tab 2 - day
+Route::get('inboxes-unread/getdataunread2', 'InboxController@getdataunread2')->name("users.getdataunread2"); //tab 3 - week
+Route::get('inboxes-unread/getdataunread3', 'InboxController@getdataunread3')->name("users.getdataunread3"); //tab 4 - month
+Route::get('inboxes-unread/getdataunread4', 'InboxController@getdataunread4')->name("users.getdataunread4"); //tab 5 - year
+
 
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
 

@@ -16,7 +16,7 @@ use Carbon\Carbon;
 use Response;
 use App\Models\Contact;
 use Request;
-
+use Post;
 
 class InboxController extends AppBaseController
 {
@@ -239,35 +239,6 @@ class InboxController extends AppBaseController
     public function getdataunread(Request $request)
     {
         $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
-
-        // if(request()->ajax())
-        // {
-        //     if(!empty($request->from_date))
-        //     {
-        //         $result= DB::table('inboxes')->whereBetween('created_at', array($request->from_date, $request->to_date))
-        //         ->get();
-        //     }
-        //     else
-        //     {
-        //          return Datatables::of($result)
-        //          ->editColumn('created_at', function ($result) {
-        //          if($result->created_at == null)
-        //          {
-        //              return $result->created_at ?  : 'Unknown';
-        //          }
-        //              Carbon::setLocale('vi');
-        //              return $result->created_at->format('d-M-Y - H:i:s');
-        //          })
-        //          ->make(true);
-        //     }
-        // }
-        // if(!empty($request->from_date))
-        //     {
-        //         $result= DB::table('inboxes')->whereBetween('created_at', array($request->from_date, $request->to_date))
-        //         ->get();
-        //     }
-        //  else
-        // {
             return Datatables::of($result)
             ->editColumn('created_at', function ($result) {
             if($result->created_at == null)
@@ -275,9 +246,77 @@ class InboxController extends AppBaseController
                 return $result->created_at ?  : 'Unknown';
             }
                 Carbon::setLocale('vi');
-                return $result->created_at->format('d-M-Y - H:i:s');
+                return $result->created_at->format('d-m-Y - H:i:s');
             })
             ->make(true);
         // }
     }
+
+    //for tab-2 get data of day of box 4
+    public function getdataunread1(Request $request)
+    {
+       $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereDate('created_at', Carbon::today())->get();
+        // $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [$start_week, $end_week])->get();
+
+            return Datatables::of($result)
+            ->editColumn('created_at', function ($result)
+            {
+                Carbon::setLocale('vi');
+                return $result->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
+
+    //for tab-3 get data of week of box 4
+    public function getdataunread2(Request $request)
+    {
+        // $previous_week = strtotime("-1 week +1 day");
+        // $start_week = strtotime("last sunday midnight",$previous_week);
+        // $end_week = strtotime("next saturday",$start_week);
+        // $start_week = strtotime("this monday midnight",$previous_week);
+        // $end_week = strtotime("next sunday midnight",$start_week);
+        // $start_week = date("d-m-Y",$start_week);
+        // $end_week = date("d-m-Y",$end_week);
+
+        // $day = date('w');
+        // $week_start = date('d-m-Y', strtotime('-'.$day.' days'));
+        // $week_end = date('d-m-Y', strtotime('+'.(6-$day).' days'));
+    //    $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereDate('created_at', Carbon::today())->get();
+        // $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [$start_week, $end_week])->get();
+                $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+                return Datatables::of($result)
+                ->editColumn('created_at', function ($result)
+                {
+                    Carbon::setLocale('vi');
+                    return $result->created_at->format('d-m-Y - H:i:s');
+                }
+                )
+                ->make(true);
+    }
+    public function getdataunread3(Request $request)
+    {
+                $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+                return Datatables::of($result)
+                ->editColumn('created_at', function ($result)
+                {
+                    Carbon::setLocale('vi');
+                    return $result->created_at->format('d-m-Y - H:i:s');
+                }
+                )
+                ->make(true);
+    }
+    public function getdataunread4(Request $request)
+    {
+                $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+                return Datatables::of($result)
+                ->editColumn('created_at', function ($result)
+                {
+                    Carbon::setLocale('vi');
+                    return $result->created_at->format('d-m-Y - H:i:s');
+                }
+                )
+                ->make(true);
+    }
+
 }
