@@ -247,6 +247,7 @@ class InboxController extends AppBaseController
             }
                 Carbon::setLocale('vi');
                 return $result->created_at->format('d-m-Y - H:i:s');
+                //? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
             ->make(true);
         // }
@@ -255,14 +256,14 @@ class InboxController extends AppBaseController
     //for tab-2 get data of day of box 4
     public function getdataunread1(Request $request)
     {
-       $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereDate('created_at', Carbon::today())->get();
+       $result1 = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereDate('created_at', Carbon::today())->get();
         // $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [$start_week, $end_week])->get();
 
-            return Datatables::of($result)
-            ->editColumn('created_at', function ($result)
+            return Datatables::of($result1)
+            ->editColumn('created_at', function ($result11)
             {
                 Carbon::setLocale('vi');
-                return $result->created_at->format('d-m-Y - H:i:s');
+                return $result11->created_at->format('d-m-Y - H:i:s');
             }
             )
             ->make(true);

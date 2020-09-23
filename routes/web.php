@@ -78,3 +78,8 @@ Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData');
 //chi tiet thu chua gui
 Route::get('unsend', 'OutboxController@outbox_unsend');
 Route::get('unsend/unsenddata', 'OutboxController@unsenddata')->name("users.unsenddata");
+Route::get('unsend/unsenddata1', 'OutboxController@unsenddata1')->name("users.unsenddata1");
+Route::get('unsend/unsenddata2', 'OutboxController@unsenddata2')->name("users.unsenddata2");
+Route::get('unsend/unsenddata3', 'OutboxController@unsenddata3')->name("users.unsenddata3");
+Route::get('unsend/unsenddata4', 'OutboxController@unsenddata4')->name("users.unsenddata4");
+

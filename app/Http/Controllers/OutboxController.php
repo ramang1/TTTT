@@ -175,14 +175,63 @@ class OutboxController extends AppBaseController
     {
         $result1 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at']);
         return Datatables::of($result1)
-        ->editColumn('created_at', function ($result) {
-            if($result->created_at == null)
+        ->editColumn('created_at', function ($result11) {
+            if($result11->created_at == null)
             {
-                return $result->created_at ?  : 'Unknown';
+                return $result11->created_at ?  : 'Unknown';
             }
                 Carbon::setLocale('vi');
-                return $result->created_at->format('d-M-Y - H:i:s');
+                return $result11->created_at->format('d-m-Y - H:i:s');
             })
         ->make(true);
     }
+
+    public function unsenddata1(Request $request)
+    {
+        $result2 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereDate('created_at', Carbon::today())->get();
+        return Datatables::of($result2)
+        ->editColumn('created_at', function ($result22) {
+
+                Carbon::setLocale('vi');
+                return $result22->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
+    }
+
+    public function unsenddata2(Request $request)
+    {
+        $result3 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        return Datatables::of($result3)
+        ->editColumn('created_at', function ($result33) {
+
+                Carbon::setLocale('vi');
+                return $result33->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
+    }
+
+    public function unsenddata3(Request $request)
+    {
+        $result4 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+        return Datatables::of($result4)
+        ->editColumn('created_at', function ($result44) {
+
+                Carbon::setLocale('vi');
+                return $result44->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
+    }
+
+    public function unsenddata4(Request $request)
+    {
+        $result5 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+        return Datatables::of($result5)
+        ->editColumn('created_at', function ($result55) {
+
+                Carbon::setLocale('vi');
+                return $result55->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
+    }
+
 }

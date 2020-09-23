@@ -2,11 +2,18 @@ window.onload = function () {get_total();
     get_total();
     show_inbox();
     check_mail();
-    getdataunread();
-    getdataunread1();
-    getdataunread2();
-    getdataunread3();
-    getdataunread4();
+
+    unreadTab1();
+    unreadTab2();
+    unreadTab3();
+    unreadTab4();
+    unreadTab5();
+
+    unsendTab1();
+    unsendTab2();
+    unsendTab3();
+    unsendTab4();
+    unsendTab5();
 };
 
 function get_total() {

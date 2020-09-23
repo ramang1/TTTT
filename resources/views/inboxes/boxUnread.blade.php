@@ -81,8 +81,9 @@
                     <div class="col-md-20">
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
-                            <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                            <div class="table-responsive mailbox-messages"  >
+                                <table class="table table-hover table-bordered" id="phu-table" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     </tbody><thead>
                                         <tr>
@@ -97,7 +98,7 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function getdataunread() {
+                                            $(function unreadTab1() {
 
                                                 var table = $('#phu-table').DataTable({
                                                     processing: true,
@@ -151,7 +152,7 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function getdataunread1() {
+                                            $(function unreadTab2() {
                                                 var table1 = $('#phu-table1').DataTable({
                                                     processing: true,
                                                     serverSide: true,
@@ -202,7 +203,7 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function getdataunread2() {
+                                            $(function unreadTab3() {
                                                 var table2 = $('#phu-table2').DataTable({
                                                     processing: true,
                                                     serverSide: true,
@@ -254,7 +255,7 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function getdataunread3() {
+                                            $(function unreadTab4() {
                                                 var table3 = $('#phu-table3').DataTable({
                                                     processing: true,
                                                     serverSide: true,
@@ -306,7 +307,7 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function getdataunread4() {
+                                            $(function unreadTab5() {
                                                 var table4 = $('#phu-table4').DataTable({
                                                     processing: true,
                                                     serverSide: true,
