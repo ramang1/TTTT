@@ -11,7 +11,7 @@
       <div class="icon">
         <i class="ion ion ion-email"></i>
       </div>
-      <a href="/outboxes" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/outboxes" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -26,7 +26,7 @@
       <div class="icon">
         <i class="ion ion ion-email"></i>
       </div>
-      <a href="/inboxes" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/inboxes" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
       <div class="icon">
         <i class="ion ion ion-email"></i>
       </div>
-      <a href="/unsend" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/unsend" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -57,7 +57,7 @@
       <div class="icon">
         <i class="ion ion-email-unread"></i>
       </div>
-      <a href="/inboxes-unread" class="small-box-footer">Chi tiết<i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/inboxes-unread" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->

@@ -37,24 +37,28 @@
     <div class="wrapper">
 
         <!-- Main Header -->
+
         <header class="main-header">
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>PKT-2020</b>
+                <b>QLKTNVMM-2020</b>
             </a>
-
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
+
                 </a>
+
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
+
                     <ul class="nav navbar-nav">
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
+
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
@@ -77,6 +81,7 @@
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat">Thông tin</a>
+
                                     </div>
                                     <div class="pull-right">
                                         <a href="{{ url('/logout') }}" class="btn btn-default btn-flat"
