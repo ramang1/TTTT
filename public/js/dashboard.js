@@ -14,6 +14,12 @@ window.onload = function () {get_total();
     unsendTab3();
     unsendTab4();
     unsendTab5();
+
+    inboxTab1();
+    inboxTab2();
+    inboxTab3();
+    inboxTab4();
+    inboxTab5();
 };
 
 function get_total() {

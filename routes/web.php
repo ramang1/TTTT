@@ -31,6 +31,18 @@ Route::resource('channels', 'ChannelController');
 
 Route::resource('inboxes', 'InboxController');
 
+
+// Xay dung Box 3 - theo kieu P lam moi 
+
+Route::get('inboxTotal','InboxController@inboxTotal');
+Route::get('inboxTotal/getdatainboxTotal','InboxController@getdatainboxTotal')->name("users.getdatainboxTotal");
+Route::get('inboxTotal/getdatainboxTotal1','InboxController@getdatainboxTotal1')->name("users.getdatainboxTotal1");
+Route::get('inboxTotal/getdatainboxTotal2','InboxController@getdatainboxTotal2')->name("users.getdatainboxTotal2");
+Route::get('inboxTotal/getdatainboxTotal3','InboxController@getdatainboxTotal3')->name("users.getdatainboxTotal3");
+Route::get('inboxTotal/getdatainboxTotal4','InboxController@getdatainboxTotal4')->name("users.getdatainboxTotal4");
+
+//chi tiet thu chua doc
+//Box so 4
 Route::get('inboxes-unread', 'InboxController@inboxes_unread');
 Route::get('inboxes-unread/getdataunread', 'InboxController@getdataunread')->name("users.getdataunread");
 //view in tab - of box 4

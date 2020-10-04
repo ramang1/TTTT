@@ -320,4 +320,83 @@ class InboxController extends AppBaseController
                 ->make(true);
     }
 
+
+
+    // Viet ham cho box so 2 - inboxTotal
+    public function inboxTotal()
+    {
+        $contacts = Contact::all();
+
+        return view('inboxes.inboxTotal')->with('contacts', $contacts);
+
+    }
+
+    public function getdatainboxTotal(Request $request)
+    {
+        $result_box2 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at']);
+            return Datatables::of($result_box2)
+            ->editColumn('created_at', function ($result) {
+            if($result->created_at == null)
+            {
+                return $result->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $result->created_at->format('d-m-Y - H:i:s');
+                //? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+            ->make(true);
+        // }
+    }
+    public function getdatainboxTotal1(Request $request)
+    {
+        $result_box2_tab2 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at'])->whereDate('created_at', Carbon::today())->get();
+
+            return Datatables::of($result_box2_tab2)
+            ->editColumn('created_at', function ($result22)
+            {
+                Carbon::setLocale('vi');
+                return $result22->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
+    public function getdatainboxTotal2(Request $request)
+    {
+        $result_box2_tab3 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+
+            return Datatables::of($result_box2_tab3)
+            ->editColumn('created_at', function ($result23)
+            {
+                Carbon::setLocale('vi');
+                return $result23->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
+    public function getdatainboxTotal3(Request $request)
+    {
+        $result_box2_tab4 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+
+            return Datatables::of($result_box2_tab4)
+            ->editColumn('created_at', function ($result24)
+            {
+                Carbon::setLocale('vi');
+                return $result24->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
+    public function getdatainboxTotal4(Request $request)
+    {
+        $result_box2_tab5 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+
+            return Datatables::of($result_box2_tab5 )
+            ->editColumn('created_at', function ($result25)
+            {
+                Carbon::setLocale('vi');
+                return $result25->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
 }

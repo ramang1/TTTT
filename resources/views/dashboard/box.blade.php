@@ -26,7 +26,9 @@
       <div class="icon">
         <i class="ion ion ion-email"></i>
       </div>
-      <a href="/inboxes" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+      <!-- <a href="/inboxes" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>    -->
+      <a href="/inboxTotal" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+
     </div>
   </div>
 
