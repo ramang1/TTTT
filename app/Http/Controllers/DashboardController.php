@@ -46,7 +46,8 @@ class DashboardController extends Controller
 
         //Dem tong so mail di, den trong ngay
         $totalInbox = Inbox::whereDate('created_at',Carbon::today())->count();
-        $totalOutbox = OutboxProcess::whereDate('created_at', Carbon::today())->count();
+        // $totalOutbox = OutboxProcess::whereDate('created_at', Carbon::today())->count();
+        $totalOutbox = Outbox::whereDate('created_at', Carbon::today())->count();
 
         //Dem so mail chua doc
         $totalUnread = Inbox::whereNotIn('id', function($process_hash){
@@ -102,13 +103,13 @@ class DashboardController extends Controller
 
     //TuanAnh-ShowThuDen
     // public function show_inbox(){
-        
+
     //     $data=DB::table('inboxes')->orderby('id','desc')->get();
     //     $all_inbox=view('dashboard.card')->with(['data',$data]);
     //     return view('dashboard.index')->with('dashboard.card',$all_inbox);
-        
+
     // }
 
 
-   
+
 }

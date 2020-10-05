@@ -32,7 +32,7 @@ Route::resource('channels', 'ChannelController');
 Route::resource('inboxes', 'InboxController');
 
 
-// Xay dung Box 3 - theo kieu P lam moi 
+// Xay dung Box 2 - theo kieu P lam moi
 
 Route::get('inboxTotal','InboxController@inboxTotal');
 Route::get('inboxTotal/getdatainboxTotal','InboxController@getdatainboxTotal')->name("users.getdatainboxTotal");
@@ -72,6 +72,14 @@ Route::post(
 Route::resource('processInboxes', 'ProcessInboxController');
 
 Route::resource('outboxes', 'OutboxController');
+
+//Xay dung Box 1 - Box tong thu di - theo P lam moi
+Route::get('outboxTotal','OutboxController@outboxTotal');
+Route::get('outboxTotal/getdataoutboxTotal','OutboxController@getdataoutboxTotal')->name("users.getdataoutboxTotal");
+Route::get('outboxTotal/getdataoutboxTotal1','OutboxController@getdataoutboxTotal1')->name("users.getdataoutboxTotal1");
+Route::get('outboxTotal/getdataoutboxTotal2','OutboxController@getdataoutboxTotal2')->name("users.getdataoutboxTotal2");
+Route::get('outboxTotal/getdataoutboxTota3','OutboxController@getdataoutboxTotal3')->name("users.getdataoutboxTotal3");
+Route::get('outboxTotal/getdataoutboxTotal4','OutboxController@getdataoutboxTotal4')->name("users.getdataoutboxTotal4");
 
 Route::resource('outboxProcesses', 'OutboxProcessController');
 //TuanAnh

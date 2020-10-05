@@ -20,6 +20,13 @@ window.onload = function () {get_total();
     inboxTab3();
     inboxTab4();
     inboxTab5();
+
+    outboxTab1();
+    outboxTab2();
+    outboxTab3();
+    outboxTab4();
+    outboxTab5();
+
 };
 
 function get_total() {

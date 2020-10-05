@@ -1,5 +1,5 @@
 <div class="box-header with-border">
-    <h3 class="box-title" style="font-weight: bold;">Thư đến mới</h3>
+    <h3 class="box-title" style="font-weight: bold;">Thư đi mới</h3>
 </div>
 <div class="nav-tabs-horizontal">
     <ul class="nav nav-tabs" data-plugin="nav-tabs" role="tablist">
@@ -82,18 +82,19 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table1" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="outbox-table1" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     <!-- </tbody> -->
                                     <thead>
                                         <tr>
-                                        <th>Tên thư đến</th>
-                                        <th>Mã nơi gửi</th>
+                                        <th>Tên thư đi</th>
+                                        <th>ID</th>
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
-                                        <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Kiểu nén</th>
+                                        <th>ID nhóm nhận</th>
+                                        <th>ID người thực hiện</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -101,24 +102,25 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function inboxTab1() {
+                                            $(function outboxTab1() {
 
-                                                var tabletotalInbox1 = $('#inbox-table1').DataTable({
+                                                var tabletotalOutbox1 = $('#outbox-table1').DataTable({
                                                     processing: true,
                                                     serverSide: true,
-                                                    ajax: '{!! route('users.getdatainboxTotal') !!}',
+                                                    ajax: '{!! route('users.getdataoutboxTotal') !!}',
                                                     columns: [
                                                         { data: 'name', name: 'name' },
-                                                        { data: 'contact_id', name: 'contact_id' },
+                                                        { data: 'id', name: 'id' },
                                                         { data: 'size', name: 'size' },
                                                         { data: 'path', name: 'path' },
                                                         { data: 'type', name: 'type' },
+                                                        { data: 'channel_id', name: 'channel_id' },
                                                         { data: 'user_id', name: 'user_id' },
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
                                                 setInterval(function() {
-                                                tabletotalInbox1.ajax.reload();
+                                                    tabletotalOutbox1.ajax.reload();
                                                 }, 120000 );
                                             });
                                         </script>
@@ -143,18 +145,19 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table2" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="outbox-table2" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     <!-- </tbody> -->
                                     <thead>
                                         <tr>
-                                        <th>Tên thư đến</th>
-                                        <th>Mã nơi gửi</th>
+                                        <th>Tên thư đi</th>
+                                        <th>ID</th>
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
-                                        <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Kiểu nén</th>
+                                        <th>ID nhóm nhận</th>
+                                        <th>ID người thực hiện</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -162,24 +165,25 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function inboxTab2() {
+                                            $(function outboxTab2() {
 
-                                                var tabletotalInbox2 = $('#inbox-table2').DataTable({
+                                                var tabletotalOutbox2 = $('#outbox-table2').DataTable({
                                                     processing: true,
                                                     serverSide: true,
-                                                    ajax: '{!! route('users.getdatainboxTotal1') !!}',
+                                                    ajax: '{!! route('users.getdataoutboxTotal1') !!}',
                                                     columns: [
                                                         { data: 'name', name: 'name' },
-                                                        { data: 'contact_id', name: 'contact_id' },
+                                                        { data: 'id', name: 'id' },
                                                         { data: 'size', name: 'size' },
                                                         { data: 'path', name: 'path' },
                                                         { data: 'type', name: 'type' },
+                                                        { data: 'channel_id', name: 'channel_id' },
                                                         { data: 'user_id', name: 'user_id' },
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
                                                 setInterval(function() {
-                                                tabletotalInbox2.ajax.reload();
+                                                    tabletotalOutbox2.ajax.reload();
                                                 }, 120000 );
                                             });
                                         </script>
@@ -201,17 +205,18 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table3" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="outbox-table3" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     </tbody><thead>
                                         <tr>
-                                        <th>Tên thư đến</th>
-                                        <th>Mã nơi gửi</th>
+                                        <th>Tên thư đi</th>
+                                        <th>ID</th>
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
-                                        <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Kiểu nén</th>
+                                        <th>ID nhóm nhận</th>
+                                        <th>ID người thực hiện</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -219,24 +224,25 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function inboxTab3() {
+                                            $(function outboxTab3() {
 
-                                                var tabletotalInbox3 = $('#inbox-table3').DataTable({
+                                                var tabletotalOutbox3 = $('#outbox-table3').DataTable({
                                                     processing: true,
                                                     serverSide: true,
-                                                    ajax: '{!! route('users.getdatainboxTotal2') !!}',
+                                                    ajax: '{!! route('users.getdataoutboxTotal2') !!}',
                                                     columns: [
                                                         { data: 'name', name: 'name' },
-                                                        { data: 'contact_id', name: 'contact_id' },
+                                                        { data: 'id', name: 'id' },
                                                         { data: 'size', name: 'size' },
                                                         { data: 'path', name: 'path' },
                                                         { data: 'type', name: 'type' },
+                                                        { data: 'channel_id', name: 'channel_id' },
                                                         { data: 'user_id', name: 'user_id' },
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
                                                 setInterval(function() {
-                                                tabletotalInbox3.ajax.reload();
+                                                    tabletotalOutbox3.ajax.reload();
                                                 }, 120000 );
                                             });
                                         </script>
@@ -259,17 +265,18 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table4" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="outbox-table4" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     </tbody><thead>
                                         <tr>
-                                        <th>Tên thư đến</th>
-                                        <th>Mã nơi gửi</th>
+                                        <th>Tên thư đi</th>
+                                        <th>ID</th>
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
-                                        <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Kiểu nén</th>
+                                        <th>ID nhóm nhận</th>
+                                        <th>ID người thực hiện</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -277,24 +284,25 @@
                                 </table>
                                     @push('scripts')
                                         <script>
-                                            $(function inboxTab4() {
+                                            $(function outboxTab4() {
 
-                                                var tabletotalInbox4 = $('#inbox-table4').DataTable({
+                                                var tabletotalOutbox4 = $('#outbox-table4').DataTable({
                                                     processing: true,
                                                     serverSide: true,
-                                                    ajax: '{!! route('users.getdatainboxTotal3') !!}',
+                                                    ajax: '{!! route('users.getdataoutboxTotal3') !!}',
                                                     columns: [
                                                         { data: 'name', name: 'name' },
-                                                        { data: 'contact_id', name: 'contact_id' },
+                                                        { data: 'id', name: 'id' },
                                                         { data: 'size', name: 'size' },
                                                         { data: 'path', name: 'path' },
                                                         { data: 'type', name: 'type' },
+                                                        { data: 'channel_id', name: 'channel_id' },
                                                         { data: 'user_id', name: 'user_id' },
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
                                                 setInterval(function() {
-                                                tabletotalInbox4.ajax.reload();
+                                                    tabletotalOutbox4.ajax.reload();
                                                 }, 120000 );
                                             });
                                         </script>
@@ -317,17 +325,18 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table5" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="outbox-table5" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     </tbody><thead>
                                         <tr>
-                                        <th>Tên thư đến</th>
-                                        <th>Mã nơi gửi</th>
+                                        <th>Tên thư đi</th>
+                                        <th>ID</th>
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
-                                        <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Kiểu nén</th>
+                                        <th>ID nhóm nhận</th>
+                                        <th>ID người thực hiện</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -335,24 +344,25 @@
                                 </table>
                                 @push('scripts')
                                         <script>
-                                            $(function inboxTab5() {
+                                            $(function outboxTab5() {
 
-                                                var tabletotalInbox5 = $('#inbox-table5').DataTable({
+                                                var tabletotalOutbox5 = $('#outbox-table5').DataTable({
                                                     processing: true,
                                                     serverSide: true,
-                                                    ajax: '{!! route('users.getdatainboxTotal4') !!}',
+                                                    ajax: '{!! route('users.getdataoutboxTotal4') !!}',
                                                     columns: [
                                                         { data: 'name', name: 'name' },
-                                                        { data: 'contact_id', name: 'contact_id' },
+                                                        { data: 'id', name: 'id' },
                                                         { data: 'size', name: 'size' },
                                                         { data: 'path', name: 'path' },
                                                         { data: 'type', name: 'type' },
+                                                        { data: 'channel_id', name: 'channel_id' },
                                                         { data: 'user_id', name: 'user_id' },
                                                         { data: 'created_at', name: 'created_at' }
                                                     ]
                                                 });
                                                 setInterval(function() {
-                                                tabletotalInbox5.ajax.reload();
+                                                    tabletotalOutbox5.ajax.reload();
                                                 }, 120000 );
                                             });
                                         </script>
