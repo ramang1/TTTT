@@ -19,6 +19,8 @@ use Notification;
 use App\Notifications\Inboxes;
 use Illuminate\Notifications\Notifiable;
 
+use Request;
+use Post;
 
 class InboxController extends AppBaseController
 {
@@ -177,11 +179,11 @@ class InboxController extends AppBaseController
                     Carbon::setLocale('vi');
                     return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
                 })
-                
+
                 ->filterColumn('created_at', function ($query, $keyword) {
                     $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
                 })
-                
+
                 ->make(true);
         }
 
@@ -200,7 +202,7 @@ class InboxController extends AppBaseController
             // ->editColumn('name', function ($model) {
             //     return \HTML::mailto($model->email, $model->name);
             // })
-            
+
             ->editColumn('created_at', function ($data) {
                 if($data->created_at == null) {
                     // $data->created_at = '1/1/1900';
@@ -208,8 +210,8 @@ class InboxController extends AppBaseController
                 }
                     Carbon::setLocale('vi');
                     return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
-                    
-                
+
+
                 // Carbon::setLocale('vi');
                 // return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
@@ -221,10 +223,11 @@ class InboxController extends AppBaseController
 //  git config --global user.email "you@example.com"
 //   git config --global user.name "TuanAnh"
 
-    public function inboxes_unread()
+    public function inboxes_unread(Request $request)
     {
         $contacts = Contact::all();
         // $data = DB::table('inboxes')->get();
+
         $totalUnread_inbox = Inbox::whereNotIn('id', function($process_hash){
             $process_hash
             ->select('inboxes_id')
@@ -233,21 +236,169 @@ class InboxController extends AppBaseController
             ->where('action', '=', 'giai_nen_zip')
             ->orWhere('action', '=', 'giai_nen_rar');
            })->get();
+
         return view('inboxes.unread')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
     }
-    public function anydata(Request $request)
+    public function getdataunread(Request $request)
+    {
+        $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
+            return Datatables::of($result)
+            ->editColumn('created_at', function ($result) {
+            if($result->created_at == null)
+            {
+                return $result->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $result->created_at->format('d-m-Y - H:i:s');
+                //? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+            ->make(true);
+        // }
+    }
+
+    //for tab-2 get data of day of box 4
+    public function getdataunread1(Request $request)
+    {
+       $result1 = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereDate('created_at', Carbon::today())->get();
+        // $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [$start_week, $end_week])->get();
+
+            return Datatables::of($result1)
+            ->editColumn('created_at', function ($result11)
+            {
+                Carbon::setLocale('vi');
+                return $result11->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
+
+    //for tab-3 get data of week of box 4
+    public function getdataunread2(Request $request)
     {
 
-        $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at']);
-        // ->array_push($result, [
-        //     'name' => $name,
-        //     'contact_id' => $contact_id,
-        //     'size' => $size,
-        //     'path' => $path,
-        //     'created_at' => $created_at,
-        // ]);
+                $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+                return Datatables::of($result)
+                ->editColumn('created_at', function ($result)
+                {
+                    Carbon::setLocale('vi');
+                    return $result->created_at->format('d-m-Y - H:i:s');
+                }
+                )
+                ->make(true);
+    }
+    public function getdataunread3(Request $request)
+    {
+                $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+                return Datatables::of($result)
+                ->editColumn('created_at', function ($result)
+                {
+                    Carbon::setLocale('vi');
+                    return $result->created_at->format('d-m-Y - H:i:s');
+                }
+                )
+                ->make(true);
+    }
+    public function getdataunread4(Request $request)
+    {
+                $result = Inbox::select(['name', 'contact_id', 'size', 'path', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+                return Datatables::of($result)
+                ->editColumn('created_at', function ($result)
+                {
+                    Carbon::setLocale('vi');
+                    return $result->created_at->format('d-m-Y - H:i:s');
+                }
+                )
+                ->make(true);
+    }
 
-    return Datatables::of($result)->make(true);
+
+
+    // Viet ham cho box so 2 - inboxTotal
+    public function inboxTotal()
+    {
+        $contacts = Contact::all();
+
+        return view('inboxes.inboxTotal')->with('contacts', $contacts);
+
+    }
+
+
+    // tong thu den box 2 - tab so 1
+    public function getdatainboxTotal(Request $request)
+    {
+        $result_box2 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at']);
+            return Datatables::of($result_box2)
+            ->editColumn('created_at', function ($result) {
+            if($result->created_at == null)
+            {
+                return $result->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $result->created_at->format('d-m-Y - H:i:s');
+                //? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+            ->make(true);
+        // }
+    }
+
+    // tong thu den box 2 - tab so 2
+    public function getdatainboxTotal1(Request $request)
+    {
+        $result_box2_tab2 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at'])->whereDate('created_at', Carbon::today())->get();
+
+            return Datatables::of($result_box2_tab2)
+            ->editColumn('created_at', function ($result22)
+            {
+                Carbon::setLocale('vi');
+                return $result22->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
+
+    // tong thu den box 2 - tab so 3
+    public function getdatainboxTotal2(Request $request)
+    {
+        $result_box2_tab3 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+
+            return Datatables::of($result_box2_tab3)
+            ->editColumn('created_at', function ($result23)
+            {
+                Carbon::setLocale('vi');
+                return $result23->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
+
+    // tong thu den box 2 - tab so 4
+    public function getdatainboxTotal3(Request $request)
+    {
+        $result_box2_tab4 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+
+            return Datatables::of($result_box2_tab4)
+            ->editColumn('created_at', function ($result24)
+            {
+                Carbon::setLocale('vi');
+                return $result24->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
+    }
+
+    // tong thu den box 2 - tab so 5
+    public function getdatainboxTotal4(Request $request)
+    {
+        $result_box2_tab5 = Inbox::select(['name', 'contact_id', 'size', 'path', 'type','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+
+            return Datatables::of($result_box2_tab5 )
+            ->editColumn('created_at', function ($result25)
+            {
+                Carbon::setLocale('vi');
+                return $result25->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->make(true);
     }
 
     //TuanAnh Notification

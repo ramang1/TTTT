@@ -5,7 +5,7 @@ namespace App\DataTables;
 use App\Models\Outbox;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
-
+use Carbon\Carbon;
 class OutboxDataTable extends DataTable
 {
     /**
@@ -18,7 +18,16 @@ class OutboxDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'outboxes.datatables_actions');
+        return $dataTable
+        ->editColumn('created_at', function ($result) {
+            if($result->created_at == null)
+            {
+                return $result->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $result->created_at->format('d-M-Y - H:i:s');
+            })
+        ->addColumn('action', 'outboxes.datatables_actions');
     }
 
     /**

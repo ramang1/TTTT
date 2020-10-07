@@ -38,7 +38,7 @@
             </div>
             <!-- /.pull-right -->
           </div>
-          
+
           <div class="table-responsive mailbox-messages">
             <table  class="table table-striped table-bordered" id="showinbox">
               <thead>
@@ -49,7 +49,7 @@
                 </tr>
                 </thead>
               <tbody>
-                
+
                 {{-- @foreach ($data as $content)  --}}
               <tr>
                 {{-- <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td> --}}
@@ -60,11 +60,11 @@
               {{-- {{\Carbon\Carbon::parse($content->created_at)->diffForHumans()}} --}}
               </tr>
               {{-- @endforeach --}}
-              
+
               </tbody>
-            
+
             </table>
-            
+
             {{-- @push('scripts')
             <script>
             // $(function() {
@@ -81,7 +81,7 @@
             //         ]
             //     });
             // });
-            
+
             </script>
             @endpush --}}
             <!-- /.table -->
@@ -150,10 +150,10 @@
               </tbody>
             </table>
               {{-- TuanAnh --}}
-            
+
             {{-- @push('scripts')
             <script>
-                
+
             </script>
             @endpush --}}
           </div>
@@ -398,7 +398,7 @@
         <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Inventory</span>
+          <span class="info-box-text">Số lượng Tuyến</span>
           <span class="info-box-number">5,200</span>
 
           <div class="progress">
@@ -415,7 +415,7 @@
         <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Mentions</span>
+          <span class="info-box-text">Tổng số lượng Đơn vị có liên lạc</span>
           <span class="info-box-number">92,050</span>
 
           <div class="progress">
@@ -432,7 +432,7 @@
         <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Downloads</span>
+          <span class="info-box-text">Số lượng ID đơn vị hiện tại</span>
           <span class="info-box-number">114,381</span>
 
           <div class="progress">
@@ -449,7 +449,7 @@
         <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Direct Messages</span>
+          <span class="info-box-text">Tổng số lượng thư gửi/nhận trong ngày</span>
           <span class="info-box-number">163,921</span>
 
           <div class="progress">
@@ -468,7 +468,7 @@
       <!-- PRODUCT LIST -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Recently Added Products</h3>
+          <h3 class="box-title">Thông báo thư</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

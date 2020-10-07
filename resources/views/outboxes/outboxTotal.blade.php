@@ -7,12 +7,11 @@
 
 @section('content')
 
-@include('inboxes.boxUnread')
+@include('outboxes.boxoutboxTotal')
 
 @endsection
 
 
 @push('scripts')
 <script src="{{ asset('js/dashboard.js') }}"></script>
- <!-- <script src="{{ asset('js/date_ranger.js') }}"></script> -->
 @endpush

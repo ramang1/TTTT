@@ -14,7 +14,7 @@ use App\Models\Contact;
 use Yajra\DataTables\DataTables;
 use App\Models\Outbox;
 use Request;
-
+use Carbon\Carbon;
 
 class OutboxController extends AppBaseController
 {
@@ -174,6 +174,154 @@ class OutboxController extends AppBaseController
     public function unsenddata(Request $request)
     {
         $result1 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at']);
-        return Datatables::of($result1)->make(true);
+        return Datatables::of($result1)
+        ->editColumn('created_at', function ($result11) {
+            if($result11->created_at == null)
+            {
+                return $result11->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $result11->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
     }
+
+    public function unsenddata1(Request $request)
+    {
+        $result2 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereDate('created_at', Carbon::today())->get();
+        return Datatables::of($result2)
+        ->editColumn('created_at', function ($result22) {
+
+                Carbon::setLocale('vi');
+                return $result22->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
+    }
+
+    public function unsenddata2(Request $request)
+    {
+        $result3 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        return Datatables::of($result3)
+        ->editColumn('created_at', function ($result33) {
+
+                Carbon::setLocale('vi');
+                return $result33->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
+    }
+
+    public function unsenddata3(Request $request)
+    {
+        $result4 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+        return Datatables::of($result4)
+        ->editColumn('created_at', function ($result44) {
+
+                Carbon::setLocale('vi');
+                return $result44->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
+    }
+
+    public function unsenddata4(Request $request)
+    {
+        $result5 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+        return Datatables::of($result5)
+        ->editColumn('created_at', function ($result55) {
+
+                Carbon::setLocale('vi');
+                return $result55->created_at->format('d-m-Y - H:i:s');
+            })
+        ->make(true);
+    }
+
+
+
+     // Viet ham cho box so 1 - outboxTotal
+     public function outboxTotal()
+     {
+         $contacts = Contact::all();
+
+         return view('outboxes.outboxTotal')->with('contacts', $contacts);
+
+     }
+
+
+     // tong thu den box 2 - tab so 1
+     public function getdataoutboxTotal(Request $request)
+     {
+         $result_box1 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at']);
+             return Datatables::of($result_box1)
+             ->editColumn('created_at', function ($result11) {
+             if($result11->created_at == null)
+             {
+                 return $result11->created_at ?  : 'Unknown';
+             }
+                 Carbon::setLocale('vi');
+                 return $result11->created_at->format('d-m-Y - H:i:s');
+                 //? with(new Carbon($data->created_at))->diffForHumans() : '';
+             })
+             ->make(true);
+         // }
+     }
+
+     // tong thu den box 2 - tab so 2
+     public function getdataoutboxTotal1(Request $request)
+     {
+         $result_box1_tab2 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])->whereDate('created_at', Carbon::today())->get();
+
+             return Datatables::of($result_box1_tab2)
+             ->editColumn('created_at', function ($result12)
+             {
+                 Carbon::setLocale('vi');
+                 return $result12->created_at->format('d-m-Y - H:i:s');
+             }
+             )
+             ->make(true);
+     }
+
+     // tong thu den box 2 - tab so 3
+     public function getdataoutboxTotal2(Request $request)
+     {
+         $result_box1_tab3 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+
+             return Datatables::of($result_box1_tab3)
+             ->editColumn('created_at', function ($result13)
+             {
+                 Carbon::setLocale('vi');
+                 return $result13->created_at->format('d-m-Y - H:i:s');
+             }
+             )
+             ->make(true);
+     }
+
+     // tong thu den box 2 - tab so 4
+     public function getdataoutboxTotal3(Request $request)
+     {
+         $result_box1_tab4 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+
+             return Datatables::of($result_box1_tab4)
+             ->editColumn('created_at', function ($result14)
+             {
+                 Carbon::setLocale('vi');
+                 return $result14->created_at->format('d-m-Y - H:i:s');
+             }
+             )
+             ->make(true);
+     }
+
+     // tong thu den box 2 - tab so 5
+     public function getdataoutboxTotal4(Request $request)
+     {
+         $result_box1_tab5 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+
+             return Datatables::of($result_box1_tab5 )
+             ->editColumn('created_at', function ($result15)
+             {
+                 Carbon::setLocale('vi');
+                 return $result15->created_at->format('d-m-Y - H:i:s');
+             }
+             )
+             ->make(true);
+     }
+
 }
