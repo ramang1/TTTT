@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use HasPushSubscriptions;
+use App\Notifications\Inboxes;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class Inbox
@@ -59,6 +62,6 @@ class Inbox extends Model
         
     ];
     
-
+    
     
 }

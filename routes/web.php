@@ -62,13 +62,34 @@ Route::resource('outboxProcesses', 'OutboxProcessController');
 // Route::get('/',function(){
 //     return view ('dashboard.card');
 // });
-Route::get('/','InboxController@DatatableInbox');
+Route::get('/','InboxController@DatatableInbox')->middleware('verified');
 //Lay du lieu qua ajax showmail
-Route::get('/listmail','InboxController@showinbox')->name('users.getData');
+Route::get('/listmail','InboxController@showinbox')->name('users.getData')->middleware('verified');
 //Lay du lieu Checkmail
-Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData');
-
+Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData')->middleware('verified');
+//Notification dashboard
+// Route::get('/', 'InboxController@notificationmail');
+Route::get('/', 'InboxController@showmail')->middleware('verified');
+Route::get('/markAsRead/{id}', function($id){
+    $id = auth()->user()->unreadNotifications[0]->id;
+    auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+	return redirect()->back();
+})->name('mark');
+//Create Notification insert into database
+Route::get('/notify', function () {  
+    $users = \App\User::all();
+    $details = [
+        'body' => 'hello'
+    ];
+    Notification::send($users, new \App\Notifications\Inboxes($details));
+    // $users->notify(new \App\Notifications\Inboxes($details));
+    $notification = array(
+        'message' => 'Bạn có thông báo mới', 
+        'alert-type' => 'success'
+    );
+    return redirect()->back()->with($notification);
+});
 
 //chi tiet thu chua gui
-Route::get('unsend', 'OutboxController@outbox_unsend');
-Route::get('unsend/unsenddata', 'OutboxController@unsenddata')->name("users.unsenddata");
+Route::get('unsend', 'OutboxController@outbox_unsend')->middleware('verified');
+Route::get('unsend/unsenddata', 'OutboxController@unsenddata')->name("users.unsenddata")->middleware('verified');

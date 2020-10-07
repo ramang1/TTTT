@@ -29,6 +29,8 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css"> -->
      <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+     
     @yield('css')
 </head>
 
@@ -50,10 +52,49 @@
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
+                
                 <!-- Navbar Right Menu -->
+                
                 <div class="navbar-custom-menu">
+                    {{-- NotificationDropdown-TuanAnh --}}
                     <ul class="nav navbar-nav">
+                        {{-- <li class="dropdown dropdown-notifications">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
+                                <span class="glyphicon glyphicon-bell notification-icon"></span> Thông báo <span class="badge">{{ auth()->user()->notifications->count() }}</span>
+                            </a> --}}
+                            {{-- <ul class="dropdown-menu" role="menu">
+                                @foreach (auth()->user()->unreadNotifications as $notification)
+                            <a class="active styling-edit" href="{{URL::to('/markAsRead/'.$notification->id)}}">{{json_encode($notification->data)}}</a>
+                                @endforeach
+                            </ul> --}}
+                        {{-- </li> --}}
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                              <i class="glyphicon glyphicon-bell notification-icon"></i>Thông báo
+                              <span class="label label-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li class="header">Bạn có {{ auth()->user()->unreadNotifications->count() }} thông báo mới</li>
+                              <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    @foreach (auth()->user()->unreadNotifications as $notification)
+                                  <li>
+                                    <a href="{{URL::to('/markAsRead/'.$notification->id)}}">
+                                      <i class="fa fa-users text-aqua"></i> {{json_encode($notification->data)}} đã đăng nhập vào hệ thống
+                                    </a>
+                                  </li>
+                                  @endforeach
+                                </ul>
+                              </li>
+                              <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                          </li>
                         <!-- User Account Menu -->
+                        {{-- TuanAnhtest --}}
+                        <li><a href="{{URL::to('/notify')}}">Tạo thông báo</a></li>
+                        </form>
+                        {{-- TuanAnhtest --}}
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -155,7 +196,7 @@
         </div>
     </div>
     @endif
-
+    
     <!-- jQuery 3.1.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
@@ -186,7 +227,27 @@
         <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <!-- Bootstrap JavaScript -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script>
+            @if(Session::has('message'))
+              var type = "{{Session::get('alert-type', 'info')}}";
+              switch(type){
+                  case 'info':
+                      toastr.info("{{Session::get('message')}}");
+                      break;
+                  
+                  case 'warning':
+                      toastr.warning("{{Session::get('message')}}");
+                      break;
+                  case 'success':
+                      toastr.success("{{Session::get('message')}}");
+                      break;
+                  case 'error':
+                      toastr.error("{{Session::get('message')}}");
+                      break;
+              }
+            @endif
+        </script>
     @stack('scripts')
 </body>
 </html>

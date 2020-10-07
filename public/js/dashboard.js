@@ -48,7 +48,7 @@ $(document).ready(function () {
 function show_inbox(){
     
     var table = $('#showinbox').DataTable({
-        paging: false,
+        
         stateSave: true,
         processing: true,
         serverSide: true,
@@ -64,12 +64,12 @@ function show_inbox(){
     });
     setInterval(function() {
         table.ajax.reload();
-        }, 10000 );
+        }, 100000 );
 }
 
 function check_mail(){
     var table = $('#CheckMail').DataTable({
-        paging: false,
+        
         stateSave: true,
         processing: true,
         serverSide: true,
@@ -81,11 +81,22 @@ function check_mail(){
           {data: 'description', name: 'process_inbox.description'},
           {data: 'created_at', name: 'process_inbox.created_at'}
               ],
+        createdRow: function(row, data, string) {
+            if (data['action'] == 'nhan_mai') {
+                $(row).css('background-color', 'red');
+                  
+            }
+            else{
+                $(row).css('background-color', 'green');
+                }
+            },
+            
+        
           });
           setInterval(function() {
             table.ajax.reload();
-            }, 10000 );
+            }, 100000 );
+
             
-          
 }
 

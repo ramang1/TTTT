@@ -15,6 +15,9 @@ use DB;
 use Carbon\Carbon;
 use Response;
 use App\Models\Contact;
+use Notification;
+use App\Notifications\Inboxes;
+use Illuminate\Notifications\Notifiable;
 
 
 class InboxController extends AppBaseController
@@ -25,6 +28,7 @@ class InboxController extends AppBaseController
     public function __construct(InboxRepository $inboxRepo)
     {
         $this->inboxRepository = $inboxRepo;
+        $this->middleware('auth');
     }
 
     /**
@@ -162,7 +166,7 @@ class InboxController extends AppBaseController
         // }
         public function showinbox()
         {
-            $data = DB::table('inboxes')->select([ 'name', 'path', 'created_at']);
+            $data = DB::table('inboxes')->select([ 'name', 'path', 'created_at'])->orderBy('created_at','desc');
     
             return Datatables::of($data)
             ->editColumn('created_at', function ($data) {
@@ -189,7 +193,7 @@ class InboxController extends AppBaseController
     public function CheckMail()
     {
         $data = DB::table('process_inbox')->join('inboxes', 'process_inbox.inboxes_id', '=', 'inboxes.id')
-            ->select(['process_inbox.action', 'process_inbox.note', 'process_inbox.description', 'inboxes.name', 'process_inbox.created_at']);
+            ->select(['process_inbox.action', 'process_inbox.note', 'process_inbox.description', 'inboxes.name', 'process_inbox.created_at'])->orderBy('created_at','desc');
 
         return Datatables::of($data)
             // ->editColumn('title', '{!! str_limit($title, 60) !!}')
@@ -209,9 +213,7 @@ class InboxController extends AppBaseController
                 // Carbon::setLocale('vi');
                 // return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
-            ->setRowAttr([
-                'color' => 'red'
-            ])
+            
             
             ->make(true);
     }
@@ -247,4 +249,15 @@ class InboxController extends AppBaseController
 
     return Datatables::of($result)->make(true);
     }
+
+    //TuanAnh Notification
+   
+    
+    
+    public function showmail(){
+        return view ('dashboard.index',[
+            'notifications' => auth()->user()->notifications
+        ]);
+    }
+    
 }
