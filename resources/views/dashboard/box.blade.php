@@ -6,7 +6,7 @@
 
       <div class="inner">
         <h3 id ="totalOutBox">0</h3>
-        <p>Tổng thư đi</p>
+        <p>Thư đi mới</p>
       </div>
       <div class="icon">
         <i class="ion ion ion-email"></i>
@@ -22,7 +22,7 @@
     <div class="small-box bg-green">
       <div class="inner">
         <h3 id = "totalInbox">0</h3>
-        <p>Tổng thư đến</p>
+        <p>Thư đến mới</p>
       </div>
       <div class="icon">
         <i class="ion ion ion-email"></i>

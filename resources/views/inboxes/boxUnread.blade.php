@@ -101,6 +101,7 @@
                                             $(function unreadTab1() {
 
                                                 var table = $('#phu-table').DataTable({
+                                                    responsive: true,
                                                     processing: true,
                                                     serverSide: true,
                                                     ajax: '{!! route('users.getdataunread') !!}',

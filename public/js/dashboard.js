@@ -73,7 +73,7 @@ $(document).ready(function () {
 function show_inbox(){
 
     var table = $('#showinbox').DataTable({
-        
+
         stateSave: true,
         processing: true,
         serverSide: true,
@@ -94,7 +94,7 @@ function show_inbox(){
 
 function check_mail(){
     var table = $('#CheckMail').DataTable({
-        
+
         stateSave: true,
         processing: true,
         serverSide: true,
@@ -109,19 +109,19 @@ function check_mail(){
         createdRow: function(row, data, string) {
             if (data['action'] == 'nhan_mai') {
                 $(row).css('background-color', 'red');
-                  
+
             }
             else{
                 $(row).css('background-color', 'green');
                 }
             },
-            
-        
+
+
           });
           setInterval(function() {
             table.ajax.reload();
             }, 100000 );
 
-            
+
 }
 
