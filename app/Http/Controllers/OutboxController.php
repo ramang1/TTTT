@@ -260,6 +260,20 @@ class OutboxController extends AppBaseController
                  return $result11->created_at->format('d-m-Y - H:i:s');
                  //? with(new Carbon($data->created_at))->diffForHumans() : '';
              })
+             ->editColumn('channel_id',function($resultChannel)
+             {
+                 $idGroup = $resultChannel->channel_id;
+                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                 return $nameGroup[0];
+             }
+             )
+             ->editColumn('user_id',function($resultUser)
+             {
+                 $idUser = $resultUser->user_id;
+                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                 // return $nameID->name;
+                 return $User[0];
+             })
              ->make(true);
          // }
      }
@@ -276,6 +290,20 @@ class OutboxController extends AppBaseController
                  return $result12->created_at->format('d-m-Y - H:i:s');
              }
              )
+             ->editColumn('channel_id',function($resultChannel)
+             {
+                 $idGroup = $resultChannel->channel_id;
+                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                 return $nameGroup[0];
+             }
+             )
+             ->editColumn('user_id',function($resultUser)
+             {
+                 $idUser = $resultUser->user_id;
+                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                 // return $nameID->name;
+                 return $User[0];
+             })
              ->make(true);
      }
 
@@ -291,6 +319,20 @@ class OutboxController extends AppBaseController
                  return $result13->created_at->format('d-m-Y - H:i:s');
              }
              )
+             ->editColumn('channel_id',function($resultChannel)
+             {
+                 $idGroup = $resultChannel->channel_id;
+                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                 return $nameGroup[0];
+             }
+             )
+             ->editColumn('user_id',function($resultUser)
+             {
+                 $idUser = $resultUser->user_id;
+                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                 // return $nameID->name;
+                 return $User[0];
+             })
              ->make(true);
      }
 
@@ -306,6 +348,20 @@ class OutboxController extends AppBaseController
                  return $result14->created_at->format('d-m-Y - H:i:s');
              }
              )
+             ->editColumn('channel_id',function($resultChannel)
+             {
+                 $idGroup = $resultChannel->channel_id;
+                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                 return $nameGroup[0];
+             }
+             )
+             ->editColumn('user_id',function($resultUser)
+             {
+                 $idUser = $resultUser->user_id;
+                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                 // return $nameID->name;
+                 return $User[0];
+             })
              ->make(true);
      }
 
@@ -321,6 +377,20 @@ class OutboxController extends AppBaseController
                  return $result15->created_at->format('d-m-Y - H:i:s');
              }
              )
+             ->editColumn('channel_id',function($resultChannel)
+             {
+                 $idGroup = $resultChannel->channel_id;
+                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                 return $nameGroup[0];
+             }
+             )
+             ->editColumn('user_id',function($resultUser)
+             {
+                 $idUser = $resultUser->user_id;
+                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                 // return $nameID->name;
+                 return $User[0];
+             })
              ->make(true);
      }
 

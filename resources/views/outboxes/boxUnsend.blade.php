@@ -92,7 +92,7 @@
                         </div> -->
                         <div class="table-responsive mailbox-messagess">
                             <!-- <table class="table table-hover table-stripedd" id="users-table" > -->
-                            <table class="table table-hover table-bordered" id="userstable" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                            <table class="table table-hover table-bordered" id="userstable" style="width:100%" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                             <!-- <table class="table table-hover table-bordered" id="userstable" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                 <thead>
                                     <tr>
@@ -157,7 +157,7 @@
                         </div> -->
                         <div class="table-responsive mailbox-messagess">
                             <!-- <table class="table table-hover table-stripedd" id="users-table" > -->
-                            <table class="table table-hover table-bordered" id="userstable1" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                            <table class="table table-hover table-bordered" id="userstable1" style="width:100%" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                                 <thead>
                                     <tr>
                                     <th>Tên thư chưa gửi</th>
@@ -214,7 +214,7 @@
 
                         <div class="table-responsive mailbox-messagess">
                             <!-- <table class="table table-hover table-stripedd" id="users-table" > -->
-                            <table class="table table-hover table-bordered" id="userstable2" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                            <table class="table table-hover table-bordered" id="userstable2" style="width:100%" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                                 <thead>
                                     <tr>
                                     <th>Tên thư chưa gửi</th>
@@ -270,7 +270,7 @@
                     <div class="box box-primary">
                         <div class="table-responsive mailbox-messagess">
                             <!-- <table class="table table-hover table-stripedd" id="users-table" > -->
-                            <table class="table table-hover table-bordered" id="userstable3" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                            <table class="table table-hover table-bordered" id="userstable3" style="width:100%" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                                 <thead>
                                     <tr>
                                     <th>Tên thư chưa gửi</th>
@@ -326,7 +326,7 @@
                     <div class="box box-primary">
                         <div class="table-responsive mailbox-messagess">
                             <!-- <table class="table table-hover table-stripedd" id="users-table" > -->
-                            <table class="table table-hover table-bordered" id="userstable4" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                            <table class="table table-hover table-bordered" id="userstable4" style="width:100%" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                                 <thead>
                                     <tr>
                                     <th>Tên thư chưa gửi</th>
