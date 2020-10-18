@@ -12,7 +12,8 @@
         <i class="ion ion ion-email"></i>
       </div>
       <!-- <a href="/outboxes" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a> -->
-       <a href="/outboxTotal" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+       <!-- <a href="/outboxTotal" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a> -->
+       <a href="/OutBoxToTal_daterange" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
