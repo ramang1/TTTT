@@ -82,7 +82,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table1" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="inbox-table1" style="width:100%" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     <!-- </tbody> -->
@@ -93,7 +93,7 @@
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
                                         <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Tên người nhận</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -143,7 +143,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table2" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="inbox-table2" style="width:100%" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     <!-- </tbody> -->
@@ -154,7 +154,7 @@
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
                                         <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Tên người nhận</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -201,7 +201,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table3" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="inbox-table3" style="width:100%" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     </tbody><thead>
@@ -211,7 +211,7 @@
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
                                         <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Tên người nhận</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -259,7 +259,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table4" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="inbox-table4" style="width:100%" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     </tbody><thead>
@@ -269,7 +269,7 @@
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
                                         <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Tên người nhận</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>
@@ -317,7 +317,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="inbox-table5" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="inbox-table5" style="width:100%" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     </tbody><thead>
@@ -327,7 +327,7 @@
                                         <th>Kích thước</th>
                                         <th>Nơi lưu</th>
                                         <th>Kiểu nhận về</th>
-                                        <th>ID người nhận</th>
+                                        <th>Tên người nhận</th>
                                         <th>Thời gian</th>
                                         </tr>
                                     </thead>

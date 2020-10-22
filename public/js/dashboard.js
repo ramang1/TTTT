@@ -112,6 +112,7 @@ $(document).ready(function () {
 //TuanAnh
 function show_inbox() {
     var table = $('#showinbox').DataTable({
+
         stateSave: true,
         processing: true,
         serverSide: true,
@@ -137,53 +138,5 @@ function show_inbox() {
     // }, 1000);
 }
 
-function check_mail() {
-    var table = $('#CheckMail').DataTable({
-
-        stateSave: true,
-        processing: true,
-        serverSide: true,
-        ajax: '/checkmail',
-        columns: [{
-                data: 'name',
-                name: 'inboxes.name'
-            },
-            {
-                data: 'note',
-                name: 'process_inbox.note'
-            },
-            {
-                data: 'action',
-                name: 'process_inbox.action'
-            },
-            {
-                data: 'description',
-                name: 'process_inbox.description'
-            },
-            {
-                data: 'created_at',
-                name: 'process_inbox.created_at'
-            }
-        ],
-        createdRow: function (row, data, string) {
-            if (data['action'] == 'nhan_mai') {
-                $(row).css('background-color', 'yellow');
-
-            } else {
-                $(row).css('background-color', 'green');
-            }
-        },
 
 
-    });
-    // setInterval(function () {
-    //     table.ajax.reload();
-    // }, 10000);
-
-
-
-
-
-
-
-}

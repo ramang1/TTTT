@@ -76,6 +76,7 @@ Route::resource('outboxes', 'OutboxController');
 //Xay dung Box 1 - Box tong thu di - theo P lam moi
 Route::get('outboxTotal','OutboxController@outboxTotal');
 Route::get('outboxTotal/getdataoutboxTotal','OutboxController@getdataoutboxTotal')->name("users.getdataoutboxTotal");
+
 Route::get('outboxTotal/getdataoutboxTotal1','OutboxController@getdataoutboxTotal1')->name("users.getdataoutboxTotal1");
 Route::get('outboxTotal/getdataoutboxTotal2','OutboxController@getdataoutboxTotal2')->name("users.getdataoutboxTotal2");
 Route::get('outboxTotal/getdataoutboxTota3','OutboxController@getdataoutboxTotal3')->name("users.getdataoutboxTotal3");
@@ -124,3 +125,7 @@ Route::get('unsend/unsenddata2', 'OutboxController@unsenddata2')->name("users.un
 Route::get('unsend/unsenddata3', 'OutboxController@unsenddata3')->name("users.unsenddata3");
 Route::get('unsend/unsenddata4', 'OutboxController@unsenddata4')->name("users.unsenddata4");
 
+
+
+// thu lam outboxtotal moi
+Route::resource('OutBoxToTal_daterange', 'DateRangeController');

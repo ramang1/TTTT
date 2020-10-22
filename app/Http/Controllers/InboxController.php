@@ -21,9 +21,8 @@ use Illuminate\Notifications\Notifiable;
 use Pusher\Pusher;
 use Illuminate\Http\Request;
 use stdClass;
-use Post;
+// use Illuminate\Support\Facades\DB;
 use Session;
-
 class InboxController extends AppBaseController
 {
     /** @var  InboxRepository */
@@ -171,7 +170,7 @@ class InboxController extends AppBaseController
         public function showinbox()
         {
             $data = DB::table('inboxes')->select([ 'name', 'path', 'created_at'])->orderBy('created_at','desc');
-    
+
             return Datatables::of($data)
             ->editColumn('created_at', function ($data) {
                 if($data->created_at == null) {
@@ -252,8 +251,8 @@ class InboxController extends AppBaseController
                     Carbon::setLocale('vi');
                     return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
-            
-            
+
+
             ->make(true);
     }
 
@@ -374,6 +373,16 @@ class InboxController extends AppBaseController
                 return $result->created_at->format('d-m-Y - H:i:s');
                 //? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
+            ->editColumn('user_id', function($result)
+            {
+                $idUser = $result->user_id;
+                // $nameID = DB::table('users')->join('inboxes','users.id','=','inboxes.user_id')->where('users.id','=', $idUser)->select('users.name')->first();
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
+            }
+
+            )
             ->make(true);
         // }
     }
@@ -388,6 +397,15 @@ class InboxController extends AppBaseController
             {
                 Carbon::setLocale('vi');
                 return $result22->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->editColumn('user_id', function($result)
+            {
+                $idUser = $result->user_id;
+                // $nameID = DB::table('users')->join('inboxes','users.id','=','inboxes.user_id')->where('users.id','=', $idUser)->select('users.name')->first();
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
             }
             )
             ->make(true);
@@ -405,6 +423,15 @@ class InboxController extends AppBaseController
                 return $result23->created_at->format('d-m-Y - H:i:s');
             }
             )
+            ->editColumn('user_id', function($result)
+            {
+                $idUser = $result->user_id;
+                // $nameID = DB::table('users')->join('inboxes','users.id','=','inboxes.user_id')->where('users.id','=', $idUser)->select('users.name')->first();
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
+            }
+            )
             ->make(true);
     }
 
@@ -418,6 +445,15 @@ class InboxController extends AppBaseController
             {
                 Carbon::setLocale('vi');
                 return $result24->created_at->format('d-m-Y - H:i:s');
+            }
+            )
+            ->editColumn('user_id', function($result)
+            {
+                $idUser = $result->user_id;
+                // $nameID = DB::table('users')->join('inboxes','users.id','=','inboxes.user_id')->where('users.id','=', $idUser)->select('users.name')->first();
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
             }
             )
             ->make(true);
@@ -435,10 +471,22 @@ class InboxController extends AppBaseController
                 return $result25->created_at->format('d-m-Y - H:i:s');
             }
             )
+            ->editColumn('user_id', function($result)
+            {
+                $idUser = $result->user_id;
+                // $nameID = DB::table('users')->join('inboxes','users.id','=','inboxes.user_id')->where('users.id','=', $idUser)->select('users.name')->first();
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
+            }
+            )
             ->make(true);
     }
 
     //TuanAnh Notification
+
+
+
     public function showmail(){
         return view ('dashboard.index',[
             'notifications' => auth()->user()->notifications
@@ -479,4 +527,5 @@ class InboxController extends AppBaseController
     {
         return view('notifications.realtime_notification');
     }
+
 }

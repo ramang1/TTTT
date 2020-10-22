@@ -82,7 +82,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages"  >
-                                <table class="table table-hover table-bordered" id="phu-table" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
+                                <table class="table table-hover table-bordered" id="phu-table" style="width:100%" href="{{asset('public/backend/css/jquery.dataTables.css')}}">
                                 <!-- <table class="table table-hover table-bordered" id="phu-table" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}> -->
                                     <tbody>
                                     </tbody><thead>
@@ -101,6 +101,7 @@
                                             $(function unreadTab1() {
 
                                                 var table = $('#phu-table').DataTable({
+                                                    responsive: true,
                                                     processing: true,
                                                     serverSide: true,
                                                     ajax: '{!! route('users.getdataunread') !!}',
@@ -137,7 +138,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-bordered" id="phu-table1" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                                <table class="table table-hover table-bordered" id="phu-table1" style="width:100%" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                                     <tbody>
                                     </tbody><thead>
                                         <tr>
@@ -188,7 +189,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-bordered" id="phu-table2" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                                <table class="table table-hover table-bordered" id="phu-table2" style="width:100%" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                                     <tbody>
                                     </tbody><thead>
                                         <tr>
@@ -240,7 +241,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-bordered" id="phu-table3" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                                <table class="table table-hover table-bordered" id="phu-table3" style="width:100%" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                                     <tbody>
                                     </tbody><thead>
                                         <tr>
@@ -292,7 +293,7 @@
                         <!-- MAP & BOX PANE -->
                         <div class="box box-primary">
                             <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-bordered" id="phu-table4" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
+                                <table class="table table-hover table-bordered" id="phu-table4"  style="width:100%" href={{URL::to('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')}}>
                                     <tbody>
                                     </tbody><thead>
                                         <tr>
