@@ -83,19 +83,16 @@ Route::get('outboxTotal/getdataoutboxTotal4','OutboxController@getdataoutboxTota
 
 Route::resource('outboxProcesses', 'OutboxProcessController');
 //TuanAnh
-// Route::get('/dashboard', 'DashboardController@show_inbox');
-//Hien thi
-// Route::get('/',function(){
-//     return view ('dashboard.card');
-// });
 Route::get('/','InboxController@DatatableInbox')->middleware('verified');
 //Lay du lieu qua ajax showmail
+Route::get('/listmail1','InboxController@datamails')->middleware('verified');
 Route::get('/listmail','InboxController@showinbox')->name('users.getData')->middleware('verified');
 //Lay du lieu Checkmail
 Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData')->middleware('verified');
 //Notification dashboard
 // Route::get('/', 'InboxController@notificationmail');
 Route::get('/', 'InboxController@showmail')->middleware('verified');
+Route::get('/action/{id}', 'InboxController@action');
 Route::get('/markAsRead/{id}', function($id){
     $id = auth()->user()->unreadNotifications[0]->id;
     auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
@@ -115,7 +112,10 @@ Route::get('/notify', function () {
     );
     return redirect()->back()->with($notification);
 });
-
+//Test Notification realtime
+Route::get('/realtime', 'InboxController@realtime');
+Route::get('/sendNotification', 'InboxController@sendNotification')->name('send');
+Route::post('/postNotification', 'InboxController@postNotification')->name('postMessage');
 //chi tiet thu chua gui
 Route::get('unsend', 'OutboxController@outbox_unsend');
 Route::get('unsend/unsenddata', 'OutboxController@unsenddata')->name("users.unsenddata");

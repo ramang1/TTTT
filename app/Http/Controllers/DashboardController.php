@@ -29,7 +29,7 @@ class DashboardController extends Controller
     public function index()
     {
         $contacts = Contact::all();
-        // $data = DB::table('inboxes')->get();
+        $mails = DB::table('inboxes')->get();
         $totalUnread_inbox = Inbox::whereNotIn('id', function($process_hash){
             $process_hash
             ->select('inboxes_id')
@@ -38,7 +38,7 @@ class DashboardController extends Controller
             ->where('action', '=', 'giai_nen_zip')
             ->orWhere('action', '=', 'giai_nen_rar');
            })->get();
-        return view('dashboard.index')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
+        return view('dashboard.index')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox )->with('mails',$mails);
     }
 
     //Tra ve tong so mail den, di, chua doc

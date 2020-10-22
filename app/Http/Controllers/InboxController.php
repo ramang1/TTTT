@@ -18,9 +18,11 @@ use App\Models\Contact;
 use Notification;
 use App\Notifications\Inboxes;
 use Illuminate\Notifications\Notifiable;
-
-use Request;
+use Pusher\Pusher;
+use Illuminate\Http\Request;
+use stdClass;
 use Post;
+use Session;
 
 class InboxController extends AppBaseController
 {
@@ -173,21 +175,60 @@ class InboxController extends AppBaseController
             return Datatables::of($data)
             ->editColumn('created_at', function ($data) {
                 if($data->created_at == null) {
-                    // $data->created_at = '1/1/1900';
                     return $data->created_at ?  : 'Unknown';
                 }
                     Carbon::setLocale('vi');
                     return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
                 })
-
                 ->filterColumn('created_at', function ($query, $keyword) {
                     $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
                 })
-
                 ->make(true);
         }
-
-
+        public function datamails(){
+        Carbon::setLocale('vi');
+        //lay dl tra ve
+        $data = Inbox::whereNotIn('id', function($process_hash){
+            $process_hash
+            ->select('inboxes_id')
+            ->from('process_inbox')
+            ->whereNull('deleted_at')
+            ->where('action', '=', 'giai_nen_zip')
+            ->orWhere('action', '=', 'giai_nen_rar');
+           })->orderBy('created_at','desc')->limit(10)->get();
+           for ( $i =0; $i< sizeof($data); $i++){
+            $data[$i]->timeCarbon =  $data[$i]->created_at->diffForHumans();
+            $name = Contact::where('id','=',$data[$i]->contact_id)->pluck('name');
+            $data[$i]->contact_name =  $name[0];}
+        //session lan dau
+        
+       // If( isset( $_SESSION["CUR_DATA_INBOX"]) ){
+           if (!Session::has('CUR_DATA_INBOX')){
+           
+             Session::put('CUR_DATA_INBOX',$data);
+             \Debugbar::error('Chay lan dau');
+            return json_encode($data );
+        }
+        
+        if ($data == Session::get('CUR_DATA_INBOX')) {
+            \Debugbar::error('Khong Co du lieu moi');
+            return json_encode((object) null);
+        }
+        //Du lieu moi
+        else {
+            \Debugbar::error('Co du lieu moi');
+        
+            Session::put('CUR_DATA_INBOX',$data);
+            return json_encode($data);
+        }
+    
+        }
+    public function action($id){
+        DB::table('inboxes')->where('id',$id)->update(['name'=>11]);
+        $thongbao = array('message'=>'Thay doi ten thanh cong','alert-type'=>'warning');
+        // return Redirect::to('');
+        return view('dashboard.index')->with($thongbao);
+    }
     public function DatatableInbox()
     {
         return view('dashboard.index');
@@ -210,10 +251,6 @@ class InboxController extends AppBaseController
                 }
                     Carbon::setLocale('vi');
                     return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
-
-
-                // Carbon::setLocale('vi');
-                // return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
             
             
@@ -402,13 +439,44 @@ class InboxController extends AppBaseController
     }
 
     //TuanAnh Notification
-   
-    
-    
     public function showmail(){
         return view ('dashboard.index',[
             'notifications' => auth()->user()->notifications
         ]);
     }
-    
+    //Notification Realtime
+    public function sendNotification()
+    {
+        return view('notifications.send_notification');
+    }
+    public function postNotification(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+        
+        $data['title'] = $request->input('title');
+        $data['content'] = $request->input('content');
+
+        $options = array(
+            'cluster' => 'ap1',
+            'encrypted' => true
+        );
+
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
+
+        $pusher->trigger('Notify', 'SendNotify', $data);
+
+        return redirect()->route('send');
+    }
+    public function realtime()
+    {
+        return view('notifications.realtime_notification');
+    }
 }

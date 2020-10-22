@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use HasPushSubscriptions;
 use App\Notifications\Inboxes;
 use Illuminate\Notifications\Notifiable;
+use Carbon;
 
 /**
  * Class Inbox
@@ -26,8 +27,8 @@ class Inbox extends Model
     public $table = 'inboxes';
     
 
-    protected $dates = ['deleted_at'];
-
+    protected $dates = ['deleted_at','created_at'];
+    
 
 
     public $fillable = [

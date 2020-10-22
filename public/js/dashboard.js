@@ -1,33 +1,74 @@
-window.onload = function () {get_total();
-    get_total();
-    show_inbox();
-    check_mail();
+window.onload = function () {
+    //get_total();
+    // get_total();
+    // show_inbox();
+    // check_mail();
+    getMailServer();
+    // ApplyCss();
+    // unreadTab1();
+    // unreadTab2();
+    // unreadTab3();
+    // unreadTab4();
+    // unreadTab5();
 
-    unreadTab1();
-    unreadTab2();
-    unreadTab3();
-    unreadTab4();
-    unreadTab5();
+    // unsendTab1();
+    // unsendTab2();
+    // unsendTab3();
+    // unsendTab4();
+    // unsendTab5();
 
-    unsendTab1();
-    unsendTab2();
-    unsendTab3();
-    unsendTab4();
-    unsendTab5();
+    // inboxTab1();
+    // inboxTab2();
+    // inboxTab3();
+    // inboxTab4();
+    // inboxTab5();
 
-    inboxTab1();
-    inboxTab2();
-    inboxTab3();
-    inboxTab4();
-    inboxTab5();
-
-    outboxTab1();
-    outboxTab2();
-    outboxTab3();
-    outboxTab4();
-    outboxTab5();
+    // outboxTab1();
+    // outboxTab2();
+    // outboxTab3();
+    // outboxTab4();
+    // outboxTab5();
 
 };
+
+function getMailServer() {
+    let _url = `http://127.0.0.1:8000/listmail1`;
+    $.ajax({
+        url: _url,
+        method: 'get',
+        dataType: 'json',
+        success: function (data) {
+                if (data.length > 0) {
+                    $("#tuananhP").find("tr").remove();
+                    data.forEach(function (item) {
+                        $("#tuananhP").append(createTr(item));
+                    })
+                }else{
+                    console.log('Ko co du lieu tra ve tu server');
+                }
+        }
+    })
+} //end function
+
+function createTr(item) {
+    var tr = '<tr>' +
+        '<td><div href="/action/' + item.id + '" class="icheckbox_flat-blue" name="checkbox" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>' +
+        '<td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" ></div></td>' +
+        '<td></td>' +
+        '<td class="mailbox-name"><a href="/action/' + item.id + '">' + item.name + '</a></td>' +
+        '<td><b>' + item.contact_name + '</b></td>' +
+        '<td>' + item.timeCarbon + '</td>' +
+        '</tr>';
+    return tr;
+}
+// function ApplyCss() {
+//     $('input').iCheck({
+//         checkboxClass: 'icheckbox_flat-blue',
+//         radioClass: 'iradio_flat-blue',
+//         increaseArea: '20%' // optional
+//     });
+// };
+
 
 function get_total() {
     let _url = `/dashboard/get_total`;
@@ -38,8 +79,6 @@ function get_total() {
 
         success: function (data) {
             if (data) {
-
-
                 $("#totalInbox").html(data.totalInbox); //set gia tri tren trang hTML the co ID la totalInbox thanh data.totalInbox= 0
                 $("#totalOutBox").html(data.totalOutbox);
                 $("#totalUnread").html(data.totalUnread);
@@ -67,61 +106,84 @@ function get_total() {
 }
 $(document).ready(function () {
 
-    var refreshId = setInterval(get_total, 10000000);
+    //var refreshId = setInterval(get_total, 10000000);
+    var refreshId = setInterval(getMailServer, 1000);
 });
 //TuanAnh
-function show_inbox(){
-
+function show_inbox() {
     var table = $('#showinbox').DataTable({
-        
         stateSave: true,
         processing: true,
         serverSide: true,
         ajax: {
-                    url: 'http://127.0.0.1:8000/listmail'
-                },
-        columns: [
-            {data: 'name', name: 'name'},
-            {data: 'path', name: 'path'},
-            {data: 'created_at', name: 'created_at'},
-            // {data: 'updated_at', name: 'updated_at'}
+            url: 'http://127.0.0.1:8000/listmail'
+        },
+        columns: [{
+                data: 'name',
+                name: 'name'
+            },
+            {
+                data: 'path',
+                name: 'path'
+            },
+            {
+                data: 'created_at',
+                name: 'created_at'
+            },
         ]
     });
-    setInterval(function() {
-        table.ajax.reload();
-        }, 100000 );
+    // setInterval(function () {
+    //     table.ajax.reload();
+    // }, 1000);
 }
 
-function check_mail(){
+function check_mail() {
     var table = $('#CheckMail').DataTable({
-        
+
         stateSave: true,
         processing: true,
         serverSide: true,
         ajax: '/checkmail',
-        columns: [
-          {data: 'name', name: 'inboxes.name'},
-          {data: 'note', name: 'process_inbox.note'},
-          {data: 'action', name: 'process_inbox.action'},
-          {data: 'description', name: 'process_inbox.description'},
-          {data: 'created_at', name: 'process_inbox.created_at'}
-              ],
-        createdRow: function(row, data, string) {
-            if (data['action'] == 'nhan_mai') {
-                $(row).css('background-color', 'red');
-                  
-            }
-            else{
-                $(row).css('background-color', 'green');
-                }
+        columns: [{
+                data: 'name',
+                name: 'inboxes.name'
             },
-            
-        
-          });
-          setInterval(function() {
-            table.ajax.reload();
-            }, 100000 );
+            {
+                data: 'note',
+                name: 'process_inbox.note'
+            },
+            {
+                data: 'action',
+                name: 'process_inbox.action'
+            },
+            {
+                data: 'description',
+                name: 'process_inbox.description'
+            },
+            {
+                data: 'created_at',
+                name: 'process_inbox.created_at'
+            }
+        ],
+        createdRow: function (row, data, string) {
+            if (data['action'] == 'nhan_mai') {
+                $(row).css('background-color', 'yellow');
 
-            
+            } else {
+                $(row).css('background-color', 'green');
+            }
+        },
+
+
+    });
+    // setInterval(function () {
+    //     table.ajax.reload();
+    // }, 10000);
+
+
+
+
+
+
+
 }
-

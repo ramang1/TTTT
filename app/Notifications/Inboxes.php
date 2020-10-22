@@ -59,4 +59,19 @@ class Inboxes extends Notification
              $this->details['body']
         ];
     }
+    // public function toBroadcast($notifiable)
+    // {
+    // return new BroadcastMessage([
+    //     'invoice_id' => $this->invoice->id,
+    //     'amount' => $this->invoice->amount,
+    // ]);
+    // }
+    public function broadcastOn()
+     {
+      return ['my-channel'];
+    }
+    public function broadcastAs()
+     {
+      return 'my-event';
+     }
 }

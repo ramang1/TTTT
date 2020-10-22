@@ -1,44 +1,65 @@
-
 <div class="row">
     <!-- Left col -->
     <div class="col-md-8">
       <!-- MAP & BOX PANE -->
       <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title" style="font-weight: bold;">Thư chưa đọc</h3>
-
-          <div class="box-tools pull-right">
-            <div class="has-feedback">
-              <input type="text" class="form-control input-sm" placeholder="Search Mail">
-              <span class="glyphicon glyphicon-search form-control-feedback"></span>
-            </div>
-          </div>
-          <!-- /.box-tools -->
-        </div>
+        
         <!-- /.box-header -->
         <div class="box-body no-padding">
-          <div class="mailbox-controls">
-            <!-- Check all button -->
-            {{-- <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-            </button> --}}
-            {{-- <div class="btn-group">
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-            </div> --}}
-            <!-- /.btn-group -->
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-            <div class="pull-right" >
-              1-50/200
-              <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-              </div>
-              <!-- /.btn-group -->
-            </div>
-            <!-- /.pull-right -->
-          </div>
-
+          
+{{-- tuananh --}}
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title"><b>Thư đến</b></h3>
+    <div class="box-tools pull-right">
+      <div class="has-feedback">
+        <input type="text" class="form-control input-sm" placeholder="Search Mail">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+      </div>
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body no-padding">
+    <div class="mailbox-controls">
+      <!-- Check all button -->
+      <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+      </button>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+      </div>
+      <!-- /.btn-group -->
+      <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+      <!-- /.pull-right -->
+    </div>
+    <div class="table-responsive mailbox-messages" >
+      <table class="table table-hover table-striped" id="tuananhP" >
+        <tbody >
+          {{-- dashboard.js --}}
+        </tbody>
+      </table>
+      <!-- /.table -->
+      
+    </div>
+    <div id="dd"></div>
+    <!-- /.mail-box-messages -->
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer no-padding">
+    <div class="mailbox-controls">
+      <!-- Check all button -->
+      <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+      </button>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+      </div>
+      <!-- /.btn-group -->
+      <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+      <!-- /.pull-right -->
+    </div>
+  </div>
+</div>
+{{-- TA --}}
           <div class="table-responsive mailbox-messages">
             <table  class="table table-striped table-bordered" id="showinbox">
               <thead>
@@ -50,21 +71,18 @@
                 </thead>
               <tbody>
 
-                {{-- @foreach ($data as $content)  --}}
+                {{-- @foreach ($data ?? '' as $content)  --}}
               <tr>
                 {{-- <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td> --}}
-              <td class="mailbox-name" id="name" name="name"><a href="read-mail.html"></a></td>
-              <td class="mailbox-subject" id="path" name="path"><b></b></td>
-              <td class="mailbox-attachment" id="created_at" name="created_at" ></td>
+              <td class="mailbox-name" ><a href="read-mail.html"></a></td>
+              <td class="mailbox-subject" ><b></b></td>
+              <td class="mailbox-attachment" ></td>
               {{-- <td class="mailbox-date" id="created_at" name="created_at"></td> --}}
               {{-- {{\Carbon\Carbon::parse($content->created_at)->diffForHumans()}} --}}
               </tr>
               {{-- @endforeach --}}
-
               </tbody>
-
             </table>
-
             {{-- @push('scripts')
             <script>
             // $(function() {
@@ -96,19 +114,10 @@
             </button>
             <div class="btn-group">
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
             <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-            <div class="pull-right">
-              1-50/200
-              <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-              </div>
-              <!-- /.btn-group -->
-            </div>
+            
             <!-- /.pull-right -->
           </div>
         </div>
