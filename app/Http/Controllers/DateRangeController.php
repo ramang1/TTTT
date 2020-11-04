@@ -20,8 +20,8 @@ use Notification;
 use App\Notifications\Inboxes;
 use Illuminate\Notifications\Notifiable;
 // use Illuminate\Support\Facades\DB;
-
-use Request;
+use DebugBar;
+use Illuminate\Http\Request;
 use Post;
 
 class DateRangeController extends Controller
@@ -30,12 +30,18 @@ class DateRangeController extends Controller
     {
      if(request()->ajax())
      {
+         //request in ajax
+        \Debugbar::info($request->method());  //Phuogn thuc do Ajax gui len la POST hay GET?
+        \Debugbar::info($request->all());  //Nhan tat ca gui len
+
+        \Debugbar::info($request['from_date']);  //Nhan tat ca gui len
+        \Debugbar::info($request->input('from_date'));
       if(!empty($request->from_date))
       {
-        // $from_date   = $request->get('from_date');
-        // $to_date     = $request->get('to_date');
+        $from_date   = $request['from_date'] . ' 00:00:00';
+        $to_date     = $request['to_date'] . ' 00:00:00';
         $data = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])
-         ->whereBetween('created_at', array($request->from_date, $request->to_date))
+         ->whereBetween('created_at', array($from_date, $to_date))
          ->get();
       }
       else

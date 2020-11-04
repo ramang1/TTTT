@@ -55,7 +55,7 @@
 $(document).ready(function(){
  $('.input-daterange').datepicker({
   todayBtn:'linked',
-  format:'dd-mm-yyyy',
+  format:'yyyy-mm-dd',
   autoclose:true
  });
 
@@ -135,6 +135,7 @@ $(document).ready(function(){
   {
    alert('Both Date is required');
   }
+  console.log('bat dau click');
  });
 
  $('#refresh').click(function(){
