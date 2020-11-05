@@ -5,7 +5,6 @@
     <title>TTMD</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
@@ -24,75 +23,33 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-
-    <!-- Phu copy vao de hien thi datatables -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css"> -->
-     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-     {{-- Toastr --}}
-     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
-     {{-- i-Check --}}
-     <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/plugins/iCheck/flat/blue.css">
-     <link href="http://fronteed.com/iCheck/skins/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/plugins/iCheck/flat/blue.css">
     @yield('css')
 </head>
 
 <body class="skin-blue sidebar-mini">
 @if (!Auth::guest())
     <div class="wrapper">
-
+        
         <!-- Main Header -->
-
         <header class="main-header">
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>QLKTNVMM-2020</b>
+                <b>InfyOm</b>
             </a>
+
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
-
                 </a>
-                
                 <!-- Navbar Right Menu -->
-                
                 <div class="navbar-custom-menu">
-                    {{-- NotificationDropdown-TuanAnh --}}
                     <ul class="nav navbar-nav">
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                              <i class="glyphicon glyphicon-bell notification-icon"></i>Thông báo
-                              <span class="label label-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
-                            </a>
-                            
-                            <ul class="dropdown-menu">
-                              <li class="header">Bạn có {{ auth()->user()->unreadNotifications->count() }} thông báo mới</li>
-                              <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    @foreach (auth()->user()->unreadNotifications as $notification)
-                                  <li>
-                                    <a href="{{URL::to('/markAsRead/'.$notification->id)}}">
-                                      <i class="fa fa-users text-aqua"></i> {{json_encode($notification->data)}} đã đăng nhập vào hệ thống
-                                    </a>
-                                  </li>
-                                  @endforeach
-                                </ul>
-                              </li>
-                              <li class="footer"><a href="#">View all</a></li>
-                            </ul>
-                          </li>
                         <!-- User Account Menu -->
-                        {{-- TuanAnhtest --}}
-                        <li><a href="{{URL::to('/notify')}}">Tạo thông báo</a></li>
-                        
-                        </form>
-                        {{-- TuanAnhtest --}}
                         <li class="dropdown user user-menu">
-
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
@@ -114,8 +71,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Thông tin</a>
-
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="{{ url('/logout') }}" class="btn btn-default btn-flat"
@@ -171,14 +127,14 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Trang chủ</a></li>
+                    <li><a href="{{ url('/home') }}">Home</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="{{ url('/login') }}">Đăng nhập</a></li>
-                    <li><a href="{{ url('/register') }}">Đăng ký</a></li>
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/register') }}">Register</a></li>
                 </ul>
             </div>
         </div>
@@ -194,111 +150,64 @@
         </div>
     </div>
     @endif
-    
+
     <!-- jQuery 3.1.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/js/adminlte.min.js"></script>
-    <script src="https://adminlte.io/themes/AdminLTE/dist/js/adminlte.min.js"></script>
-    <script src="https://adminlte.io/themes/AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-    <script src="https://adminlte.io/themes/AdminLTE/plugins/iCheck/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
-    <script src="https://adminlte.io/themes/AdminLTE/bower_components/fastclick/lib/fastclick.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://adminlte.io/themes/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- DataTables -->
-    <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-    <!-- Bootstrap JavaScript -->
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    {{-- i-Check --}}
-    {{-- <script src="https://adminlte.io/themes/AdminLTE/plugins/iCheck/icheck.min.js"></script>
-    <script src="https://unpkg.com/surveyjs-widgets"></script>
-    <script src="http://fronteed.com/iCheck/icheck.js"></script> --}}
-    {{-- Page Script --}}
     <script>
-        $(function () {
-          //Enable iCheck plugin for checkboxes
-          //iCheck for checkbox and radio inputs
-          $('.mailbox-messages input[type="checkbox"]').icheck({
-            checkboxClass: 'icheckbox_flat-blue',
-            radioClass: 'iradio_flat-blue'
-          });
+  $(function () {
       
-          //Enable check and uncheck all functionality
-          $(".checkbox-toggle").click(function () {
-            var clicks = $(this).data('clicks');
-            if (clicks) {
-              //Uncheck all checkboxes
-              $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-              $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-            } else {
-              //Check all checkboxes
-              $(".mailbox-messages input[type='checkbox']").iCheck("check");
-              $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-            }
-            $(this).data("clicks", !clicks);
-          });
-      
-          //Handle starring for glyphicon and font awesome
-          $(".mailbox-star").click(function (e) {
-            e.preventDefault();
-            //detect type
-            var $this = $(this).find("a > i");
-            var glyph = $this.hasClass("glyphicon");
-            var fa = $this.hasClass("fa");
-      
-            //Switch states
-            if (glyph) {
-              $this.toggleClass("glyphicon-star");
-              $this.toggleClass("glyphicon-star-empty");
-            }
-      
-            if (fa) {
-              $this.toggleClass("fa-star");
-              $this.toggleClass("fa-star-o");
-            }
-          });
-        });
-      </script>
+    //Enable iCheck plugin for checkboxes
+    //iCheck for checkbox and radio inputs
+    $('.mailbox-messages input[type="checkbox"]').iCheck({
+      checkboxClass: 'icheckbox_flat-blue',
+      radioClass: 'iradio_flat-blue'
+    });
 
-    <!-- jQuery  copy phuc vu datatables -->
-        <script src="//code.jquery.com/jquery.js"></script>
+    //Enable check and uncheck all functionality
+    $(".checkbox-toggle").click(function () {
+      var clicks = $(this).data('clicks');
+      if (clicks) {
+        //Uncheck all checkboxes
+        $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+        $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+      } else {
+        //Check all checkboxes
+        $(".mailbox-messages input[type='checkbox']").iCheck("check");
+        $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+      }
+      $(this).data("clicks", !clicks);
+    });
 
-        <!-- DataTables -->
-         <!-- <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script> -->
-        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <!-- Bootstrap JavaScript -->
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        
-        <script>
-            @if(Session::has('message'))
-              var type = "{{Session::get('alert-type', 'info')}}";
-              switch(type){
-                  case 'info':
-                      toastr.info("{{Session::get('message')}}");
-                      break;
-                  case 'warning':
-                      toastr.warning("{{Session::get('message')}}");
-                      break;
-                  case 'success':
-                      toastr.success("{{Session::get('message')}}");
-                      break;
-                  case 'error':
-                      toastr.error("{{Session::get('message')}}");
-                      break;
-              }
-            @endif
-        </script>
+    //Handle starring for glyphicon and font awesome
+    $(".mailbox-star").click(function (e) {
+      e.preventDefault();
+      //detect type
+      var $this = $(this).find("a > i");
+      var glyph = $this.hasClass("glyphicon");
+      var fa = $this.hasClass("fa");
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+      //Switch states
+      if (glyph) {
+        $this.toggleClass("glyphicon-star");
+        $this.toggleClass("glyphicon-star-empty");
+      }
+
+      if (fa) {
+        $this.toggleClass("fa-star");
+        $this.toggleClass("fa-star-o");
+      }
+    });
+  });
+</script>
     @stack('scripts')
 </body>
 </html>
