@@ -38,8 +38,14 @@ class DateRangeController extends Controller
         \Debugbar::info($request->input('from_date'));
       if(!empty($request->from_date))
       {
+        Carbon::setLocale('vi');
         $from_date   = $request['from_date'] . ' 00:00:00';
-        $to_date     = $request['to_date'] . ' 00:00:00';
+        $from_date = \Carbon\Carbon::parse($from_date)->format('Y-m-d H:i:s'); //$from_date->format('Y-m-d H:i:s');
+        \Debugbar::info('sau convert from date: ' . $from_date);
+        $to_date     = $request['to_date'] . ' 23:59:59';
+        $to_date = \Carbon\Carbon::parse($to_date)->format('Y-m-d H:i:s'); //$from_date->format('Y-m-d H:i:s');
+        //$to_date = $to_date->format('d-m-Y H:i:s');
+        \Debugbar::info('sau convert to date: ' . $to_date);
         $data = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])
          ->whereBetween('created_at', array($from_date, $to_date))
          ->get();
@@ -50,12 +56,26 @@ class DateRangeController extends Controller
          ->get();
       }
       return datatables()->of($data)
-      ->editColumn('created_at', function ($result)
+    ->editColumn('created_at', function ($result)
              {
                  Carbon::setLocale('vi');
                  return $result->created_at->format('d-m-Y');
              }
              )
+     ->editColumn('channel_id',function($resultChannel)
+             {
+                 $idGroup = $resultChannel->channel_id;
+                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                 return $nameGroup[0];
+             }
+             )
+    ->editColumn('user_id',function($resultUser)
+             {
+                 $idUser = $resultUser->user_id;
+                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                 // return $nameID->name;
+                 return $User[0];
+             })
     ->make(true);
      }
      return view('outboxes.OutBoxToTal_daterange');
