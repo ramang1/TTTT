@@ -8,7 +8,7 @@
 @section('content')
 
 <!-- @include('outboxes.boxoutboxTotal') -->
-@include('outboxes.OutBoxToTal_daterange')
+@include('outboxes.OutBoxToTal_dateranges')
 
 @endsection
 

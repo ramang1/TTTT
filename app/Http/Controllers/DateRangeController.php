@@ -39,20 +39,23 @@ class DateRangeController extends Controller
       if(!empty($request->from_date))
       {
         Carbon::setLocale('vi');
+
         $from_date   = $request['from_date'] . ' 00:00:00';
-        $from_date = \Carbon\Carbon::parse($from_date)->format('Y-m-d H:i:s'); //$from_date->format('Y-m-d H:i:s');
+        $from_date = \Carbon\Carbon::parse($from_date)->format('Y-m-d H:i:s'); 
         \Debugbar::info('sau convert from date: ' . $from_date);
+
         $to_date     = $request['to_date'] . ' 23:59:59';
-        $to_date = \Carbon\Carbon::parse($to_date)->format('Y-m-d H:i:s'); //$from_date->format('Y-m-d H:i:s');
+        $to_date = \Carbon\Carbon::parse($to_date)->format('Y-m-d H:i:s'); 
         //$to_date = $to_date->format('d-m-Y H:i:s');
         \Debugbar::info('sau convert to date: ' . $to_date);
-        $data = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])
+
+        $data = Outbox::select(['name', 'size', 'path', 'type','channel_id','user_id','created_at'])
          ->whereBetween('created_at', array($from_date, $to_date))
          ->get();
       }
       else
       {
-       $data = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])
+       $data = Outbox::select(['name', 'size', 'path', 'type','channel_id','user_id','created_at'])
          ->get();
       }
       return datatables()->of($data)
@@ -79,6 +82,7 @@ class DateRangeController extends Controller
     ->make(true);
      }
      return view('outboxes.OutBoxToTal_daterange');
+    //  return view('outboxes.outboxTotal');
     }
 }
 ?>

@@ -35,7 +35,7 @@
            <thead>
             <tr>
                 <th>Tên thư đi</th>
-                <th>ID</th>
+                <!-- <th>ID</th> -->
                 <th>Kích thước</th>
                 <th>Nơi lưu</th>
                 <th>Kiểu nén</th>
@@ -73,8 +73,7 @@ $(document).ready(function(){
 
    serverSide: true,
    processing: true,
-//    serverMethod: POST,
-//    type:'POST',
+
    ajax: {
     url:'{{ route("OutBoxToTal_daterange.index") }}',
     // data:{from_date:from_date, to_date:to_date}
@@ -91,10 +90,10 @@ $(document).ready(function(){
      data:'name',
      name:'name'
     },
-    {
-     data:'id',
-     name:'id'
-    },
+    // {
+    //  data:'id',
+    //  name:'id'
+    // },
     {
      data:'size',
      name:'size'
