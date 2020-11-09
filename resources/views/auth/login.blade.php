@@ -96,7 +96,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/js/adminlte.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-<script>
+<!-- <script>
     $(function () {
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
@@ -104,6 +104,6 @@
             increaseArea: '20%' // optional
         });
     });
-</script>
+</script> -->
 </body>
 </html>

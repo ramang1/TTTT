@@ -86,6 +86,8 @@ Route::get('outboxTotal/getdataoutboxTotal4','OutboxController@getdataoutboxTota
 
 Route::resource('outboxProcesses', 'OutboxProcessController');
 //TuanAnh
+//GiainenzipGiainenRar
+Route::post('/InboxController/actiongiainen','InboxController@actiongiainen');
 Route::get('/','InboxController@DatatableInbox')->middleware('verified');
 //Lay du lieu qua ajax showmail
 Route::get('/listmail1','InboxController@datamails')->middleware('verified');

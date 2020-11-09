@@ -21,10 +21,13 @@
   </div>
   <!-- /.box-header -->
   <div class="box-body no-padding">
+    <form method="POST">
+      {{ csrf_field() }}
     <div class="mailbox-controls">
       <!-- Check all button -->
-      <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-      </button>
+      <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+      <button type="button" id="button1" name="button1" class="btn btn-default btn-sm"><i class="fa fa-home"></i><b>Giải nén Zip</b></button>
+      <button type="button" id="button2" name="button2" class="btn btn-default btn-sm"><i class="fa fa-home"></i><b>Giải nén Rar</b></button>
       <div class="btn-group">
         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
       </div>
@@ -32,6 +35,7 @@
       <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
       <!-- /.pull-right -->
     </div>
+  
     <div class="table-responsive mailbox-messages" >
     <table class="table table-hover table-striped">
                   <tbody>
@@ -176,8 +180,9 @@
       <!-- /.table -->
       
     </div>
-    <div id="dd"></div>
+    
     <!-- /.mail-box-messages -->
+  </form>
   </div>
   <!-- /.box-body -->
   <div class="box-footer no-padding">

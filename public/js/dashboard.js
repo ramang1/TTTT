@@ -1,38 +1,10 @@
 window.onload = function () {
-    //get_total();
-    // get_total();
-    // show_inbox();
-    // check_mail();
-  //  getMailServer();
-    // ApplyCss();
-    // unreadTab1();
-    // unreadTab2();
-    // unreadTab3();
-    // unreadTab4();
-    // unreadTab5();
-
-    // unsendTab1();
-    // unsendTab2();
-    // unsendTab3();
-    // unsendTab4();
-    // unsendTab5();
-
-    // inboxTab1();
-    // inboxTab2();
-    // inboxTab3();
-    // inboxTab4();
-    // inboxTab5();
-
-    // outboxTab1();
-    // outboxTab2();
-    // outboxTab3();
-    // outboxTab4();
-    // outboxTab5();
-
+    
 };
 
 function getMailServer() {
-    let _url = `http://127.0.0.1:8000/listmail1`;
+    const newLocal = `/listmail1`;
+    let _url = newLocal;
     $.ajax({
         url: _url,
         method: 'get',
@@ -52,22 +24,37 @@ function getMailServer() {
 
 function createTr(item) {
     var tr = '<tr>' +
-        '<td><div href="/action/' + item.id + '" class="icheckbox_flat-blue" name="checkbox" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>' +
-        '<td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" ></div></td>' +
-        '<td></td>' +
+        '<td><div class="icheckbox_flat-blue" name="checkbox" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>' +
+        '<td><input type="checkbox"  name="process_inbox['+ item.id + ']" href="/action/' + item.id + item.user_id +'" value="1" id="checkboxmail"></td>' +
+        '<td><div id="checktext" style="display:none">Đã chọn</div></td>' +
         '<td class="mailbox-name"><a href="/action/' + item.id + '">' + item.name + '</a></td>' +
         '<td><b>' + item.contact_name + '</b></td>' +
         '<td>' + item.timeCarbon + '</td>' +
         '</tr>';
     return tr;
 }
-// function ApplyCss() {
-//     $('input').iCheck({
-//         checkboxClass: 'icheckbox_flat-blue',
-//         radioClass: 'iradio_flat-blue',
-//         increaseArea: '20%' // optional
-//     });
-// };
+$(document).ready(function(){  
+    $('#button1').click(function(){  
+         var data = [];  
+         $('#checkboxmail').each(function(){  
+              if($(this).is(":checked"))  
+              {  
+                   data.push($(this).val());  
+              }  
+         });  
+         data = data.toString();  
+         console.log('data: ' + data);
+         $.ajax({  
+              url:"/InboxController/actiongiainen",  
+              method:"POST",
+              dataType:"json",  
+              data:{data:data},  
+              success:function(data){ 
+                  console.log('thanhcong');  
+              }  
+         });  
+    });  
+});  
 
 
 function get_total() {
