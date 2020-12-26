@@ -1,24 +1,21 @@
 @extends('layouts.app')
 @section('content-header')
 <section class="content-header">
-  <h1>
-    <!-- Hiển thị trang chính -->
-    <!-- <small>Điều khiển</small> -->
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
-    <li class="active">Hiển thị</li>
-  </ol>
+  
+ 
 </section>
 @endsection
 
 @section('content')
 
 {{-- Box content --}}
-
+ <!-- Main content -->
+<div class="content">
 @include('dashboard.box')
-@include('dashboard.card');
 
+
+@include('dashboard.card')
+</div>
 @endsection
 
 

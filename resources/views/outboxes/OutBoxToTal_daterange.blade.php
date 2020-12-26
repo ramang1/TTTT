@@ -60,7 +60,7 @@
                     <div class="col-md-12">
                         <!-- Table -->
                         <div class="table-responsive">
-                            <table class="table table-bordered display nowrap" id="records" style="width:100%">
+                            <table class="table table-striped table-bordered" id="records" style="width:100%">
                                 <thead>
                                     <tr>
                                     <th>Tên thư đi</th>
