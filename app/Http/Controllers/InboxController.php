@@ -259,7 +259,7 @@ class InboxController extends AppBaseController
 //  git config --global user.email "you@example.com"
 //   git config --global user.name "TuanAnh"
 
-    public function inboxes_unread(Request $request)
+    public function unread(Request $request)
     {
         $contacts = Contact::all();
         // $data = DB::table('inboxes')->get();
@@ -273,7 +273,7 @@ class InboxController extends AppBaseController
             ->orWhere('action', '=', 'giai_nen_rar');
            })->get();
 
-        return view('inboxes.unread')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
+        return view('unread.index')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );
     }
     public function getdataunread(Request $request)
     {

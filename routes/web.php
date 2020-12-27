@@ -43,7 +43,7 @@ Route::get('inboxTotal/getdatainboxTotal4','InboxController@getdatainboxTotal4')
 
 //chi tiet thu chua doc
 //Box so 4
-Route::get('inboxes-unread', 'InboxController@inboxes_unread');
+Route::get('unread', 'InboxController@unread');
 Route::get('inboxes-unread/getdataunread', 'InboxController@getdataunread')->name("users.getdataunread");
 //view in tab - of box 4
 Route::get('inboxes-unread/getdataunread1', 'InboxController@getdataunread1')->name("users.getdataunread1"); //tab 2 - day
