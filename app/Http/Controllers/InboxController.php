@@ -17,11 +17,13 @@ use Response;
 use App\Models\Contact;
 use Notification;
 use App\Notifications\Inboxes;
+use DebugBar\DebugBar;
 use Illuminate\Notifications\Notifiable;
 use Pusher\Pusher;
 use Illuminate\Http\Request;
 use stdClass;
 // use Illuminate\Support\Facades\DB;
+
 use Session;
 class InboxController extends AppBaseController
 {
@@ -83,10 +85,10 @@ class InboxController extends AppBaseController
     public function show($id)
     {
         $inbox = $this->inboxRepository->find($id);
-
+        
         if (empty($inbox)) {
-            Flash::error('Inbox not found');
-
+            Flash::error('Inbox not found' . $id);
+            
             return redirect(route('inboxes.index'));
         }
 
@@ -105,8 +107,9 @@ class InboxController extends AppBaseController
         $inbox = $this->inboxRepository->find($id);
 
         if (empty($inbox)) {
-            Flash::error('Inbox not found');
-
+            Flash::error('Inbox not found'. $id);
+            
+            // DebugBar::addMessage('This is a message');
             return redirect(route('inboxes.index'));
         }
 

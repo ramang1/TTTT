@@ -62,7 +62,8 @@ class DateRangeController extends Controller
     ->editColumn('created_at', function ($result)
              {
                  Carbon::setLocale('vi');
-                 return $result->created_at->format('d-m-Y');
+                 
+                 return $result->created_at->format('d-m-Y H:m:i');
              }
              )
      ->editColumn('channel_id',function($resultChannel)

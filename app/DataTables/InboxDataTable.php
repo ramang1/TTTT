@@ -23,14 +23,16 @@ class InboxDataTable extends DataTable
         // return $dataTable->editColumn('created_at', '$dataTable->created_at')
         // ->addColumn('action', 'inboxes.datatables_actions');
 
-         return $dataTable
-         ->editColumn('created_at', function ($result) {
+         return $dataTable->editColumn('created_at', function ($result) {
             if($result->created_at == null)
             {
+                
                 return $result->created_at ?  : 'Unknown';
+                //return  'Unknown';
             }
                 Carbon::setLocale('vi');
-                return $result->created_at->format('d-M-Y - H:i:s');
+                return $result->created_at->format('d-m-Y - H:i:s');
+                //return $result->created_at->format('d/M/Y - H:i:s');
             })
          ->addColumn('action', 'inboxes.datatables_actions');
     }
@@ -60,12 +62,12 @@ class InboxDataTable extends DataTable
             ->parameters([
                 'dom'       => 'Bfrtip',
                 'stateSave' => true,
-                'order'     => [[0, 'desc']],
+                'order'     => [[5, 'desc']],
                 'buttons'   => [
-                    // ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    // ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
-                    // ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    // ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
+                     //['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
+                     ['extend' => 'export', 'text' => 'Xuất file', 'className' => 'btn btn-default btn-sm no-corner',],
+                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
+                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
             ]);
@@ -82,13 +84,15 @@ class InboxDataTable extends DataTable
         // return DataTables::of($users)->make(true);
 
         return [
-            //'hash' => ['searchable' => false],
+            // 'id',
+            // 'hash' => ['searchable' => false],
             // ('name'),
             // 'contact_id',
             // 'size',
             // 'path',
             // 'created_at',
             // 'type'
+            //['data' => 'id','title'=>'ID của file'],
             ['data' => 'name','title'=>'Tên thư đến'],
             ['data' => 'contact_id','title'=>'Mã nơi gửi'],
             ['data' => 'size','title'=>'Kích thước file'],
