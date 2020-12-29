@@ -23,7 +23,7 @@ use Pusher\Pusher;
 use Illuminate\Http\Request;
 use stdClass;
 // use Illuminate\Support\Facades\DB;
-
+use Log;
 use Session;
 class InboxController extends AppBaseController
 {
@@ -44,6 +44,7 @@ class InboxController extends AppBaseController
      */
     public function index(InboxDataTable $inboxDataTable)
     {
+        
         return $inboxDataTable->render('inboxes.index');
     }
 

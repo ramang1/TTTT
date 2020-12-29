@@ -8,6 +8,7 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\DataTables;
 use Yajra\DataTables\Html\Column;
 use Carbon\Carbon;
+use Log;
 class InboxDataTable extends DataTable
 {
     /**
@@ -18,8 +19,9 @@ class InboxDataTable extends DataTable
      */
     public function dataTable($query)
     {
+        Log::info($query->toSql());// Log::info(print_r($query, true));
         $dataTable = new EloquentDataTable($query);
-
+       
         // return $dataTable->editColumn('created_at', '$dataTable->created_at')
         // ->addColumn('action', 'inboxes.datatables_actions');
 
