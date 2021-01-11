@@ -39,7 +39,7 @@ class OutboxAPIController extends AppBaseController
             $request->get('skip'),
             $request->get('limit')
         );
-
+        
         return $this->sendResponse($outboxes->toArray(), 'Outboxes retrieved successfully');
     }
 

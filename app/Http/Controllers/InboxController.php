@@ -44,8 +44,10 @@ class InboxController extends AppBaseController
      */
     public function index(InboxDataTable $inboxDataTable)
     {
-        
-        return $inboxDataTable->render('inboxes.index');
+       
+       //return $inboxDataTable->render('inboxes.index');
+       
+       return view('inboxes.index');
     }
 
     /**
@@ -57,7 +59,7 @@ class InboxController extends AppBaseController
     {
         return view('inboxes.create');
     }
-
+  
     /**
      * Store a newly created Inbox in storage.
      *
@@ -74,6 +76,47 @@ class InboxController extends AppBaseController
         Flash::success('Inbox saved successfully.');
 
         return redirect(route('inboxes.index'));
+    }
+
+    public function data(Request $request)
+    {
+        
+        
+        $startDate = $request->startDate;
+        $endDate =  $request->endDate;
+
+       
+        if ($startDate == 0 && $endDate == 0){
+            $data = DB::table('inboxes')
+            ->whereNull('deleted_at');
+        }else{
+            $startDate = $startDate . ' 00:00:00';
+            $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s'); 
+
+            $endDate = $endDate . ' 23:59:59';
+            $endDate = \Carbon\Carbon::parse($endDate)->format('Y-m-d H:i:s'); 
+
+
+            $data = DB::table('inboxes')
+            ->whereNull('deleted_at')
+            ->whereBetween('created_at', [$startDate, $endDate]);
+
+        }
+        Log::info('index data ' . $startDate . ' den ' . $endDate);
+       //->orderBy('created_at','desc');
+       
+        return Datatables::of($data)
+        ->editColumn('created_at', function ($data) {
+            if($data->created_at == null) {
+                return $data->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+            ->filterColumn('created_at', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
+            })
+            ->make(true);
     }
 
     /**

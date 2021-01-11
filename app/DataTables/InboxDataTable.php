@@ -19,7 +19,7 @@ class InboxDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        Log::info($query->toSql());// Log::info(print_r($query, true));
+        Log::info("cau lenh: " .$query->toSql());// Log::info(print_r($query, true));
         $dataTable = new EloquentDataTable($query);
        
         // return $dataTable->editColumn('created_at', '$dataTable->created_at')
@@ -33,7 +33,7 @@ class InboxDataTable extends DataTable
                 //return  'Unknown';
             }
                 Carbon::setLocale('vi');
-                return $result->created_at->format('d-m-Y - H:i:s');
+                return $result->created_at->format('d/m/Y - H:i:s');
                 //return $result->created_at->format('d/M/Y - H:i:s');
             })
          ->addColumn('action', 'inboxes.datatables_actions');

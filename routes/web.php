@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::resource('channels', 'ChannelController');
 
 Route::resource('inboxes', 'InboxController');
 
+Route::get('inboxesdata', 'InboxController@data');
 
 // Xay dung Box 2 - theo kieu P lam moi
 
@@ -129,3 +131,8 @@ Route::get('unsend/unsenddata4', 'OutboxController@unsenddata4')->name("users.un
 
 // thu lam outboxtotal moi
 Route::resource('OutBoxToTal_daterange', 'DateRangeController');
+
+Route::get('/test', function () {  
+   $date = Carbon\Carbon::now();
+   dd($date);
+});

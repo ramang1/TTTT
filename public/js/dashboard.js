@@ -3,7 +3,7 @@ window.onload = function () {
     // get_total();
     // show_inbox();
     // check_mail();
-    getMailServer();
+  //  getMailServer();
     // ApplyCss();
     // unreadTab1();
     // unreadTab2();
@@ -107,7 +107,7 @@ function get_total() {
 $(document).ready(function () {
 
     //var refreshId = setInterval(get_total, 10000000);
-    var refreshId = setInterval(getMailServer, 1000);
+  //  var refreshId = setInterval(getMailServer, 1000);
 });
 //TuanAnh
 function show_inbox() {
