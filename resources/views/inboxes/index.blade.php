@@ -144,6 +144,7 @@
   //Date range as a button
   $('#daterange-btn').daterangepicker({
       ranges: {
+        'Tất cả': [null,null],
         'Hôm nay': [moment(), moment()],
         'Hôm qua': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
         '7 ngày trước': [moment().subtract(6, 'days'), moment()],
@@ -179,9 +180,22 @@
 
     },
     function(start, end) {
-      $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
-      startDate = start.format('YYYY/MM/DD');
-      endDate = end.format('YYYY/MM/DD');
+
+      if(start._isValid && end._isValid)
+        {
+          $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+          startDate = start.format('YYYY/MM/DD');
+         endDate = end.format('YYYY/MM/DD');
+        }
+        else
+        {
+          $('#daterange-btn span').html('Chọn thời gian');
+            startDate =0;
+            endDate = 0;
+        }
+        
+
+     
     }
   )
 
