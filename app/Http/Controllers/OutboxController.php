@@ -13,8 +13,11 @@ use Response;
 use App\Models\Contact;
 use Yajra\DataTables\DataTables;
 use App\Models\Outbox;
-use Request;
+
 use Carbon\Carbon;
+use DB;
+use Log;
+use Illuminate\Http\Request;
 
 class OutboxController extends AppBaseController
 {
@@ -34,7 +37,51 @@ class OutboxController extends AppBaseController
      */
     public function index(OutboxDataTable $outboxDataTable)
     {
-        return $outboxDataTable->render('outboxes.index');
+        //return $outboxDataTable->render('outboxes.index');
+        return view('outboxes.index');
+    }
+
+    ///
+    public function data(Request $request)
+    {
+        $startDate = 0;
+        $endDate = 0;
+
+        if($request->has('startDate') && $request->has('endDate')){
+            $startDate = $request->startDate;
+            $endDate = $request->endDate;
+        }       
+       
+        if ($startDate == 0 && $endDate == 0){
+            $data = DB::table('outboxes')->whereNull('deleted_at');
+        }else{
+            $startDate = $startDate . ' 00:00:00';
+            $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s'); 
+
+            $endDate = $endDate . ' 23:59:59';
+            $endDate = \Carbon\Carbon::parse($endDate)->format('Y-m-d H:i:s'); 
+
+
+            $data = DB::table('outboxes')
+            ->whereNull('deleted_at')
+            ->whereBetween('created_at', [$startDate, $endDate]);
+
+        }
+        Log::info('outbox data ' . $startDate . ' den ' . $endDate);
+       //->orderBy('created_at','desc');
+       
+        return Datatables::of($data)
+        ->editColumn('created_at', function ($data) {
+            if($data->created_at == null) {
+                return $data->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+            ->filterColumn('created_at', function ($query, $keyword) {
+                $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
+            })
+            ->make(true);
     }
 
     /**

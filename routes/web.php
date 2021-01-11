@@ -33,7 +33,7 @@ Route::resource('channels', 'ChannelController');
 Route::resource('inboxes', 'InboxController');
 
 Route::get('inboxesdata', 'InboxController@data');
-
+Route::get('outboxesdata', 'OutboxController@data');
 // Xay dung Box 2 - theo kieu P lam moi
 
 Route::get('inboxTotal','InboxController@inboxTotal');

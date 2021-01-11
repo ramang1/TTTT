@@ -28,7 +28,7 @@
 
 
     <div class="box-body">
-      <!-- @include('inboxes.table') -->
+      
       <table class="table table-striped table-bordered" id="dataTableBuilder" width="100%">
         <thead>
           <tr>
@@ -54,8 +54,7 @@
 @endsection
 
 @push('scripts')
-<script src="https://adminlte.io/themes/AdminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-</script>
+@include('inboxes.table')
 <script>
   var startDate = 0;
   var endDate = 0;;
@@ -73,7 +72,8 @@
       }
     },
 
-    columns: [{
+    columns: [
+      {
       name: "name",
       data: "name",
       title: "T\u00ean th\u01b0 \u0111\u1ebfn",
@@ -185,12 +185,7 @@
     }
   )
 
-  // Function for converting a mm/dd/yyyy date value into a numeric string for comparison (example 08/12/2010 becomes 20100812
-  function parseDateValue(rawDate) {
-    var dateArray = rawDate.split("/");
-    var parsedDate = dateArray[2] + dateArray[0] + dateArray[1];
-    return parsedDate;
-  }
+
 
 
   $(function() {

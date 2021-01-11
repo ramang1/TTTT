@@ -82,8 +82,13 @@ class InboxController extends AppBaseController
     {
         
         
-        $startDate = $request->startDate;
-        $endDate =  $request->endDate;
+        $startDate = 0;
+        $endDate = 0;
+
+        if($request->has('startDate') && $request->has('endDate')){
+            $startDate = $request->startDate;
+            $endDate = $request->endDate;
+        }      
 
        
         if ($startDate == 0 && $endDate == 0){

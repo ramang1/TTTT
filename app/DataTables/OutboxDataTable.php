@@ -25,7 +25,8 @@ class OutboxDataTable extends DataTable
                 return $result->created_at ?  : 'Unknown';
             }
                 Carbon::setLocale('vi');
-                return $result->created_at->format('d-M-Y - H:i:s');
+                //return $result->created_at->format('d-M-Y - H:i:s');
+                return $result->created_at->format('d/m/Y - H:i:s');
             })
         ->addColumn('action', 'outboxes.datatables_actions');
     }
