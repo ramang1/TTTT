@@ -300,28 +300,7 @@ class InboxController extends AppBaseController
         }
 
         }
-<<<<<<< HEAD
-    public function action($id){
-        DB::table('inboxes')->where('id',$id)->update(['name'=>11]);
-        $thongbao = array('message'=>'Thay doi ten thanh cong','alert-type'=>'warning');
-        // return Redirect::to('');
-        return view('dashboard.index')->with($thongbao);
-    }
-    // Controller Ajax Post data Giai nen zip giai nen Rar
-    // public function actiongiainen(Request $request,$id){
-    //     $datas = DB::table('inboxes')->get();
-    //     foreach ($datas as $data) {
-    //         DB::table('process_inbox')->insert([
-    //             'action'=>$data='giai_nen_zip',
-    //             'inboxes_id'=>$data=$id,
-    //             'user_id'=>
-    //         ]);
-    //     };
-    //     return response ()->json(['success'=>'Ajax request save successfully']);
-    // }
-=======
     
->>>>>>> d2f534f... Inbox-Outbox-Index
     public function DatatableInbox()
     {
         return view('dashboard.index');

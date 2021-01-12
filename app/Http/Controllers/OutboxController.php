@@ -15,14 +15,10 @@ use App\Models\Channel;
 use App\Models\Users;
 use Yajra\DataTables\DataTables;
 use App\Models\Outbox;
-<<<<<<< HEAD
 
-=======
-use Request;
+//use Request;
 use DB;
->>>>>>> d2f534f... Inbox-Outbox-Index
 use Carbon\Carbon;
-use DB;
 use Log;
 use Illuminate\Http\Request;
 
