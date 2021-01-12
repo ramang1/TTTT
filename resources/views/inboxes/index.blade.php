@@ -28,13 +28,13 @@
 
 
     <div class="box-body">
-      
+
       <table class="table table-striped table-bordered" id="dataTableBuilder" width="100%">
         <thead>
           <tr>
             <th title="Tên thư đến">Tên thư đến</th>
-            <th title="Mã nơi gửi">Mã nơi gửi</th>
-            <th title="Kích thước file">Kích thước file</th>
+            <th title="Nơi gửi">Nơi gửi</th>
+            <th title="Kích thước file">Size</th>
             <th title="Thư mục lưu">Thư mục lưu</th>
             <th title="Kiểu nhận về">Kiểu nhận về</th>
             <th title="Thời gian">Thời gian</th>
@@ -68,7 +68,7 @@
       data: function(d){
         d.startDate = startDate;
         d.endDate = endDate;
-        
+
       }
     },
 
@@ -82,13 +82,13 @@
     }, {
       name: "contact_id",
       data: "contact_id",
-      title: "M\u00e3 n\u01a1i g\u1eedi",
+      title: "N\u01a1i g\u1eedi",
       orderable: true,
       searchable: true
     }, {
       name: "size",
       data: "size",
-      title: "K\u00edch th\u01b0\u1edbc file",
+      title: "Size",
       orderable: true,
       searchable: true
     }, {
@@ -193,9 +193,9 @@
             startDate =0;
             endDate = 0;
         }
-        
 
-     
+
+
     }
   )
 

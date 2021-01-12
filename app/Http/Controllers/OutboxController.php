@@ -11,6 +11,8 @@ use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
 use App\Models\Contact;
+use App\Models\Channel;
+use App\Models\Users;
 use Yajra\DataTables\DataTables;
 use App\Models\Outbox;
 
@@ -50,16 +52,16 @@ class OutboxController extends AppBaseController
         if($request->has('startDate') && $request->has('endDate')){
             $startDate = $request->startDate;
             $endDate = $request->endDate;
-        }       
-       
+        }
+
         if ($startDate == 0 && $endDate == 0){
             $data = DB::table('outboxes')->whereNull('deleted_at');
         }else{
             $startDate = $startDate . ' 00:00:00';
-            $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s'); 
+            $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s');
 
             $endDate = $endDate . ' 23:59:59';
-            $endDate = \Carbon\Carbon::parse($endDate)->format('Y-m-d H:i:s'); 
+            $endDate = \Carbon\Carbon::parse($endDate)->format('Y-m-d H:i:s');
 
 
             $data = DB::table('outboxes')
@@ -69,7 +71,7 @@ class OutboxController extends AppBaseController
         }
         Log::info('outbox data ' . $startDate . ' den ' . $endDate);
        //->orderBy('created_at','desc');
-       
+
         return Datatables::of($data)
         ->editColumn('created_at', function ($data) {
             if($data->created_at == null) {
@@ -81,6 +83,37 @@ class OutboxController extends AppBaseController
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
             })
+            ->editColumn('channel_id',function ($data) {
+                $idChannel = $data->channel_id;
+                $Channel = Channel::where('id', '=', $idChannel)->pluck('name');
+                if($Channel->isEmpty()) {
+                     return 'Unknown';
+                 }
+                return $Channel[0];
+            }
+            )
+            ->editColumn('user_id',function ($data) {
+                $idUser = $data->user_id;
+                $User = DB::table('users')->where('id', '=', $idUser)->pluck('name');
+                if($User->isEmpty()) {
+                     return 'Unknown';
+                }
+                return $User[0];
+            }
+            )
+            ->editColumn('contact_id',function ($data) {
+
+                $ContactUser = $data->contact_id;
+
+                $Contact = Contact::where('id', '=', $ContactUser)->pluck('name');
+
+                if($Contact->isEmpty()) {
+                    return 'Unknown';
+                }
+                return $Contact[0];
+            }
+            )
+
             ->make(true);
     }
 

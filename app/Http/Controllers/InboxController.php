@@ -44,9 +44,9 @@ class InboxController extends AppBaseController
      */
     public function index(InboxDataTable $inboxDataTable)
     {
-       
+
        //return $inboxDataTable->render('inboxes.index');
-       
+
        return view('inboxes.index');
     }
 
@@ -59,7 +59,7 @@ class InboxController extends AppBaseController
     {
         return view('inboxes.create');
     }
-  
+
     /**
      * Store a newly created Inbox in storage.
      *
@@ -80,26 +80,26 @@ class InboxController extends AppBaseController
 
     public function data(Request $request)
     {
-        
-        
+
+
         $startDate = 0;
         $endDate = 0;
 
         if($request->has('startDate') && $request->has('endDate')){
             $startDate = $request->startDate;
             $endDate = $request->endDate;
-        }      
+        }
 
-       
+
         if ($startDate == 0 && $endDate == 0){
             $data = DB::table('inboxes')
             ->whereNull('deleted_at');
         }else{
             $startDate = $startDate . ' 00:00:00';
-            $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s'); 
+            $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s');
 
             $endDate = $endDate . ' 23:59:59';
-            $endDate = \Carbon\Carbon::parse($endDate)->format('Y-m-d H:i:s'); 
+            $endDate = \Carbon\Carbon::parse($endDate)->format('Y-m-d H:i:s');
 
 
             $data = DB::table('inboxes')
@@ -109,7 +109,7 @@ class InboxController extends AppBaseController
         }
         Log::info('index data ' . $startDate . ' den ' . $endDate);
        //->orderBy('created_at','desc');
-       
+
         return Datatables::of($data)
         ->editColumn('created_at', function ($data) {
             if($data->created_at == null) {
@@ -121,6 +121,15 @@ class InboxController extends AppBaseController
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
             })
+            ->editColumn('contact_id',function ($data) {
+                $idContact = $data->contact_id;
+                $Contact = Contact::where('id', '=', $idContact)->pluck('name');
+                if($Contact->isEmpty()) {
+                    return 'Unknown';
+                }
+                return $Contact[0];
+            }
+            )
             ->make(true);
     }
 
@@ -134,10 +143,10 @@ class InboxController extends AppBaseController
     public function show($id)
     {
         $inbox = $this->inboxRepository->find($id);
-        
+
         if (empty($inbox)) {
             Flash::error('Inbox not found' . $id);
-            
+
             return redirect(route('inboxes.index'));
         }
 
@@ -157,7 +166,7 @@ class InboxController extends AppBaseController
 
         if (empty($inbox)) {
             Flash::error('Inbox not found'. $id);
-            
+
             // DebugBar::addMessage('This is a message');
             return redirect(route('inboxes.index'));
         }
@@ -252,15 +261,15 @@ class InboxController extends AppBaseController
             $name = Contact::where('id','=',$data[$i]->contact_id)->pluck('name');
             $data[$i]->contact_name =  $name[0];}
         //session lan dau
-        
+
        // If( isset( $_SESSION["CUR_DATA_INBOX"]) ){
            if (!Session::has('CUR_DATA_INBOX')){
-           
+
              Session::put('CUR_DATA_INBOX',$data);
              \Debugbar::error('Chay lan dau');
             return json_encode($data );
         }
-        
+
         if ($data == Session::get('CUR_DATA_INBOX')) {
             \Debugbar::error('Khong Co du lieu moi');
             return json_encode((object) null);
@@ -268,11 +277,11 @@ class InboxController extends AppBaseController
         //Du lieu moi
         else {
             \Debugbar::error('Co du lieu moi');
-        
+
             Session::put('CUR_DATA_INBOX',$data);
             return json_encode($data);
         }
-    
+
         }
     public function action($id){
         DB::table('inboxes')->where('id',$id)->update(['name'=>11]);
@@ -555,7 +564,7 @@ class InboxController extends AppBaseController
             'title' => 'required',
             'content' => 'required'
         ]);
-        
+
         $data['title'] = $request->input('title');
         $data['content'] = $request->input('content');
 

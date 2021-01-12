@@ -30,13 +30,14 @@
       <table class="table table-striped table-bordered" id="dataTableBuilder" width="100%">
         <thead>
           <tr>
-            <th title="id">id</th>
+            <!-- <th title="id">id</th> -->
             <th title="Tên thư đi">Tên thư đi</th>
-            <th title="Mã nơi nhận">Mã nơi nhận</th>
-            <th title="Kích thước file">Kích thước file</th>
+            <th title="Nơi nhận">Nơi nhận</th>
+            <th title="Nhóm nhận">Nhóm nhận</th>
+            <th title="Kích thước file">Size</th>
             <th title="Thư mục lưu">Thư mục lưu</th>
             <th title="Kiểu nén">Kiểu nén</th>
-            <th title="Id của người thực hiện">Id của người thực hiện</th>
+            <th title="Id của người thực hiện">Người gửi</th>
             <th title="Thời gian">Thời gian</th>
             <th title="Action" width="120px">Action</th>
           </tr>
@@ -69,28 +70,36 @@
     }
   },
 
-  "columns": [{
-    "name": "id",
-    "data": "id",
-    "title": "id",
-    "orderable": true,
-    "searchable": true
-  }, {
+  "columns": [
+//       {
+//     "name": "id",
+//     "data": "id",
+//     "title": "id",
+//     "orderable": true,
+//     "searchable": true
+//   },
+  {
     "name": "name",
     "data": "name",
     "title": "T\u00ean th\u01b0 \u0111i",
     "orderable": true,
     "searchable": true
-  }, {
-    "name": "channel_id",
-    "data": "channel_id",
-    "title": "M\u00e3 n\u01a1i nh\u1eadn",
+  },{
+    "name": "contact_id",
+    "data": "contact_id",
+    "title": "N\u01a1i nh\u1eadn",
     "orderable": true,
     "searchable": true
-  }, {
+  },{
+    "name": "channel_id",
+    "data": "channel_id",
+    "title": "Nhóm nhận",
+    "orderable": true,
+    "searchable": true
+  },{
     "name": "size",
     "data": "size",
-    "title": "K\u00edch th\u01b0\u1edbc file",
+    "title": "Size",
     "orderable": true,
     "searchable": true
   }, {
@@ -108,7 +117,7 @@
   }, {
     "name": "user_id",
     "data": "user_id",
-    "title": "Id c\u1ee7a ng\u01b0\u1eddi th\u1ef1c hi\u1ec7n",
+    "title": "Người gửi",
     "orderable": true,
     "searchable": true
   }, {
@@ -148,7 +157,7 @@
   }, {
     "extend": "reload",
     "className": "btn btn-default btn-sm no-corner"
-  }], 
+  }],
 
   dom: "Bfrtip",
     stateSave: true,
@@ -211,7 +220,7 @@
 
     },
     function(start, end) {
-      
+
       if(start._isValid && end._isValid)
         {
           $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
