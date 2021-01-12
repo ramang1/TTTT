@@ -114,6 +114,7 @@ class OutboxController extends AppBaseController
             }
             )
 
+            ->addColumn('action', 'outboxes.datatables_actions')
             ->make(true);
     }
 

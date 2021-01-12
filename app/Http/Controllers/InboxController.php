@@ -130,6 +130,7 @@ class InboxController extends AppBaseController
                 return $Contact[0];
             }
             )
+            ->addColumn('action', 'inboxes.datatables_actions')
             ->make(true);
     }
 
