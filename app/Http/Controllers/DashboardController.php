@@ -38,6 +38,7 @@ class DashboardController extends Controller
             ->where('action', '=', 'giai_nen_zip')
             ->orWhere('action', '=', 'giai_nen_rar');
            })->get();
+
         return view('dashboard.index')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox )->with('mails',$mails);
     }
 

@@ -231,21 +231,37 @@ class InboxController extends AppBaseController
         // }
         public function showinbox()
         {
-            $data = DB::table('inboxes')->select([ 'name', 'path', 'created_at'])->orderBy('created_at','desc');
-
-            return Datatables::of($data)
-            ->editColumn('created_at', function ($data) {
-                if($data->created_at == null) {
-                    return $data->created_at ?  : 'Unknown';
-                }
-                    Carbon::setLocale('vi');
-                    return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
-                })
-                ->filterColumn('created_at', function ($query, $keyword) {
-                    $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
-                })
-                ->make(true);
+            Carbon::setLocale('vi');
+            $a = DB::table('process_inbox')->rightjoin('inboxes','inboxes.id'.'=','process_inbox.inboxes_id');
+            $showinbox = DB::table('inboxes')->leftjoin('process_inbox','process_inbox.inboxes_id','=','inboxes.id')
+            ->join('contacts','contacts.id','=','inboxes.contact_id')
+            ->join('users','users.id','=','inboxes.user_id')
+            ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as id, process_inbox.action as action')                           
+            ->orderBy('created_at','desc')->take(10)->get();
+           
+            $showoutbox = DB::table('outboxes')
+            ->join('contacts','contacts.id','=','outboxes.contact_id')
+            ->join('users','users.id','=','outboxes.user_id')
+            ->join('outbox_process','outbox_process.id','=','outboxes.type')
+            ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action as action, outboxes.id as outboxes_id')                           
+            ->orderBy('outboxes.created_at','desc')->take(10)->get();
+            return view('dashboard.index')
+            ->with('showinbox',$showinbox)
+            ->with('showoutbox',$showoutbox);
         }
+            // return Datatables::of($data)
+            // ->editColumn('created_at', function ($data) {
+            //     if($data->created_at == null) {
+            //         return $data->created_at ?  : 'Unknown';
+            //     }
+            //         Carbon::setLocale('vi');
+            //         return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+            //     })
+            //     ->filterColumn('created_at', function ($query, $keyword) {
+            //         $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
+            //     })
+            //     ->make(true);
+        
         public function datamails(){
         Carbon::setLocale('vi');
         //lay dl tra ve
@@ -284,6 +300,7 @@ class InboxController extends AppBaseController
         }
 
         }
+<<<<<<< HEAD
     public function action($id){
         DB::table('inboxes')->where('id',$id)->update(['name'=>11]);
         $thongbao = array('message'=>'Thay doi ten thanh cong','alert-type'=>'warning');
@@ -302,6 +319,9 @@ class InboxController extends AppBaseController
     //     };
     //     return response ()->json(['success'=>'Ajax request save successfully']);
     // }
+=======
+    
+>>>>>>> d2f534f... Inbox-Outbox-Index
     public function DatatableInbox()
     {
         return view('dashboard.index');
@@ -329,6 +349,7 @@ class InboxController extends AppBaseController
 
             ->make(true);
     }
+// Show Mail Details
 
 //  git config --global user.email "you@example.com"
 //   git config --global user.name "TuanAnh"

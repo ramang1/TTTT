@@ -78,7 +78,6 @@ Route::resource('outboxes', 'OutboxController');
 //Xay dung Box 1 - Box tong thu di - theo P lam moi
 Route::get('outboxTotal','OutboxController@outboxTotal');
 Route::get('outboxTotal/getdataoutboxTotal','OutboxController@getdataoutboxTotal')->name("users.getdataoutboxTotal");
-
 Route::get('outboxTotal/getdataoutboxTotal1','OutboxController@getdataoutboxTotal1')->name("users.getdataoutboxTotal1");
 Route::get('outboxTotal/getdataoutboxTotal2','OutboxController@getdataoutboxTotal2')->name("users.getdataoutboxTotal2");
 Route::get('outboxTotal/getdataoutboxTota3','OutboxController@getdataoutboxTotal3')->name("users.getdataoutboxTotal3");
@@ -86,18 +85,19 @@ Route::get('outboxTotal/getdataoutboxTotal4','OutboxController@getdataoutboxTota
 
 Route::resource('outboxProcesses', 'OutboxProcessController');
 //TuanAnh
-//GiainenzipGiainenRar
-Route::post('/InboxController/actiongiainen','InboxController@actiongiainen');
-Route::get('/','InboxController@DatatableInbox')->middleware('verified');
+
 //Lay du lieu qua ajax showmail
-Route::get('/listmail1','InboxController@datamails')->middleware('verified');
-Route::get('/listmail','InboxController@showinbox')->name('users.getData')->middleware('verified');
+// Route::get('/listmail1','InboxController@datamails')->middleware('verified');
+// Route::get('/listmail','InboxController@showinbox')->name('users.getData')->middleware('verified');
 //Lay du lieu Checkmail
 Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData')->middleware('verified');
 //Notification dashboard
 // Route::get('/', 'InboxController@notificationmail');
+//THƯ ĐẾN VÀ ĐI
 Route::get('/', 'InboxController@showmail')->middleware('verified');
-Route::get('/action/{id}', 'InboxController@action');
+Route::get('/', 'InboxController@showinbox')->middleware('verified');
+Route::get('/dashboard', 'InboxController@showinbox')->middleware('verified');
+// Route::get('/', 'OutboxController@showoutbox')->middleware('verified');
 Route::get('/markAsRead/{id}', function($id){
     $id = auth()->user()->unreadNotifications[0]->id;
     auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
