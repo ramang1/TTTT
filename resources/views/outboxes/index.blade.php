@@ -125,7 +125,7 @@
     "render": null,
     "orderable": false,
     "searchable": false,
-    "width": "120px"
+    "width": "70px"
   }],
   "dom": "Bfrtip",
   "stateSave": true,

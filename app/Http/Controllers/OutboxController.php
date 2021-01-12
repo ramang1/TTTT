@@ -81,6 +81,7 @@ class OutboxController extends AppBaseController
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
             })
+            ->addColumn('action', 'outboxes.datatables_actions')
             ->make(true);
     }
 
