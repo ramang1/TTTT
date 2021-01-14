@@ -130,6 +130,15 @@ class InboxController extends AppBaseController
                 return $Contact[0];
             }
             )
+            ->editColumn('user_id',function ($data) {
+                $idUser = $data->user_id;
+                $User = DB::table('users')->where('id', '=', $idUser)->pluck('name');
+                if($User->isEmpty()) {
+                    return 'Unknown';
+                }
+                return $User[0];
+            }
+            )
             ->addColumn('action', 'inboxes.datatables_actions')
             ->make(true);
     }
@@ -236,14 +245,14 @@ class InboxController extends AppBaseController
             $showinbox = DB::table('inboxes')->leftjoin('process_inbox','process_inbox.inboxes_id','=','inboxes.id')
             ->join('contacts','contacts.id','=','inboxes.contact_id')
             ->join('users','users.id','=','inboxes.user_id')
-            ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as id, process_inbox.action as action')                           
+            ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as id, process_inbox.action as action')
             ->orderBy('created_at','desc')->take(10)->get();
-           
+
             $showoutbox = DB::table('outboxes')
             ->join('contacts','contacts.id','=','outboxes.contact_id')
             ->join('users','users.id','=','outboxes.user_id')
             ->join('outbox_process','outbox_process.id','=','outboxes.type')
-            ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action as action, outboxes.id as outboxes_id')                           
+            ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action as action, outboxes.id as outboxes_id')
             ->orderBy('outboxes.created_at','desc')->take(10)->get();
             return view('dashboard.index')
             ->with('showinbox',$showinbox)
@@ -261,7 +270,7 @@ class InboxController extends AppBaseController
             //         $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
             //     })
             //     ->make(true);
-        
+
         public function datamails(){
         Carbon::setLocale('vi');
         //lay dl tra ve
@@ -300,7 +309,7 @@ class InboxController extends AppBaseController
         }
 
         }
-    
+
     public function DatatableInbox()
     {
         return view('dashboard.index');

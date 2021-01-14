@@ -36,6 +36,7 @@
             <th title="Nơi gửi">Nơi gửi</th>
             <th title="Kích thước file">Size</th>
             <th title="Thư mục lưu">Thư mục lưu</th>
+            <th title="Người nhận">Người nhận</th>
             <th title="Kiểu nhận về">Kiểu nhận về</th>
             <th title="Thời gian">Thời gian</th>
             <th title="Action" width="120px">Action</th>
@@ -98,6 +99,12 @@
       orderable: true,
       searchable: true
     }, {
+      name: "user_id",
+      data: "user_id",
+      title: "Người nhận",
+      orderable: true,
+      searchable: true
+    },{
       name: "type",
       data: "type",
       title: "Ki\u1ec3u nh\u1eadn v\u1ec1",
