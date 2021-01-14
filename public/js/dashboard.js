@@ -115,34 +115,6 @@ $(document).ready(function () {
     //var refreshId = setInterval(get_total, 10000000);
   //  var refreshId = setInterval(getMailServer, 1000);
 });
-//TuanAnh
-function show_inbox() {
-    var table = $('#showinbox').DataTable({
-
-        stateSave: true,
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: 'http://127.0.0.1:8000/listmail'
-        },
-        columns: [{
-                data: 'name',
-                name: 'name'
-            },
-            {
-                data: 'path',
-                name: 'path'
-            },
-            {
-                data: 'created_at',
-                name: 'created_at'
-            },
-        ]
-    });
-    // setInterval(function () {
-    //     table.ajax.reload();
-    // }, 1000);
-}
 
 
 

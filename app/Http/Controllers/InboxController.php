@@ -233,6 +233,7 @@ class InboxController extends AppBaseController
         return redirect(route('inboxes.index'));
     }
 
+<<<<<<< HEAD
     //TuanAnh
     //ShowInboxIndex
         // public function showinbox(){
@@ -258,6 +259,10 @@ class InboxController extends AppBaseController
             ->with('showinbox',$showinbox)
             ->with('showoutbox',$showoutbox);
         }
+=======
+    
+        
+>>>>>>> 35566486c3b493d0aba859495d714ea1db23d5d3
             // return Datatables::of($data)
             // ->editColumn('created_at', function ($data) {
             //     if($data->created_at == null) {

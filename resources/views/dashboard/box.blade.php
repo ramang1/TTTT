@@ -5,7 +5,7 @@
     <div class="small-box bg-aqua">
 
       <div class="inner">
-        <h3 id ="totalOutBox">0</h3>
+        <h3 id ="totalOutBox">{!!$totalOutbox!!}</h3>
         <p>Tổng thư đến</p>
       </div>
       <div class="icon">
@@ -22,7 +22,7 @@
     <!-- small box -->
     <div class="small-box bg-green">
       <div class="inner">
-        <h3 id = "totalInbox">0</h3>
+        <h3 id = "totalInbox">{!! $totalInbox !!}</h3>
         <p>Tổng thư đi</p>
       </div>
       <div class="icon">
@@ -39,7 +39,7 @@
     <!-- small box -->
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3 id ="totalUnsend">0</h3>
+        <h3 id ="totalUnsend">{!! $Unsend!!}</h3>
 
         <p>Thư chưa gửi</p>
       </div>
@@ -55,7 +55,7 @@
     <!-- small box -->
     <div class="small-box bg-red">
       <div class="inner">
-        <h3 id = "totalUnread">0</h3>
+        <h3 id = "totalUnread">{!!$Unread !!}</h3>
         <p>Thư chưa đọc</p>
       </div>
       <div class="icon">
