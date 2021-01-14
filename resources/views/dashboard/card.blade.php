@@ -1,31 +1,13 @@
 <div class="row">
   <!-- Left col -->
   <div class="col-md-8">
-    <!-- MAP & BOX PANE -->
-    
-    <!-- /.box -->
-    <div class="row">
-      <div class="col-md-6">
-        <!-- DIRECT CHAT -->
-        
-        <!--/.direct-chat -->
-      </div>
-      <!-- /.col -->
 
-      <div class="col-md-6">
-        <!-- USERS LIST -->
-        
-        <!--/.box -->
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    
+
     <!-- TABLE: THƯ ĐẾN -->
     <div class="box box-info">
       <div class="box-header with-border">
         <h3 class="box-title">THƯ ĐẾN</h3>
-        <button type="button" id="RefreshButton" name="RefreshButton" class="btn btn-default btn-sm" ><a href="{{URL::to('/')}}"><i class="fa fa-refresh"></a></i></button>
+        <button type="button" id="RefreshButton" name="RefreshButton" class="btn btn-default btn-sm"><a href="{{URL::to('/')}}"><i class="fa fa-refresh"></a></i></button>
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
           </button>
@@ -37,53 +19,53 @@
         <div class="table-responsive mailbox-messages">
           <table class="table table-hover table-striped">
             <thead>
-            <tr>
-              <th><b>Tên</b></th>
-              <th><b>Nơi gửi</b></th>
-              <th><b>Người nhận</b></th>
-              <th><b>Kích thước</b></th>
-              <th><b>Trạng thái</b></th>
-              <th><b>Kiểu nhận thư</b></th>
-              <th><b>Ngày nhận</b></th>
-            </tr>
+              <tr>
+                <th><b>Tên</b></th>
+                <th><b>Nơi gửi</b></th>
+                <th><b>Người nhận</b></th>
+                <th><b>Kích thước</b></th>
+                <th><b>Trạng thái</b></th>
+                <th><b>Kiểu nhận thư</b></th>
+                <th><b>Ngày nhận</b></th>
+              </tr>
             </thead>
             <tbody>
               @foreach ($showinbox as $data)
-            <tr>
-              <td><a href="{{URL::to('/inboxes/'.$data->id)}}">{{$data->name}}</a></td>
-              <td><a href="{{URL::to('/users')}}">{{$data->contacts_name}}</a></td>
-              <td><a href="{{URL::to('/users')}}">{{$data->users_name}}</a></td>
-              <td>{{($data->size)}}</td>
-              <td>
-                <?php 
-                  if ($data->action=='giai_nen_zip' || $data->action=='giai_nen_rar'){
-                ?>
+              <tr>
+                <td><a href="{{URL::to('/inboxes/'.$data->id)}}">{{$data->name}}</a></td>
+                <td><a href="{{URL::to('/users')}}">{{$data->contacts_name}}</a></td>
+                <td><a href="{{URL::to('/users')}}">{{$data->users_name}}</a></td>
+                <td>{{($data->size)}}</td>
+                <td>
+                  <?php
+                  if ($data->action == 'giai_nen_zip' || $data->action == 'giai_nen_rar') {
+                  ?>
                     <a><span class="label label-success">Đã giải mã</span></a>
-                <?php
-                  }else {
-                ?>
+                  <?php
+                  } else {
+                  ?>
                     <a><span class="label label-danger">Chưa giải mã</span></a>
-                <?php
-                  }  
-                ?>
-              </td>
-              <td>
-                <?php 
-                  if ($data->action==NULL){
-                ?>
+                  <?php
+                  }
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  if ($data->action == NULL) {
+                  ?>
                     <a><span class="label label-danger">Chưa xử lý</span></a>
-                <?php
-                  }else {
-                ?>
+                  <?php
+                  } else {
+                  ?>
                     <a><span class="label label-success">{{$data->action}}</span></a>
-                <?php
-                  }  
-                ?>
-              </td>
-              {{-- <td><span class="label label-success">{{($data->action)}}</span></td> --}}
-              <td>{{Carbon\Carbon::parse($data->created_at)->diffForHumans()}}</td>
-            </tr>
-            @endforeach
+                  <?php
+                  }
+                  ?>
+                </td>
+                {{-- <td><span class="label label-success">{{($data->action)}}</span></td> --}}
+                <td>{{Carbon\Carbon::parse($data->created_at)->diffForHumans()}}</td>
+              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -103,18 +85,19 @@
         <h3 class="box-title">THƯ ĐI</h3>
         {{-- Audio file --}}
         <audio id="myAudio">
-          
+
           <source src="media/rengreng.mp3" type="audio/mpeg">
         </audio>
         {{-- Audio file --}}
-        <button onclick="playAudio()" type="button"  class="btn btn-default btn-sm" ><a href="{{URL::to('/')}}"><i class="fa fa-refresh"></a></i></button>
+        <button onclick="playAudio()" type="button" class="btn btn-default btn-sm"><a href="{{URL::to('/')}}"><i class="fa fa-refresh"></a></i></button>
         {{-- <button onclick="playAudio()" type="button"  class="btn btn-default btn-sm" href=""><a><i class="fa fa-refresh">aaaaaaa</a></i></button> --}}
         <script>
-          var x = document.getElementById("myAudio"); 
-          function playAudio() { 
-            x.play(); 
-          } 
-          </script>
+          var x = document.getElementById("myAudio");
+
+          function playAudio() {
+            x.play();
+          }
+        </script>
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -127,26 +110,26 @@
         <div class="table-responsive mailbox-messages">
           <table class="table table-hover table-striped">
             <thead>
-            <tr>
-              <th><b>Tên</b></th>
-              <th><b>Người nhận mail<b></th>
-              <th><b>Người gửi mail<b></th>
-              <th><b>Kích thước</b></th>
-              <th><b>Kiểu nén</b></th>
-              <th><b>Ngày nhận</b></th>
-            </tr>
+              <tr>
+                <th><b>Tên</b></th>
+                <th><b>Người nhận mail<b></th>
+                <th><b>Người gửi mail<b></th>
+                <th><b>Kích thước</b></th>
+                <th><b>Kiểu nén</b></th>
+                <th><b>Ngày nhận</b></th>
+              </tr>
             </thead>
             <tbody>
               @foreach ($showoutbox as $data)
-            <tr>
-              <td><a href="{{URL::to('/outboxes/'.$data->outboxes_id)}}">{{$data->name}}</a></td>
-              <td><a href="{{URL::to('/users')}}">{{$data->contacts_name}}</a></td>
-              <td><a href="{{URL::to('/users')}}">{{$data->users_name}}</a></td>
-              <td>{{($data->size)}}</td>
-              <td><span class="label label-success">{{($data->action)}}</span></td>
-              <td>{{Carbon\Carbon::parse($data->created_at)->diffForHumans()}}</td>
-            </tr>
-            @endforeach
+              <tr>
+                <td><a href="{{URL::to('/outboxes/'.$data->outboxes_id)}}">{{$data->name}}</a></td>
+                <td><a href="{{URL::to('/users')}}">{{$data->contacts_name}}</a></td>
+                <td><a href="{{URL::to('/users')}}">{{$data->users_name}}</a></td>
+                <td>{{($data->size)}}</td>
+                <td><span class="label label-success">{{($data->action)}}</span></td>
+                <td>{{Carbon\Carbon::parse($data->created_at)->diffForHumans()}}</td>
+              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
@@ -159,7 +142,7 @@
       </div>
       <!-- /.box-footer -->
     </div>
-  
+
   </div>
   <!-- /.col -->
 
@@ -168,30 +151,67 @@
 
   <div class="col-md-4">
 
-  <div class="box box-solid collapsed-box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Folders</h3>
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Tuyến</h3>
 
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body no-padding" style="display: none;">
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-                  <span class="label label-primary pull-right">12</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-                <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
-                </li>
-                <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
+        <div class="box-tools">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
+              <span class="label label-primary pull-right">12</span></a></li>
+          <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+          <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
+          <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
+          </li>
+          <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
 
           
+         
+        </ul>
+      </div>
+      <!-- /.box-body -->
+      
+    </div>
+
+    <div class="box box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Người dùng</h3>
+
+        <div class="box-tools">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
+              <span class="label label-primary pull-right">12</span></a></li>
+          <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+          <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
+          <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
+          </li>
+          <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+
+          <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
+              <span class="label label-primary pull-right">12</span></a></li>
+          <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+          <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
+          <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
+          </li>
+          <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
+
+          
+        </ul>
+      </div>
+      <!-- /.box-body -->
+      
+    </div>
+
     <!-- Info Boxes Style 2 -->
     <div class="info-box bg-yellow">
       <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>

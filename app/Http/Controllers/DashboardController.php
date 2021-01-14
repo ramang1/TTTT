@@ -85,19 +85,33 @@ class DashboardController extends Controller
                 ->orWhere('action', '=', 'nen_rar');
         })->count();
 
-        //Dem so mail gui den/di trong ngay cua moi don vi
+
+
+
+        //Dem so mail gui den/di trong ngay cua moi nguoi dung trong he thong
         $contactMailDetail = DB::select('SELECT contacts.id, contacts.name, 
-        (SELECT COUNT(*) FROM inboxes WHERE inboxes.contact_id = contacts.id) 
-        AS DIENDEN, (SELECT COUNT(*) FROM outboxes WHERE outboxes.contact_id = contacts.id) 
-        AS DIENDI FROM contacts
-        ORDER BY DIENDEN DESC');
+ (SELECT COUNT(*) FROM inboxes WHERE inboxes.contact_id = contacts.id) 
+ AS DIENDEN, (SELECT COUNT(*) FROM outboxes WHERE outboxes.contact_id = contacts.id) 
+ AS DIENDI FROM contacts
+ ORDER BY DIENDEN DESC');
 
 
+        //Dem so mail truyen nhan trong ngay cua moi nguoi dung
+        $userMailDetail = DB::select('SELECT users.id, users.name, 
+  (SELECT COUNT(*) FROM inboxes WHERE inboxes.user_id = users.id) 
+  AS NHANDIEN, (SELECT COUNT(*) FROM outboxes WHERE outboxes.user_id = users.id) 
+  AS TRUYENDIEN FROM users
+  ORDER BY NHANDIEN DESC');
+       
 
-
-
+        \Debugbar::info('So luong Email di den cua moi tuyen');
         \Debugbar::info($contactMailDetail);
-        
+
+        \Debugbar::info('So luong Email truyen nhan cua moi nguoi');
+        \Debugbar::info($userMailDetail);
+
+        // \Debugbar::info('So luong Email nen, giai nen cua moi nguoi');
+        // \Debugbar::info($userSendRecei);
 
 
         return view('dashboard.index')
@@ -106,7 +120,9 @@ class DashboardController extends Controller
             ->with('totalInbox', $totalInbox)
             ->with('totalOutbox', $totalOutbox)
             ->with('Unsend', $Unsend)
-            ->with('Unread', $Unread);
+            ->with('Unread', $Unread)
+            ->with('contactMailDetail',$contactMailDetail)
+            ->with('userMailDetail',$userMailDetail);
     }
     //Tra ve tong so mail den, di, chua doc
     public function get_total()
@@ -139,7 +155,7 @@ class DashboardController extends Controller
         })->count();
 
 
-        
+
 
 
         //Dem tong so mail den cua moi don vi
@@ -156,9 +172,4 @@ class DashboardController extends Controller
         \Debugbar::info($contactInboxDetail);
         return response()->json(array('totalInbox' => $totalInbox, 'totalOutbox' => $totalOutbox, 'totalUnsend' => $totalUnsend, 'totalUnread' => $totalUnread, 'contactInboxDetail' => $contactInboxDetail));
     }
-
-
-
-
-
 }
