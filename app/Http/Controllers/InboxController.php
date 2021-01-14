@@ -233,36 +233,8 @@ class InboxController extends AppBaseController
         return redirect(route('inboxes.index'));
     }
 
-<<<<<<< HEAD
-    //TuanAnh
-    //ShowInboxIndex
-        // public function showinbox(){
-        //     return Datatables::of(Inbox::query())->make(true);
-        // }
-        public function showinbox()
-        {
-            Carbon::setLocale('vi');
-            $a = DB::table('process_inbox')->rightjoin('inboxes','inboxes.id'.'=','process_inbox.inboxes_id');
-            $showinbox = DB::table('inboxes')->leftjoin('process_inbox','process_inbox.inboxes_id','=','inboxes.id')
-            ->join('contacts','contacts.id','=','inboxes.contact_id')
-            ->join('users','users.id','=','inboxes.user_id')
-            ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as id, process_inbox.action as action')
-            ->orderBy('created_at','desc')->take(10)->get();
 
-            $showoutbox = DB::table('outboxes')
-            ->join('contacts','contacts.id','=','outboxes.contact_id')
-            ->join('users','users.id','=','outboxes.user_id')
-            ->join('outbox_process','outbox_process.id','=','outboxes.type')
-            ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action as action, outboxes.id as outboxes_id')
-            ->orderBy('outboxes.created_at','desc')->take(10)->get();
-            return view('dashboard.index')
-            ->with('showinbox',$showinbox)
-            ->with('showoutbox',$showoutbox);
-        }
-=======
-    
-        
->>>>>>> 35566486c3b493d0aba859495d714ea1db23d5d3
+
             // return Datatables::of($data)
             // ->editColumn('created_at', function ($data) {
             //     if($data->created_at == null) {
