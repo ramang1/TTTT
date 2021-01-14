@@ -3,7 +3,9 @@ window.onload = function () {
     
 };
 
-
+var x = setInterval(function() {
+    refreshPage();
+}, 10000);
 
 function get_total() {
     let _url = `/dashboard/get_total`;
@@ -49,18 +51,20 @@ var x = document.getElementById("myAudio");
 
 function refreshPage(){
     console.log('Chung toi se reload lai webste');
+    
     location.reload();
 
    
 }
 $(document).ready(function () {
 
-    var unRead = $('#totalUnread').val();
-    if (unRead > 0){
-        console.log('co dien den, play audio' + unRead);
-    }else{
-        console.log('ko co dien den, play audio' + unRead);
+    var unRead = $('#totalUnread').text();
+    if (unRead > 0) {
+        playAudio();
+        console.log('co dien den ' + unRead);
+      
     }
+   
 });
 
 

@@ -7,7 +7,8 @@
     <div class="box box-info">
       <div class="box-header with-border">
         <h3 class="box-title">THƯ ĐẾN</h3>
-        <button onclick="refreshPage()" type="button" id="RefreshButton" name="RefreshButton" class="btn btn-default btn-sm"><i class="fa fa-refresh"></a></i></button>
+        <!-- <button onclick="refreshPage()" type="button" id="RefreshButton" name="RefreshButton" class="btn btn-default btn-sm"><i class="fa fa-refresh"></a></i></button> -->
+        <button onclick="refreshPage()" type="button" class="btn btn-default btn-sm"><a href=""><i class="fa fa-refresh"></i></a></button>
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
           </button>
