@@ -58,7 +58,8 @@
   var startDate = 0;
   var endDate = 0;;
   var table = $('#dataTableBuilder').DataTable({
-
+    dom: "Blfrtip",
+    lengthChange: false,
   serverSide: true,
   processing: true,
   ajax: {
@@ -70,115 +71,100 @@
     }
   },
 
-  "columns": [
-//       {
-//     "name": "id",
-//     "data": "id",
-//     "title": "id",
-//     "orderable": true,
-//     "searchable": true
-//   },
-  {
-    "name": "name",
-    "data": "name",
-    "title": "T\u00ean th\u01b0 \u0111i",
-    "orderable": true,
-    "searchable": true
-  },{
-    "name": "contact_id",
-    "data": "contact_id",
-    "title": "N\u01a1i nh\u1eadn",
-    "orderable": true,
-    "searchable": true
-  },{
-    "name": "channel_id",
-    "data": "channel_id",
-    "title": "Nhóm nhận",
-    "orderable": true,
-    "searchable": true
-  },{
-    "name": "size",
-    "data": "size",
-    "title": "Size",
-    "orderable": true,
-    "searchable": true
-  }, {
-    "name": "path",
-    "data": "path",
-    "title": "Th\u01b0 m\u1ee5c l\u01b0u",
-    "orderable": true,
-    "searchable": true
-  }, {
-    "name": "type",
-    "data": "type",
-    "title": "Ki\u1ec3u n\u00e9n",
-    "orderable": true,
-    "searchable": true
-  }, {
-    "name": "user_id",
-    "data": "user_id",
-    "title": "Người gửi",
-    "orderable": true,
-    "searchable": true
-  }, {
-    "name": "created_at",
-    "data": "created_at",
-    "title": "Th\u1eddi gian",
-    "orderable": true,
-    "searchable": true
-  }, {
-    "defaultContent": "",
-    "data": "action",
-    "name": "action",
-    "title": "Action",
-    "render": null,
-    "orderable": false,
-    "searchable": false,
-    "width": "70px"
-  }],
-  "dom": "Bfrtip",
-  "stateSave": true,
-  "order": [
-    [0, "desc"]
-  ],
-  "buttons": [{
-    "extend": "create",
-    "text": "Xu\u1ea5t file",
-    "className": "btn btn-default btn-sm no-corner"
-  }, {
-    "extend": "export",
-    "className": "btn btn-default btn-sm no-corner"
-  }, {
-    "extend": "print",
-    "className": "btn btn-default btn-sm no-corner"
-  }, {
-    "extend": "reset",
-    "className": "btn btn-default btn-sm no-corner"
-  }, {
-    "extend": "reload",
-    "className": "btn btn-default btn-sm no-corner"
-  }],
+  columns: [
 
-  dom: "Bfrtip",
+  {
+    name: "name",
+    data: "name",
+    title: "T\u00ean th\u01b0 \u0111i",
+    orderable: true,
+    searchable: true
+  },{
+    name: "contact_id",
+    data: "contact_id",
+    title: "N\u01a1i nh\u1eadn",
+    orderable: true,
+    searchable: true
+  },{
+    name: "channel_id",
+    data: "channel_id",
+    title: "Nhóm nhận",
+    orderable: true,
+    searchable: true
+  },{
+    name: "size",
+    data: "size",
+    title: "Size",
+    orderable: true,
+    searchable: true
+  }, {
+    name: "path",
+    data: "path",
+    title: "Th\u01b0 m\u1ee5c l\u01b0u",
+    orderable: true,
+    searchable: true
+  }, {
+    name: "type",
+    data: "type",
+    title: "Ki\u1ec3u n\u00e9n",
+    orderable: true,
+    searchable: true
+  }, {
+    name: "user_id",
+    data: "user_id",
+    title: "Người gửi",
+    orderable: true,
+    searchable: true
+  }, {
+    name: "created_at",
+    data: "created_at",
+    title: "Th\u1eddi gian",
+    orderable: true,
+    searchable: true
+  }, {
+    defaultContent: "",
+    data: "action",
+    name: "action",
+    title: "Action",
+    render: null,
+    orderable: false,
+    searchable: false,
+    width: "70px"
+  }],
+  
+  buttons: [
+      {
+        extend: "colvis",
+        text: "Ẩn cột",
+        className: "btn btn-default btn-sm no-corner"
+      },
+      
+      {
+        extend: "export",
+        text: "Xu\u1ea5t file",
+        className: "btn btn-default btn-sm no-corner"
+      }, {
+        extend: "print",
+        className: "btn btn-default btn-sm no-corner"
+      }, {
+        extend: "reset",
+        className: "btn btn-default btn-sm no-corner"
+      }, {
+        extend: "reload",
+        className: "btn btn-default btn-sm no-corner"
+      },
+      {
+        extend: "pageLength",
+       
+        className: "btn btn-default btn-sm no-corner"
+
+      },
+    ],
+
     stateSave: true,
     order: [
       [7, "desc"]
-    ],
-    buttons: [{
-      extend: "export",
-      text: "Xu\u1ea5t file",
-      className: "btn btn-default btn-sm no-corner"
-    }, {
-      extend: "print",
-      className: "btn btn-default btn-sm no-corner"
-    }, {
-      extend: "reset",
-      className: "btn btn-default btn-sm no-corner"
-    }, {
-      extend: "reload",
-      className: "btn btn-default btn-sm no-corner"
-    }]
-
+    ]
   });
 
   //Date range as a button

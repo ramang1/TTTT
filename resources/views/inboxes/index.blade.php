@@ -60,21 +60,21 @@
   var startDate = 0;
   var endDate = 0;;
   var table = $('#dataTableBuilder').DataTable({
-
+    dom: "Blfrtip",
+    lengthChange: false,
     serverSide: true,
     processing: true,
     ajax: {
       url: "/inboxesdata",
       type: "GET",
-      data: function(d){
+      data: function(d) {
         d.startDate = startDate;
         d.endDate = endDate;
 
       }
     },
 
-    columns: [
-      {
+    columns: [{
       name: "name",
       data: "name",
       title: "T\u00ean th\u01b0 \u0111\u1ebfn",
@@ -126,32 +126,48 @@
       searchable: false,
       width: "70px"
     }],
-    dom: "Bfrtip",
+
     stateSave: true,
     order: [
       [5, "desc"]
     ],
-    "buttons": [{
-      extend: "export",
-      text: "Xu\u1ea5t file",
-      className: "btn btn-default btn-sm no-corner"
-    }, {
-      extend: "print",
-      className: "btn btn-default btn-sm no-corner"
-    }, {
-      extend: "reset",
-      className: "btn btn-default btn-sm no-corner"
-    }, {
-      extend: "reload",
-      className: "btn btn-default btn-sm no-corner"
-    }]
+    // buttons: [ 'copy', 'excel', 'pdf', 'colvis', 'pageLength' ],
+    "buttons": [
+     
+      {
+        extend: "colvis",
+        text: "Ẩn cột",
+        className: "btn btn-default btn-sm no-corner"
+      },
+      {
+        extend: "export",
+        text: "Xu\u1ea5t file",
+        className: "btn btn-default btn-sm no-corner"
+      }, {
+        extend: "print",
+        className: "btn btn-default btn-sm no-corner"
+      }, {
+        extend: "reset",
+        className: "btn btn-default btn-sm no-corner"
+      }, {
+        extend: "reload",
+        className: "btn btn-default btn-sm no-corner"
+      },
+      {
+        extend: "pageLength",
+       
+        className: "btn btn-default btn-sm no-corner"
 
+      },
+    ]
+
+    // 
   });
 
   //Date range as a button
   $('#daterange-btn').daterangepicker({
       ranges: {
-        'Tất cả': [null,null],
+        'Tất cả': [null, null],
         'Hôm nay': [moment(), moment()],
         'Hôm qua': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
         '7 ngày trước': [moment().subtract(6, 'days'), moment()],
@@ -188,18 +204,15 @@
     },
     function(start, end) {
 
-      if(start._isValid && end._isValid)
-        {
-          $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
-          startDate = start.format('YYYY/MM/DD');
-         endDate = end.format('YYYY/MM/DD');
-        }
-        else
-        {
-          $('#daterange-btn span').html('Chọn thời gian');
-            startDate =0;
-            endDate = 0;
-        }
+      if (start._isValid && end._isValid) {
+        $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        startDate = start.format('YYYY/MM/DD');
+        endDate = end.format('YYYY/MM/DD');
+      } else {
+        $('#daterange-btn span').html('Chọn thời gian');
+        startDate = 0;
+        endDate = 0;
+      }
 
 
 

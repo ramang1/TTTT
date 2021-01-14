@@ -7,7 +7,7 @@
     <div class="box box-info">
       <div class="box-header with-border">
         <h3 class="box-title">THƯ ĐẾN</h3>
-        <button type="button" id="RefreshButton" name="RefreshButton" class="btn btn-default btn-sm"><a href="{{URL::to('/')}}"><i class="fa fa-refresh"></a></i></button>
+        <button onclick="refreshPage()" type="button" id="RefreshButton" name="RefreshButton" class="btn btn-default btn-sm"><i class="fa fa-refresh"></a></i></button>
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
           </button>
@@ -83,21 +83,15 @@
     <div class="box box-info">
       <div class="box-header with-border">
         <h3 class="box-title">THƯ ĐI</h3>
-        {{-- Audio file --}}
+        
         <audio id="myAudio">
 
           <source src="media/rengreng.mp3" type="audio/mpeg">
         </audio>
-        {{-- Audio file --}}
-        <button onclick="playAudio()" type="button" class="btn btn-default btn-sm"><a href="{{URL::to('/')}}"><i class="fa fa-refresh"></a></i></button>
-        {{-- <button onclick="playAudio()" type="button"  class="btn btn-default btn-sm" href=""><a><i class="fa fa-refresh">aaaaaaa</a></i></button> --}}
-        <script>
-          var x = document.getElementById("myAudio");
-
-          function playAudio() {
-            x.play();
-          }
-        </script>
+        
+        <button onclick="refreshPage()" type="button" class="btn btn-default btn-sm"><a href=""><i class="fa fa-refresh"></a></i></button>
+        
+       
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
