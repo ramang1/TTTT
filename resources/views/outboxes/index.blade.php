@@ -132,18 +132,28 @@
     width: "70px"
   }],
   
-  buttons: [
+  "buttons": [
+      {
+        extend: "copyHtml5",
+        text: "Sao chép",
+        className: "btn btn-default btn-sm no-corner"
+      },
       {
         extend: "colvis",
         text: "Ẩn cột",
         className: "btn btn-default btn-sm no-corner"
       },
-      
       {
-        extend: "export",
-        text: "Xu\u1ea5t file",
+        extend: "excelHtml5",
+        text: "Excel",
+        className: "btn btn-default btn-sm no-corner"
+      }, 
+      {
+        extend: "pdfHtml5",
+        text: "PDF",
         className: "btn btn-default btn-sm no-corner"
       }, {
+        
         extend: "print",
         className: "btn btn-default btn-sm no-corner"
       }, {
@@ -160,7 +170,6 @@
 
       },
     ],
-
     stateSave: true,
     order: [
       [7, "desc"]
