@@ -29,3 +29,6 @@
     <a href="{{ route('outboxProcesses.index') }}"><i class="fa fa-edit"></i><span>Quá trình xử lý thư đi</span></a>
 </li>
 
+<li class="{{ Request::is('outboxProcesses*') ? 'active' : '' }}">
+    <a href="{{ route('backups.index') }}"><i class="fa fa-edit"></i><span>Sao lưu và phục hồi CSDL</span></a>
+</li>

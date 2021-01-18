@@ -100,3 +100,11 @@ Route::get('/test', function () {
    $date = Carbon\Carbon::now();
    dd($date);
 });
+
+//BackUp DB
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('backups/upload', ['as'=>'backups.upload', 'uses'=>'BackupsController@upload']);
+    Route::post('backups/{fileName}/restore', ['as'=>'backups.restore', 'uses'=>'BackupsController@restore']);
+    Route::get('backups/{fileName}/dl', ['as'=>'backups.download', 'uses'=>'BackupsController@download']);
+    Route::resource('backups','BackupsController');
+});

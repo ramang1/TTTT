@@ -45,6 +45,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
+            'dump' => [
+               'dump_binary_path' => env('DB_MYSQLDUMP_PATH'),
+               'use_single_transaction',
+               'timeout' => 60 * 5,
+            ],
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),

@@ -171,7 +171,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        //  BackupManager\Laravel\Laravel7ServiceProvider::class,
         /*
          * Application Service Providers...
          */
