@@ -46,11 +46,7 @@
 
     </div>
   </div>
-  <div class="text-center">
-    <p>TOng thu di</p>
-    <p>TOng thu den</p>
-
-  </div>
+  
 </div>
 @endsection
 
@@ -167,7 +163,9 @@
         className: "btn btn-default btn-sm no-corner"
 
       },
-    ]
+    ],
+
+   
 
     // 
   });
@@ -234,8 +232,9 @@
     $('#dateFiler').click(function() {
       console.log('goi ham ' + startDate + " " + endDate);
       table.draw();
-
+      
     });
   });
+
 </script>
 @endpush

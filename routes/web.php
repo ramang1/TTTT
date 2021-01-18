@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
-
+use Illuminate\Support\Facades\Config;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +31,7 @@ Route::resource('contacts', 'ContactController')->middleware('auth');
 Route::resource('channels', 'ChannelController');
 
 Route::resource('inboxes', 'InboxController');
+Route::get('unreads', 'InboxController@abc');
 
 Route::get('inboxesdata', 'InboxController@data');
 Route::get('outboxesdata', 'OutboxController@data');
@@ -107,4 +108,15 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('backups/{fileName}/restore', ['as'=>'backups.restore', 'uses'=>'BackupsController@restore']);
     Route::get('backups/{fileName}/dl', ['as'=>'backups.download', 'uses'=>'BackupsController@download']);
     Route::resource('backups','BackupsController');
+   
+   // Config::set('app.enable_verification', true); 
+    $environment = config('app.enable_verification');
+    dd($environment);
+
+//     config(['world.name' => 'Mundo Hurlingham']);
+
+// config(['world.name' => 'Test']);
+
+//echo config('app.DoThuy');
+
 });
