@@ -61,7 +61,7 @@
       <div class="icon">
         <i class="ion ion-email-unread"></i>
       </div>
-      <a href="/unread" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/unreads" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->

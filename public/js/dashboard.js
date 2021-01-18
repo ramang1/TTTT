@@ -60,12 +60,15 @@ $(document).ready(function () {
 
     var unRead = $('#totalUnread').text();
     if (unRead > 0) {
-        playAudio();
+        //playAudio();
         console.log('co dien den ' + unRead);
       
     }
-   
-});
+    
+       
+    
+    
+})
 
 
 

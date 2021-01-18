@@ -45,10 +45,7 @@
       </table>
     </div>
   </div>
-  <div class="text-center">
-    <p>TOng thu di</p>
-    <p>TOng thu den</p>
-  </div>
+  
 </div>
 @endsection
 
