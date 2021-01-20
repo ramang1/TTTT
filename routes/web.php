@@ -110,8 +110,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('backups','BackupsController');
    
    // Config::set('app.enable_verification', true); 
-    $environment = config('app.enable_verification');
-    dd($environment);
+    // $environment = config('app.enable_verification');
+    // dd($environment);
 
 //     config(['world.name' => 'Mundo Hurlingham']);
 
