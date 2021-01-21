@@ -55,9 +55,9 @@ class DashboardController extends Controller
         $showoutbox = DB::table('outboxes')
             ->join('contacts', 'contacts.id', '=', 'outboxes.contact_id')
             ->join('users', 'users.id', '=', 'outboxes.user_id')
-            ->join('outbox_process', 'outbox_process.id', '=', 'outboxes.type')
+            ->leftjoin('outbox_process', 'outbox_process.id', '=', 'outboxes.type')
             ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action as action, outboxes.id as outboxes_id')
-            ->orderBy('outboxes.created_at', 'desc')->take(10)->get();
+            ->orderBy('created_at', 'desc')->take(10)->get();
 
         //Dem tong so mail di, den trong ngay
         $totalInbox = Inbox::whereDate('created_at', Carbon::today())->count();
@@ -84,9 +84,6 @@ class DashboardController extends Controller
                 ->where('action', '=', 'nen_zip')
                 ->orWhere('action', '=', 'nen_rar');
         })->count();
-
-
-
 
         //Dem so mail gui den/di trong ngay cua moi nguoi dung trong he thong
         $contactMailDetail = DB::select('SELECT contacts.id, contacts.name, 
