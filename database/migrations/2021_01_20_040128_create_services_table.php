@@ -17,8 +17,9 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->text('name')->comment = "Tên dịch vụ";            
-            $table->text('path')->comment = "Đường dẫn thực thi";            
+            $table->text('status')->comment = "Trạng thái dịch vụ";            
             $table->text('note')->nullable()->comment = "Mô tả về dịch vụ";
+            $table->text('path')->comment = "Đường dẫn thực thi";           
             $table->timestamps();
         });
     }

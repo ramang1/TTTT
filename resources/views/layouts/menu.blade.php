@@ -32,3 +32,7 @@
 <li class="{{ Request::is('outboxProcesses*') ? 'active' : '' }}">
     <a href="{{ route('backups.index') }}"><i class="fa fa-edit"></i><span>Sao lưu và phục hồi CSDL</span></a>
 </li>
+<li class="{{ Request::is('services*') ? 'active' : '' }}">
+    <a href="{{ route('services.index') }}"><i class="fa fa-edit"></i><span>Services</span></a>
+</li>
+

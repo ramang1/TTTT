@@ -2,84 +2,150 @@
 
 namespace App\Http\Controllers;
 
-use App\Service;
-use Illuminate\Http\Request;
+use App\DataTables\ServiceDataTable;
+use App\Http\Requests;
+use App\Http\Requests\CreateServiceRequest;
+use App\Http\Requests\UpdateServiceRequest;
+use App\Repositories\ServiceRepository;
+use Flash;
+use App\Http\Controllers\AppBaseController;
+use Response;
 
-class ServiceController extends Controller
+class ServiceController extends AppBaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    /** @var  ServiceRepository */
+    private $serviceRepository;
+
+    public function __construct(ServiceRepository $serviceRepo)
     {
-        //
+        $this->serviceRepository = $serviceRepo;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the Service.
      *
-     * @return \Illuminate\Http\Response
+     * @param ServiceDataTable $serviceDataTable
+     * @return Response
+     */
+    public function index(ServiceDataTable $serviceDataTable)
+    {
+        return $serviceDataTable->render('services.index');
+    }
+
+    /**
+     * Show the form for creating a new Service.
+     *
+     * @return Response
      */
     public function create()
     {
-        //
+        return view('services.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Service in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateServiceRequest $request
+     *
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateServiceRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $service = $this->serviceRepository->create($input);
+
+        Flash::success('Service saved successfully.');
+
+        return redirect(route('services.index'));
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Service.
      *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     *
+     * @return Response
      */
-    public function show(Service $service)
+    public function show($id)
     {
-        //
+        $service = $this->serviceRepository->find($id);
+
+        if (empty($service)) {
+            Flash::error('Service not found');
+
+            return redirect(route('services.index'));
+        }
+
+        return view('services.show')->with('service', $service);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Service.
      *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     *
+     * @return Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+        $service = $this->serviceRepository->find($id);
+
+        if (empty($service)) {
+            Flash::error('Service not found');
+
+            return redirect(route('services.index'));
+        }
+
+        return view('services.edit')->with('service', $service);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Service in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
+     * @param  int              $id
+     * @param UpdateServiceRequest $request
+     *
+     * @return Response
      */
-    public function update(Request $request, Service $service)
+    public function update($id, UpdateServiceRequest $request)
     {
-        //
+        $service = $this->serviceRepository->find($id);
+
+        if (empty($service)) {
+            Flash::error('Service not found');
+
+            return redirect(route('services.index'));
+        }
+
+        $service = $this->serviceRepository->update($request->all(), $id);
+
+        Flash::success('Service updated successfully.');
+
+        return redirect(route('services.index'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Service from storage.
      *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     *
+     * @return Response
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-        //
+        $service = $this->serviceRepository->find($id);
+
+        if (empty($service)) {
+            Flash::error('Service not found');
+
+            return redirect(route('services.index'));
+        }
+
+        $this->serviceRepository->delete($id);
+
+        Flash::success('Service deleted successfully.');
+
+        return redirect(route('services.index'));
     }
 }
