@@ -1,5 +1,18 @@
 {!! Form::open(['route' => ['services.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
+<a href="{{ route('services.stop', $id) }}" class='btn btn-default btn-xs'>
+        <i class="glyphicon glyphicon-off"></i>
+    </a>
+
+    <a href="{{ route('services.restart', $id) }}" class='btn btn-default btn-xs'>
+        <i class="glyphicon glyphicon-refresh"></i>
+    </a>
+  
+    <a href="{{ route('services.start', $id) }}" class='btn btn-default btn-xs'>
+        <i class="glyphicon glyphicon-play"></i>
+    </a>
+
+
     <a href="{{ route('services.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>

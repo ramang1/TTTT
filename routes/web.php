@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\Config;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,8 +100,31 @@ Route::post('/postNotification', 'InboxController@postNotification')->name('post
 
 
 Route::get('/test', function () {  
-   $date = Carbon\Carbon::now();
-   dd($date);
+    // $num = 5;
+    // $location = 'tree';
+    
+    // $format = 'There are %d monkeys in the %s';
+    // $format = sprintf($format, $num, $location);
+    // echo $format;
+
+
+    $process = new Process(['lss']);
+    $process->run();
+
+    // executes after the command finishes
+if (!$process->isSuccessful()) {
+    echo 'Khong the thuc thi lenh';
+}
+
+
+
+    foreach ($process as $type => $data) {
+        if ($process::OUT === $type) {
+            echo "\nRead from stdout: ".$data;
+        } else { // $process::ERR === $type
+            echo "\nRead from stderr: ".$data;
+        }
+    }
 });
 
 //BackUp DB
@@ -120,5 +145,8 @@ Route::group(['middleware' => 'auth'], function() {
 //echo config('app.DoThuy');
 
 });
+Route::get('services/stop/{id}', 'ServiceController@stop')->middleware('verified')->name('services.stop');
+Route::get('services/restart/{id}', 'ServiceController@restart')->middleware('verified')->name('services.restart');
+Route::get('services/start/{id}', 'ServiceController@start')->middleware('verified')->middleware('verified')->name('services.start');
 
 Route::resource('services', 'ServiceController');

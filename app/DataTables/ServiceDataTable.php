@@ -5,6 +5,8 @@ namespace App\DataTables;
 use App\Models\Service;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class ServiceDataTable extends DataTable
 {
@@ -18,7 +20,34 @@ class ServiceDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'services.datatables_actions');
+
+
+        return $dataTable->editColumn('status', function ($result) {
+
+            $commandCMD = $result->path;
+            $commandCMD = sprintf($commandCMD, 'status');
+            $process = new Process([$commandCMD]);
+            $process->run();          
+            // executes after the command finishes
+            if (!$process->isSuccessful()) {
+                return '<span class="label label-warning">Dịch vụ không tồn tại</span>';
+            }
+
+            foreach ($process as $type => $data) {
+                if ($process::OUT === $type) {            
+                    
+                    if (strpos($data, 'active (running)') !== false) {
+                        return '<span class="label label-success">Đang chạy</span>';
+                    }
+                } else { 
+                    return sprintf('<span class="label label-danger">%s</span>', $data. ' '. $commandCMD);
+                }
+            }
+            return  '<span class="label label-danger">Stop</span>';
+            
+        })
+            ->rawColumns(['status', 'action'])
+            ->addColumn('action', 'services.datatables_actions');
     }
 
     /**
@@ -42,7 +71,7 @@ class ServiceDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            ->addAction(['width' => '160px', 'printable' => false])
             ->parameters([
                 'dom'       => 'Bfrtip',
                 'stateSave' => true,

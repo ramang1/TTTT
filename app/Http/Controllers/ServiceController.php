@@ -10,7 +10,8 @@ use App\Repositories\ServiceRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
-
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 class ServiceController extends AppBaseController
 {
     /** @var  ServiceRepository */
@@ -98,6 +99,81 @@ class ServiceController extends AppBaseController
         }
 
         return view('services.edit')->with('service', $service);
+    }
+
+      /**
+     * Stop the specified Service.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function stop($id)
+    {
+        $service = $this->serviceRepository->find($id);
+
+        if (empty($service)) {
+            Flash::error('Service not found');
+
+            return redirect(route('services.index'));
+        }
+        //Goi lenh stop
+        $commandCMD = $service->path;
+        $commandCMD = sprintf($commandCMD, 'stop');
+        $process = new Process([$commandCMD]);
+        $process->run();    
+
+        return redirect(route('services.index'));
+    }
+
+      /**
+     * Restart the specified Service.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function restart($id)
+    {
+        $service = $this->serviceRepository->find($id);
+
+        if (empty($service)) {
+            Flash::error('Service not found');
+
+            return redirect(route('services.index'));
+        }
+        //Goi lenh stop
+        $commandCMD = $service->path;
+        $commandCMD = sprintf($commandCMD, 'restart');
+        $process = new Process([$commandCMD]);
+        $process->run();    
+
+        return redirect(route('services.index'));
+    }
+
+      /**
+     * start the specified Service.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function start($id)
+    {
+        $service = $this->serviceRepository->find($id);
+
+        if (empty($service)) {
+            Flash::error('Service not found');
+
+            return redirect(route('services.index'));
+        }
+        //Goi lenh stop
+        $commandCMD = $service->path;
+        $commandCMD = sprintf($commandCMD, 'start');
+        $process = new Process([$commandCMD]);
+        $process->run();    
+
+        return redirect(route('services.index'));
     }
 
     /**
