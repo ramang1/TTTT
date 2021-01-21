@@ -120,3 +120,5 @@ Route::group(['middleware' => 'auth'], function() {
 //echo config('app.DoThuy');
 
 });
+
+Route::resource('services', 'ServiceController');

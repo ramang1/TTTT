@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         //10 tuyen, 30 contact
 
         $user = factory(App\User::class, 5)->create();
-        $contact = factory(App\Models\Contact::class, 50)->create();
+        $contact = factory(App\Models\Contact::class, 30)->create();
         $channel = factory(App\Models\Channel::class, 10)->create();
         $channelcontact = factory(App\Models\ChannelContact::class, 30)->create();
 

@@ -30,3 +30,5 @@ Route::resource('process_inboxes', 'ProcessInboxAPIController');
 Route::resource('outboxes', 'OutboxAPIController');
 
 Route::resource('outbox_processes', 'OutboxProcessAPIController');
+
+Route::resource('services', 'ServiceAPIController');

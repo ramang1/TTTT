@@ -16,9 +16,9 @@ $factory->define(App\Models\Outbox::class, function (Faker $faker) {
 
         'size' => $faker->numberBetween(100,10000),
         'type' => $faker->numberBetween(1,4),
-        'channel_id' => '1', //$faker->numberBetween(1,1),
-        'contact_id' => '20001', //$faker->numberBetween(1,1),
-        'user_id' => $faker->numberBetween(1,4),
+        'channel_id' => $faker->numberBetween(1,20),
+        'contact_id' => $faker->numberBetween(1,25),     
+        'user_id' => $faker->numberBetween(1,10),
 
         
  
