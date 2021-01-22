@@ -128,6 +128,8 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('services/stop/{id}', 'ServiceController@stop')->middleware('verified')->name('services.stop');
 Route::get('services/restart/{id}', 'ServiceController@restart')->middleware('verified')->name('services.restart');
 Route::get('services/start/{id}', 'ServiceController@start')->middleware('verified')->middleware('verified')->name('services.start');
+Route::get('settings/update', 'SettingController@update')->middleware('verified')->middleware('verified')->name('settings.update');
+
 Route::get('settings', 'SettingController@index')->middleware('verified')->middleware('verified')->name('settings.index');
 
 Route::resource('services', 'ServiceController');

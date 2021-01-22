@@ -14,7 +14,7 @@
     <div class="box box-primary">
         <div class="box-body">
             <!-- Field settings -->
-            {!! Form::open() !!}
+            {!! Form::open(['url' => 'settings/update', 'method' => 'GET']) !!}
 
             @include('settings.fields')
 

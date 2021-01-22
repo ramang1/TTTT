@@ -7,20 +7,18 @@
 <!-- time_refresh Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('time_refresh', 'Thời gian (giây) reload trang web:') !!}
-    {!! Form::number('time_refresh', $settings->get('time_refresh', '10'), ['class' => 'form-control']) !!}
+    <input class="form-control" name="time_refresh" type="number" value="{!!$settings->get('time_refresh', '10')!!}" id="time_refresh" min="1" max="300">
 </div>
 
 <div class="form-group col-sm-12">
-
-    {!! Form::label('is_play_audio', 'Phát âm thanh khi có điện đến:') !!}
-    {!! Form::checkbox('is_play_audio', 'is_play_audio', $settings->get('is_play_audio', false)) !!}
+    {!! Form::checkbox('is_play_audio', '1', $settings->get('is_play_audio') == 1?true:false) !!}
+    {!! Form::label('is_play_audio', 'Phát âm thanh khi có điện đến') !!}
     </label>
 </div>
 
-
 <div class="form-group col-sm-12">
     <label>Âm thanh</label>
-    <select class="form-control">
+    <select name = "audio_file" class="form-control">
         <option>{!! $settings->get('audio_file', 'Chọn file')!!}</option>
         @foreach ($audios as $audio)
         <option>{!! $audio!!}</option>

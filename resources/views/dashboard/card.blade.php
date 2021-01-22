@@ -89,7 +89,7 @@
         
         <audio id="myAudio">
 
-          <source src="media/rengreng.mp3" type="audio/mpeg">
+          <source src="media/{!! settings('audio_file')!!}" type="audio/mpeg">
         </audio>
         
         <button onclick="refreshPage()" type="button" class="btn btn-default btn-sm"><a href=""><i class="fa fa-refresh"></a></i></button>

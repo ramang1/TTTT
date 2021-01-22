@@ -39,7 +39,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>InfyOm</b>
+                <b> {{ settings('site_name') }}</b>
             </a>
 
             <!-- Header Navbar -->

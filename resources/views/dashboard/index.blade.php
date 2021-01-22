@@ -21,5 +21,22 @@
 
 @push('scripts')
 <script src="{{ asset('js/dashboard.js') }}"></script>
+<script>
+var isPlayAudio = {!!settings('is_play_audio')!!}
+var x = setInterval(function() {
+    refreshPage();
+}, {!!settings('time_refresh')*1000!!});
 
+$(document).ready(function () {
+
+var unRead = $('#totalUnread').text();
+if (unRead > 0) {
+    
+    console.log('co dien den ' + unRead);
+    if (isPlayAudio == 1)playAudio();
+  
+}
+
+})
+</script>
 @endpush
