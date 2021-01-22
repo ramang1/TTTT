@@ -14,28 +14,30 @@
 </li>
 
 <li class="{{ Request::is('inboxes*') ? 'active' : '' }}">
-    <a href="{{ route('inboxes.index') }}"><i class="fa fa-edit"></i><span>Thư đến</span></a>
+    <a href="{{ route('inboxes.index') }}"><i class="fa fa-inbox"></i><span>Thư đến</span></a>
 </li>
 
-<li class="{{ Request::is('processInboxes*') ? 'active' : '' }}">
-    <a href="{{ route('processInboxes.index') }}"><i class="fa fa-edit"></i><span>Quá trình xử lý thư đến</span></a>
-</li>
 
 <li class="{{ Request::is('outboxes*') ? 'active' : '' }}">
-    <a href="{{ route('outboxes.index') }}"><i class="fa fa-edit"></i><span>Thư đi</span></a>
+    <a href="{{ route('outboxes.index') }}"><i class="fa fa-envelope-open"></i><span>Thư đi</span></a>
 </li>
 
 <li class="{{ Request::is('outboxProcesses*') ? 'active' : '' }}">
-    <a href="{{ route('outboxProcesses.index') }}"><i class="fa fa-edit"></i><span>Quá trình xử lý thư đi</span></a>
-</li>
-
-<li class="{{ Request::is('outboxProcesses*') ? 'active' : '' }}">
-    <a href="{{ route('backups.index') }}"><i class="fa fa-edit"></i><span>Sao lưu và phục hồi CSDL</span></a>
+    <a href="{{ route('backups.index') }}"><i class="fa fa-window-restore"></i><span>Sao lưu và phục hồi CSDL</span></a>
 </li>
 <li class="{{ Request::is('services*') ? 'active' : '' }}">
     <a href="{{ route('services.index') }}"><i class="fa fa-edit"></i><span>Services</span></a>
 </li>
 <li class="{{ Request::is('settings*') ? 'active' : '' }}">
-    <a href="{{ route('settings.index') }}"><i class="fa fa-edit"></i><span>Settings</span></a>
+    <a href="{{ route('settings.index') }}"><i class="fa fa-cog"></i><span>Settings</span></a>
 </li>
+
+<li class="{{ Request::is('outboxProcesses*') ? 'active' : '' }}">
+    <a href="{{ route('outboxProcesses.index') }}"><i class="fa fa-edit"></i><span>Quá trình xử lý thư đi</span></a>
+</li>
+<li class="{{ Request::is('processInboxes*') ? 'active' : '' }}">
+    <a href="{{ route('processInboxes.index') }}"><i class="fa fa-edit"></i><span>Quá trình xử lý thư đến</span></a>
+</li>
+
+
 
