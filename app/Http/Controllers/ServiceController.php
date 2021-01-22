@@ -32,6 +32,33 @@ class ServiceController extends AppBaseController
     {
         return $serviceDataTable->render('services.index');
     }
+ /* set status service the specified Service.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function setservice($setvalue, $id)
+    {
+        $service = $this->serviceRepository->find($id);
+      
+        if (empty($service)) {
+            Flash::error('Service not found');
+
+            return redirect(route('services.index'));
+        }
+        //Goi lenh stop
+        $commandCMD = $service->path;
+       
+        $commandCMD = sprintf($commandCMD, $setvalue);
+        $process = new Process([$commandCMD]);
+        $process->run();    
+        $infor = $process->getOutput();
+       
+        Flash::success($commandCMD. ' '.$infor);
+
+        return redirect(route('services.index'));
+    }
 
     /**
      * Show the form for creating a new Service.
@@ -110,20 +137,8 @@ class ServiceController extends AppBaseController
      */
     public function stop($id)
     {
-        $service = $this->serviceRepository->find($id);
-
-        if (empty($service)) {
-            Flash::error('Service not found');
-
-            return redirect(route('services.index'));
-        }
-        //Goi lenh stop
-        $commandCMD = $service->path;
-        $commandCMD = sprintf($commandCMD, 'stop');
-        $process = new Process([$commandCMD]);
-        $process->run();    
-
-        return redirect(route('services.index'));
+        return $this->setservice('stop', $id);
+       
     }
 
       /**
@@ -135,20 +150,7 @@ class ServiceController extends AppBaseController
      */
     public function restart($id)
     {
-        $service = $this->serviceRepository->find($id);
-
-        if (empty($service)) {
-            Flash::error('Service not found');
-
-            return redirect(route('services.index'));
-        }
-        //Goi lenh stop
-        $commandCMD = $service->path;
-        $commandCMD = sprintf($commandCMD, 'restart');
-        $process = new Process([$commandCMD]);
-        $process->run();    
-
-        return redirect(route('services.index'));
+        return $this->setservice('restart', $id);
     }
 
       /**
@@ -160,22 +162,10 @@ class ServiceController extends AppBaseController
      */
     public function start($id)
     {
-        $service = $this->serviceRepository->find($id);
-
-        if (empty($service)) {
-            Flash::error('Service not found');
-
-            return redirect(route('services.index'));
-        }
-        //Goi lenh stop
-        $commandCMD = $service->path;
-        $commandCMD = sprintf($commandCMD, 'start');
-        $process = new Process([$commandCMD]);
-        $process->run();    
-
-        return redirect(route('services.index'));
+        return $this->setservice('start', $id);
     }
 
+   
     /**
      * Update the specified Service in storage.
      *

@@ -30,7 +30,7 @@ class ServiceDataTable extends DataTable
             $process->run();          
             // executes after the command finishes
             if (!$process->isSuccessful()) {
-                return '<span class="label label-warning">Dịch vụ không tồn tại</span>';
+                return '<span class="label label-warning">Dịch vụ không tồn tại '. $process->getOutput().'</span>';
             }
 
             foreach ($process as $type => $data) {
