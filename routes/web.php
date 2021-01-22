@@ -5,6 +5,7 @@ use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\Config;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
+use Spatie\Valuestore\Valuestore;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,31 +101,10 @@ Route::post('/postNotification', 'InboxController@postNotification')->name('post
 
 
 Route::get('/test', function () {  
-    // $num = 5;
-    // $location = 'tree';
-    
-    // $format = 'There are %d monkeys in the %s';
-    // $format = sprintf($format, $num, $location);
-    // echo $format;
-
-
-    $process = new Process(['lss']);
-    $process->run();
-
-    // executes after the command finishes
-if (!$process->isSuccessful()) {
-    echo 'Khong the thuc thi lenh';
-}
-
-
-
-    foreach ($process as $type => $data) {
-        if ($process::OUT === $type) {
-            echo "\nRead from stdout: ".$data;
-        } else { // $process::ERR === $type
-            echo "\nRead from stderr: ".$data;
-        }
-    }
+    $valuestore =  Valuestore::make(storage_path('app/settings.json'));
+    $valuestore->put('keytest', 'valuetest');
+    $valuestore->put('keytest2', 'valuetest');
+    dd($valuestore->get('keytest')); // Returns 'value'
 });
 
 //BackUp DB
@@ -148,5 +128,6 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('services/stop/{id}', 'ServiceController@stop')->middleware('verified')->name('services.stop');
 Route::get('services/restart/{id}', 'ServiceController@restart')->middleware('verified')->name('services.restart');
 Route::get('services/start/{id}', 'ServiceController@start')->middleware('verified')->middleware('verified')->name('services.start');
+Route::get('settings', 'SettingController@index')->middleware('verified')->middleware('verified')->name('settings.index');
 
 Route::resource('services', 'ServiceController');

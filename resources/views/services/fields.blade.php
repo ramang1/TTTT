@@ -1,11 +1,11 @@
 <!-- Name Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('name', 'Name:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- 'bootstrap / Toggle Switch Status Field' -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('status', 'Status:') !!}
     <label class="checkbox-inline">
         {!! Form::hidden('status', 0) !!}
@@ -15,13 +15,13 @@
 
 
 <!-- Note Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('note', 'Note:') !!}
     {!! Form::text('note', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Path Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('path', 'Path:') !!}
     {!! Form::text('path', null, ['class' => 'form-control']) !!}
 </div>
