@@ -1,4 +1,3 @@
-
 <?php
 use Spatie\Valuestore\Valuestore;
 function settings($key = null, $default = null) {

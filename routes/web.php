@@ -32,9 +32,9 @@ Route::resource('users', 'UserController')->middleware('auth');
 Route::resource('contacts', 'ContactController')->middleware('auth');
 
 Route::resource('channels', 'ChannelController');
-
+Route::get('inboxes/unreads', 'InboxController@index');
 Route::resource('inboxes', 'InboxController');
-Route::get('unreads', 'InboxController@abc');
+
 
 Route::get('inboxesdata', 'InboxController@data');
 Route::get('outboxesdata', 'OutboxController@data');
@@ -59,7 +59,7 @@ Route::post(
 
 
 Route::resource('processInboxes', 'ProcessInboxController');
-
+Route::get('outboxes/unsends', 'OutboxController@index');
 Route::resource('outboxes', 'OutboxController');
 
 

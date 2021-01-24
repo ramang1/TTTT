@@ -22,6 +22,8 @@ use Illuminate\Notifications\Notifiable;
 use Pusher\Pusher;
 use Illuminate\Http\Request;
 use stdClass;
+use Illuminate\Support\Str;
+
 // use Illuminate\Support\Facades\DB;
 use Log;
 use Session;
@@ -80,20 +82,31 @@ class InboxController extends AppBaseController
 
     public function data(Request $request)
     {
-
-
+       
         $startDate = 0;
         $endDate = 0;
-
+    
+        $isUnread = false;
+        if (Str::endsWith($request->url, '/unreads')) $isUnread = true;
         if($request->has('startDate') && $request->has('endDate')){
             $startDate = $request->startDate;
             $endDate = $request->endDate;
         }
-
-
+        $data = DB::table('inboxes')
+        ->whereNull('deleted_at');
+        if ($isUnread == true){
+            $data = $data->whereNotIn('id', function($process_hash){
+                $process_hash
+                ->select('inboxes_id')
+                ->from('process_inbox')
+                ->whereNull('deleted_at')
+                ->where('action', '=', 'giai_nen_zip')
+                ->orWhere('action', '=', 'giai_nen_rar');
+               });
+        }
         if ($startDate == 0 && $endDate == 0){
-            $data = DB::table('inboxes')
-            ->whereNull('deleted_at');
+          
+            
         }else{
             $startDate = $startDate . ' 00:00:00';
             $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s');
@@ -101,10 +114,7 @@ class InboxController extends AppBaseController
             $endDate = $endDate . ' 23:59:59';
             $endDate = \Carbon\Carbon::parse($endDate)->format('Y-m-d H:i:s');
 
-
-            $data = DB::table('inboxes')
-            ->whereNull('deleted_at')
-            ->whereBetween('created_at', [$startDate, $endDate]);
+            $data = $data->whereBetween('created_at', [$startDate, $endDate]);
 
         }
         Log::info('index data ' . $startDate . ' den ' . $endDate);
@@ -235,18 +245,7 @@ class InboxController extends AppBaseController
 
 
 
-            // return Datatables::of($data)
-            // ->editColumn('created_at', function ($data) {
-            //     if($data->created_at == null) {
-            //         return $data->created_at ?  : 'Unknown';
-            //     }
-            //         Carbon::setLocale('vi');
-            //         return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
-            //     })
-            //     ->filterColumn('created_at', function ($query, $keyword) {
-            //         $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
-            //     })
-            //     ->make(true);
+          
 
         public function datamails(){
         Carbon::setLocale('vi');

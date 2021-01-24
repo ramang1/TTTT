@@ -2,7 +2,7 @@
 @include('inboxes.table')
 @section('content')
 <section class="content-header">
-  <h1 class="pull-left">Tổng thư đi</h1>
+  <h1 class="pull-left">{{ Request::is('outboxes/unsends') ? 'Thư chưa gửi' : "Tổng thư đi" }}</h1>
   <!-- <h1 class="pull-right">
            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('outboxes.create') }}">Add New</a>
         </h1> -->
@@ -63,6 +63,8 @@
     url: "/outboxesdata",
     type: "GET",
     data: function(d) {
+      d.url = window.location.pathname;
+      console.log("outbox" + d.url);
       d.startDate = startDate;
       d.endDate = endDate;
     }

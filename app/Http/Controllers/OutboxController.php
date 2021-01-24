@@ -15,6 +15,7 @@ use App\Models\Channel;
 use App\Models\Users;
 use Yajra\DataTables\DataTables;
 use App\Models\Outbox;
+use Illuminate\Support\Str;
 
 //use Request;
 use DB;
@@ -54,9 +55,21 @@ class OutboxController extends AppBaseController
             $startDate = $request->startDate;
             $endDate = $request->endDate;
         }
-
+        $isUnsend = false;
+        if (Str::endsWith($request->url, '/unsends')) $isUnsend = true;
+        $data = DB::table('outboxes')->whereNull('deleted_at');
+        if ($isUnsend == true){
+            $data = Outbox::whereNotIn('id', function($process_hash){
+                $process_hash
+                ->select('id')
+                ->from('outbox_process')
+                ->whereNull('deleted_at')
+                ->where('action', '=', 'nen_zip')
+                ->orWhere('action', '=', 'nen_rar');
+               });
+        }
         if ($startDate == 0 && $endDate == 0){
-            $data = DB::table('outboxes')->whereNull('deleted_at');
+            
         }else{
             $startDate = $startDate . ' 00:00:00';
             $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s');
@@ -65,9 +78,8 @@ class OutboxController extends AppBaseController
             $endDate = \Carbon\Carbon::parse($endDate)->format('Y-m-d H:i:s');
 
 
-            $data = DB::table('outboxes')
-            ->whereNull('deleted_at')
-            ->whereBetween('created_at', [$startDate, $endDate]);
+            $data = $data->whereBetween('created_at', [$startDate, $endDate]);
+
 
         }
         Log::info('outbox data ' . $startDate . ' den ' . $endDate);
