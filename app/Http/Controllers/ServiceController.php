@@ -51,7 +51,9 @@ class ServiceController extends AppBaseController
         $commandCMD = $service->path;
        
         $commandCMD = sprintf($commandCMD, $setvalue);
-        $process = new Process([$commandCMD]);
+       
+        $process = Process::fromShellCommandLine($commandCMD);
+        //$process = new Process([$commandCMD]);
         $process->run();    
         $infor = $process->getOutput();
        
@@ -162,6 +164,7 @@ class ServiceController extends AppBaseController
      */
     public function start($id)
     {
+        
         return $this->setservice('start', $id);
     }
 
