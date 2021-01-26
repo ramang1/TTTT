@@ -165,7 +165,7 @@ class ServiceController extends AppBaseController
     public function start($id)
     {
         
-        return $this->setservice('start | grep active', $id);
+        return $this->setservice('start', $id);
     }
 
    
