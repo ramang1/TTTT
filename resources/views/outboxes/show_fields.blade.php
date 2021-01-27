@@ -1,7 +1,7 @@
 <!-- Has Field -->
 <div class="form-group">
     {!! Form::label('hash', 'Hash:') !!}
-    <p>{{ $outbox->has }}</p>
+    <p>{{ $outbox->hash}}</p>
 </div>
 
 <!-- Name Field -->

@@ -6,8 +6,8 @@
 
 <!-- Outbox Hash Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('outbox_hash', 'Outbox Hash:') !!}
-    {!! Form::text('outbox_hash', null, ['class' => 'form-control']) !!}
+    {!! Form::label('outbox_id', 'Outbox Hash:') !!}
+    {!! Form::text('outbox_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- User Id Field -->

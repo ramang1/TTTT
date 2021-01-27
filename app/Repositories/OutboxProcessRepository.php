@@ -18,7 +18,7 @@ class OutboxProcessRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'action',
-        'outbox_hash',
+        'outbox_id',
         'user_id',
         'note',
         'description'

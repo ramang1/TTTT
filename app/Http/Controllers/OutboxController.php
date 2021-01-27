@@ -51,26 +51,25 @@ class OutboxController extends AppBaseController
         $startDate = 0;
         $endDate = 0;
 
-        if($request->has('startDate') && $request->has('endDate')){
+        if ($request->has('startDate') && $request->has('endDate')) {
             $startDate = $request->startDate;
             $endDate = $request->endDate;
         }
         $isUnsend = false;
         if (Str::endsWith($request->url, '/unsends')) $isUnsend = true;
         $data = DB::table('outboxes')->whereNull('deleted_at');
-        if ($isUnsend == true){
-            $data = Outbox::whereNotIn('id', function($process_hash){
+        if ($isUnsend == true) {
+            $data = Outbox::whereNotIn('id', function ($process_hash) {
                 $process_hash
-                ->select('id')
-                ->from('outbox_process')
-                ->whereNull('deleted_at')
-                ->where('action', '=', 'nen_zip')
-                ->orWhere('action', '=', 'nen_rar');
-               });
+                    ->select('id')
+                    ->from('outbox_process')
+                    ->whereNull('deleted_at')
+                    ->where('action', '=', 'nen_zip')
+                    ->orWhere('action', '=', 'nen_rar');
+            });
         }
-        if ($startDate == 0 && $endDate == 0){
-            
-        }else{
+        if ($startDate == 0 && $endDate == 0) {
+        } else {
             $startDate = $startDate . ' 00:00:00';
             $startDate = \Carbon\Carbon::parse($startDate)->format('Y-m-d H:i:s');
 
@@ -79,52 +78,56 @@ class OutboxController extends AppBaseController
 
 
             $data = $data->whereBetween('created_at', [$startDate, $endDate]);
-
-
         }
         Log::info('outbox data ' . $startDate . ' den ' . $endDate);
-       //->orderBy('created_at','desc');
+        //->orderBy('created_at','desc');
 
         return Datatables::of($data)
-        ->editColumn('created_at', function ($data) {
-            if($data->created_at == null) {
-                return $data->created_at ?  : 'Unknown';
-            }
+            ->editColumn('created_at', function ($data) {
+                if ($data->created_at == null) {
+                    return $data->created_at ?: 'Unknown';
+                }
                 Carbon::setLocale('vi');
                 return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
             })
             ->filterColumn('created_at', function ($query, $keyword) {
                 $query->whereRaw("DATE_FORMAT(created_at,'%m/%d/%Y') like ?", ["%$keyword%"]);
             })
-            ->editColumn('channel_id',function ($data) {
-                $idChannel = $data->channel_id;
-                $Channel = Channel::where('id', '=', $idChannel)->pluck('name');
-                if($Channel->isEmpty()) {
-                     return 'Unknown';
-                 }
-                return $Channel[0];
-            }
-            )
-            ->editColumn('user_id',function ($data) {
-                $idUser = $data->user_id;
-                $User = DB::table('users')->where('id', '=', $idUser)->pluck('name');
-                if($User->isEmpty()) {
-                     return 'Unknown';
+            ->editColumn(
+                'channel_id',
+                function ($data) {
+                    $idChannel = $data->channel_id;
+                    $Channel = Channel::where('id', '=', $idChannel)->pluck('name');
+                    if ($Channel->isEmpty()) {
+                        return 'Unknown';
+                    }
+                    return $Channel[0];
                 }
-                return $User[0];
-            }
             )
-            ->editColumn('contact_id',function ($data) {
-
-                $ContactUser = $data->contact_id;
-
-                $Contact = Contact::where('id', '=', $ContactUser)->pluck('name');
-
-                if($Contact->isEmpty()) {
-                    return 'Unknown';
+            ->editColumn(
+                'user_id',
+                function ($data) {
+                    $idUser = $data->user_id;
+                    $User = DB::table('users')->where('id', '=', $idUser)->pluck('name');
+                    if ($User->isEmpty()) {
+                        return 'Unknown';
+                    }
+                    return $User[0];
                 }
-                return $Contact[0];
-            }
+            )
+            ->editColumn(
+                'contact_id',
+                function ($data) {
+
+                    $ContactUser = $data->contact_id;
+
+                    $Contact = Contact::where('id', '=', $ContactUser)->pluck('name');
+
+                    if ($Contact->isEmpty()) {
+                        return 'Unknown';
+                    }
+                    return $Contact[0];
+                }
             )
 
             ->addColumn('action', 'outboxes.datatables_actions')
@@ -158,6 +161,25 @@ class OutboxController extends AppBaseController
 
         return redirect(route('outboxes.index'));
     }
+
+    /**
+     * Display the actions of Outbox.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function actions($id)
+    {
+        $data = DB::table('outbox_process')
+            ->whereNull('deleted_at')
+            ->where('outbox_id', '=', $id);
+            // ->orderBy('created_at', 'desc');
+        return Datatables::of($data)
+            //->addColumn('action', 'inboxes.datatables_actions')
+            ->make(true);
+    }
+
 
     /**
      * Display the specified Outbox.
@@ -254,239 +276,240 @@ class OutboxController extends AppBaseController
     {
         $contacts = Contact::all();
         // $data = DB::table('inboxes')->get();
-        $totalUnsend_outbox = Outbox::whereNotIn('id', function($process_hash){
+        $totalUnsend_outbox = Outbox::whereNotIn('id', function ($process_hash) {
             $process_hash
-            ->select('id')
-            ->from('outbox_process')
-            ->whereNull('deleted_at')
-            ->where('action', '=', 'nen_zip')
-            ->orWhere('action', '=', 'nen_rar');
-           })->get();
+                ->select('id')
+                ->from('outbox_process')
+                ->whereNull('deleted_at')
+                ->where('action', '=', 'nen_zip')
+                ->orWhere('action', '=', 'nen_rar');
+        })->get();
 
-        return view('outboxes.unsend')->with('contacts', $contacts)->with('totalUnsend_outbox',$totalUnsend_outbox );
+        return view('outboxes.unsend')->with('contacts', $contacts)->with('totalUnsend_outbox', $totalUnsend_outbox);
     }
     public function unsenddata(Request $request)
     {
-        $result1 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at']);
+        $result1 = Outbox::select(['name', 'id', 'path', 'size', 'type', 'channel_id', 'created_at']);
         return Datatables::of($result1)
-        ->editColumn('created_at', function ($result11) {
-            if($result11->created_at == null)
-            {
-                return $result11->created_at ?  : 'Unknown';
-            }
+            ->editColumn('created_at', function ($result11) {
+                if ($result11->created_at == null) {
+                    return $result11->created_at ?: 'Unknown';
+                }
                 Carbon::setLocale('vi');
                 return $result11->created_at->format('d-m-Y - H:i:s');
             })
-        ->make(true);
+            ->make(true);
     }
 
     public function unsenddata1(Request $request)
     {
-        $result2 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereDate('created_at', Carbon::today())->get();
+        $result2 = Outbox::select(['name', 'id', 'path', 'size', 'type', 'channel_id', 'created_at'])->whereDate('created_at', Carbon::today())->get();
         return Datatables::of($result2)
-        ->editColumn('created_at', function ($result22) {
+            ->editColumn('created_at', function ($result22) {
 
                 Carbon::setLocale('vi');
                 return $result22->created_at->format('d-m-Y - H:i:s');
             })
-        ->make(true);
+            ->make(true);
     }
 
     public function unsenddata2(Request $request)
     {
-        $result3 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $result3 = Outbox::select(['name', 'id', 'path', 'size', 'type', 'channel_id', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         return Datatables::of($result3)
-        ->editColumn('created_at', function ($result33) {
+            ->editColumn('created_at', function ($result33) {
 
                 Carbon::setLocale('vi');
                 return $result33->created_at->format('d-m-Y - H:i:s');
             })
-        ->make(true);
+            ->make(true);
     }
 
     public function unsenddata3(Request $request)
     {
-        $result4 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+        $result4 = Outbox::select(['name', 'id', 'path', 'size', 'type', 'channel_id', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
         return Datatables::of($result4)
-        ->editColumn('created_at', function ($result44) {
+            ->editColumn('created_at', function ($result44) {
 
                 Carbon::setLocale('vi');
                 return $result44->created_at->format('d-m-Y - H:i:s');
             })
-        ->make(true);
+            ->make(true);
     }
 
     public function unsenddata4(Request $request)
     {
-        $result5 = Outbox::select(['name', 'id', 'path','size', 'type','channel_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+        $result5 = Outbox::select(['name', 'id', 'path', 'size', 'type', 'channel_id', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
         return Datatables::of($result5)
-        ->editColumn('created_at', function ($result55) {
+            ->editColumn('created_at', function ($result55) {
 
                 Carbon::setLocale('vi');
                 return $result55->created_at->format('d-m-Y - H:i:s');
             })
-        ->make(true);
+            ->make(true);
     }
 
 
 
-     // Viet ham cho box so 1 - outboxTotal
-     public function outboxTotal()
-     {
-         $contacts = Contact::all();
+    // Viet ham cho box so 1 - outboxTotal
+    public function outboxTotal()
+    {
+        $contacts = Contact::all();
 
-         return view('outboxes.outboxTotal')->with('contacts', $contacts);
+        return view('outboxes.outboxTotal')->with('contacts', $contacts);
+    }
 
-     }
 
+    // tong thu den box 2 - tab so 1
+    public function getdataoutboxTotal(Request $request)
+    {
+        $result_box1 = Outbox::select(['name', 'id', 'size', 'path', 'type', 'channel_id', 'user_id', 'created_at']);
+        return Datatables::of($result_box1)
+            ->editColumn('created_at', function ($result11) {
+                if ($result11->created_at == null) {
+                    return $result11->created_at ?: 'Unknown';
+                }
+                Carbon::setLocale('vi');
+                return $result11->created_at->format('d-m-Y - H:i:s');
+                //? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+            ->editColumn(
+                'channel_id',
+                function ($resultChannel) {
+                    $idGroup = $resultChannel->channel_id;
+                    $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                    return $nameGroup[0];
+                }
+            )
+            ->editColumn('user_id', function ($resultUser) {
+                $idUser = $resultUser->user_id;
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
+            })
+            ->make(true);
+        // }
+    }
 
-     // tong thu den box 2 - tab so 1
-     public function getdataoutboxTotal(Request $request)
-     {
-         $result_box1 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at']);
-             return Datatables::of($result_box1)
-             ->editColumn('created_at', function ($result11) {
-             if($result11->created_at == null)
-             {
-                 return $result11->created_at ?  : 'Unknown';
-             }
-                 Carbon::setLocale('vi');
-                 return $result11->created_at->format('d-m-Y - H:i:s');
-                 //? with(new Carbon($data->created_at))->diffForHumans() : '';
-             })
-             ->editColumn('channel_id',function($resultChannel)
-             {
-                 $idGroup = $resultChannel->channel_id;
-                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
-                 return $nameGroup[0];
-             }
-             )
-             ->editColumn('user_id',function($resultUser)
-             {
-                 $idUser = $resultUser->user_id;
-                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
-                 // return $nameID->name;
-                 return $User[0];
-             })
-             ->make(true);
-         // }
-     }
+    // tong thu den box 2 - tab so 2
+    public function getdataoutboxTotal1(Request $request)
+    {
+        $result_box1_tab2 = Outbox::select(['name', 'id', 'size', 'path', 'type', 'channel_id', 'user_id', 'created_at'])->whereDate('created_at', Carbon::today())->get();
 
-     // tong thu den box 2 - tab so 2
-     public function getdataoutboxTotal1(Request $request)
-     {
-         $result_box1_tab2 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])->whereDate('created_at', Carbon::today())->get();
+        return Datatables::of($result_box1_tab2)
+            ->editColumn(
+                'created_at',
+                function ($result12) {
+                    Carbon::setLocale('vi');
+                    return $result12->created_at->format('d-m-Y - H:i:s');
+                }
+            )
+            ->editColumn(
+                'channel_id',
+                function ($resultChannel) {
+                    $idGroup = $resultChannel->channel_id;
+                    $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                    return $nameGroup[0];
+                }
+            )
+            ->editColumn('user_id', function ($resultUser) {
+                $idUser = $resultUser->user_id;
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
+            })
+            ->make(true);
+    }
 
-             return Datatables::of($result_box1_tab2)
-             ->editColumn('created_at', function ($result12)
-             {
-                 Carbon::setLocale('vi');
-                 return $result12->created_at->format('d-m-Y - H:i:s');
-             }
-             )
-             ->editColumn('channel_id',function($resultChannel)
-             {
-                 $idGroup = $resultChannel->channel_id;
-                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
-                 return $nameGroup[0];
-             }
-             )
-             ->editColumn('user_id',function($resultUser)
-             {
-                 $idUser = $resultUser->user_id;
-                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
-                 // return $nameID->name;
-                 return $User[0];
-             })
-             ->make(true);
-     }
+    // tong thu den box 2 - tab so 3
+    public function getdataoutboxTotal2(Request $request)
+    {
+        $result_box1_tab3 = Outbox::select(['name', 'id', 'size', 'path', 'type', 'channel_id', 'user_id', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
 
-     // tong thu den box 2 - tab so 3
-     public function getdataoutboxTotal2(Request $request)
-     {
-         $result_box1_tab3 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        return Datatables::of($result_box1_tab3)
+            ->editColumn(
+                'created_at',
+                function ($result13) {
+                    Carbon::setLocale('vi');
+                    return $result13->created_at->format('d-m-Y - H:i:s');
+                }
+            )
+            ->editColumn(
+                'channel_id',
+                function ($resultChannel) {
+                    $idGroup = $resultChannel->channel_id;
+                    $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                    return $nameGroup[0];
+                }
+            )
+            ->editColumn('user_id', function ($resultUser) {
+                $idUser = $resultUser->user_id;
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
+            })
+            ->make(true);
+    }
 
-             return Datatables::of($result_box1_tab3)
-             ->editColumn('created_at', function ($result13)
-             {
-                 Carbon::setLocale('vi');
-                 return $result13->created_at->format('d-m-Y - H:i:s');
-             }
-             )
-             ->editColumn('channel_id',function($resultChannel)
-             {
-                 $idGroup = $resultChannel->channel_id;
-                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
-                 return $nameGroup[0];
-             }
-             )
-             ->editColumn('user_id',function($resultUser)
-             {
-                 $idUser = $resultUser->user_id;
-                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
-                 // return $nameID->name;
-                 return $User[0];
-             })
-             ->make(true);
-     }
+    // tong thu den box 2 - tab so 4
+    public function getdataoutboxTotal3(Request $request)
+    {
+        $result_box1_tab4 = Outbox::select(['name', 'id', 'size', 'path', 'type', 'channel_id', 'user_id', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
 
-     // tong thu den box 2 - tab so 4
-     public function getdataoutboxTotal3(Request $request)
-     {
-         $result_box1_tab4 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->get();
+        return Datatables::of($result_box1_tab4)
+            ->editColumn(
+                'created_at',
+                function ($result14) {
+                    Carbon::setLocale('vi');
+                    return $result14->created_at->format('d-m-Y - H:i:s');
+                }
+            )
+            ->editColumn(
+                'channel_id',
+                function ($resultChannel) {
+                    $idGroup = $resultChannel->channel_id;
+                    $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                    return $nameGroup[0];
+                }
+            )
+            ->editColumn('user_id', function ($resultUser) {
+                $idUser = $resultUser->user_id;
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
+            })
+            ->make(true);
+    }
 
-             return Datatables::of($result_box1_tab4)
-             ->editColumn('created_at', function ($result14)
-             {
-                 Carbon::setLocale('vi');
-                 return $result14->created_at->format('d-m-Y - H:i:s');
-             }
-             )
-             ->editColumn('channel_id',function($resultChannel)
-             {
-                 $idGroup = $resultChannel->channel_id;
-                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
-                 return $nameGroup[0];
-             }
-             )
-             ->editColumn('user_id',function($resultUser)
-             {
-                 $idUser = $resultUser->user_id;
-                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
-                 // return $nameID->name;
-                 return $User[0];
-             })
-             ->make(true);
-     }
+    // tong thu den box 2 - tab so 5
+    public function getdataoutboxTotal4(Request $request)
+    {
+        $result_box1_tab5 = Outbox::select(['name', 'id', 'size', 'path', 'type', 'channel_id', 'user_id', 'created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
 
-     // tong thu den box 2 - tab so 5
-     public function getdataoutboxTotal4(Request $request)
-     {
-         $result_box1_tab5 = Outbox::select(['name', 'id', 'size', 'path', 'type','channel_id','user_id','created_at'])->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->get();
+        return Datatables::of($result_box1_tab5)
+            ->editColumn(
+                'created_at',
+                function ($result15) {
+                    Carbon::setLocale('vi');
+                    return $result15->created_at->format('d-m-Y - H:i:s');
+                }
+            )
+            ->editColumn(
+                'channel_id',
+                function ($resultChannel) {
+                    $idGroup = $resultChannel->channel_id;
+                    $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
+                    return $nameGroup[0];
+                }
+            )
+            ->editColumn('user_id', function ($resultUser) {
+                $idUser = $resultUser->user_id;
+                $User = \App\User::where('id', '=', $idUser)->pluck('name');
+                // return $nameID->name;
+                return $User[0];
+            })
+            ->make(true);
+    }
 
-             return Datatables::of($result_box1_tab5 )
-             ->editColumn('created_at', function ($result15)
-             {
-                 Carbon::setLocale('vi');
-                 return $result15->created_at->format('d-m-Y - H:i:s');
-             }
-             )
-             ->editColumn('channel_id',function($resultChannel)
-             {
-                 $idGroup = $resultChannel->channel_id;
-                 $nameGroup = \App\Models\Channel::where('id', '=', $idGroup)->pluck('name');
-                 return $nameGroup[0];
-             }
-             )
-             ->editColumn('user_id',function($resultUser)
-             {
-                 $idUser = $resultUser->user_id;
-                 $User = \App\User::where('id', '=', $idUser)->pluck('name');
-                 // return $nameID->name;
-                 return $User[0];
-             })
-             ->make(true);
-     }
-
-     // Outbox THU DI
+    // Outbox THU DI
 }

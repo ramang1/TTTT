@@ -12,8 +12,8 @@
 
 <!-- Outbox Hash Field -->
 <div class="form-group">
-    {!! Form::label('outbox_hash', 'Outbox Hash:') !!}
-    <p>{{ $outboxProcess->outbox_hash }}</p>
+    {!! Form::label('outbox_id', 'Outbox Hash:') !!}
+    <p>{{ $outboxProcess->outbox_id }}</p>
 </div>
 
 <!-- User Id Field -->

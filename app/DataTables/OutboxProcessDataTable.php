@@ -66,7 +66,7 @@ class OutboxProcessDataTable extends DataTable
     {
         return [
             'action',
-            'outbox_hash',
+            'outbox_id',
             'user_id',
             'note',
             'description'

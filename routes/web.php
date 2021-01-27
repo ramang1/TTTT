@@ -33,6 +33,8 @@ Route::resource('contacts', 'ContactController')->middleware('auth');
 
 Route::resource('channels', 'ChannelController');
 Route::get('inboxes/unreads', 'InboxController@index');
+Route::get('inboxes/actions/{id}', 'InboxController@actions')->middleware('verified');
+
 Route::resource('inboxes', 'InboxController');
 
 
@@ -60,6 +62,9 @@ Route::post(
 
 Route::resource('processInboxes', 'ProcessInboxController');
 Route::get('outboxes/unsends', 'OutboxController@index');
+
+Route::get('outboxes/actions/{id}', 'OutboxController@actions')->middleware('verified');
+
 Route::resource('outboxes', 'OutboxController');
 
 

@@ -6,8 +6,8 @@
 
 <!-- Inbox Hash Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('inbox_hash', 'Inbox Hash:') !!}
-    {!! Form::text('inbox_hash', null, ['class' => 'form-control']) !!}
+    {!! Form::label('inbox_id', 'Inbox Hash:') !!}
+    {!! Form::text('inbox_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- User Id Field -->

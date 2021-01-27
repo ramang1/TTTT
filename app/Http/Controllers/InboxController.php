@@ -79,6 +79,23 @@ class InboxController extends AppBaseController
 
         return redirect(route('inboxes.index'));
     }
+    /**
+     * Display the actions of Outbox.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function actions($id)
+    {
+        $data = DB::table('process_inbox')
+            ->whereNull('deleted_at')
+            ->where('inboxes_id', '=', $id);
+            // ->orderBy('created_at', 'desc');
+        return Datatables::of($data)
+            //->addColumn('action', 'inboxes.datatables_actions')
+            ->make(true);
+    }
 
     public function data(Request $request)
     {

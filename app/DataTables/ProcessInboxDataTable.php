@@ -66,7 +66,7 @@ class ProcessInboxDataTable extends DataTable
     {
         return [
             'action',
-            'inbox_hash',
+            'inbox_id',
             'user_id',
             'note',
             'description'

@@ -29,7 +29,7 @@ class OutboxProcess extends Model
 
     public $fillable = [
         'action',
-        'outbox_hash',
+        'outbox_id',
         'user_id',
         'note',
         'description'
