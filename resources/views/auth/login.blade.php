@@ -35,7 +35,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>PKT-2020</b>Generator</a>
+        <a href="{{ url('/home') }}"><b>PKT-2020</b></a>
     </div>
 
     <!-- /.login-logo -->
@@ -81,8 +81,6 @@
             </div>
         </form>
 
-        <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
 
     </div>
     <!-- /.login-box-body -->

@@ -17,16 +17,16 @@ use Spatie\Valuestore\Valuestore;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes(['verify' => true]);
 
 Route::get('/dashboard', 'DashboardController@index')->middleware('verified');
 Route::get('/', 'DashboardController@index')->middleware('verified');
 
-Route::get('/dashboard/get_total', 'DashboardController@get_total')->middleware('verified');
+// Route::get('/dashboard/get_total', 'DashboardController@get_total')->middleware('verified');
 
 Route::resource('users', 'UserController')->middleware('auth');
 Route::resource('contacts', 'ContactController')->middleware('auth');
@@ -67,11 +67,8 @@ Route::get('outboxes/actions/{id}', 'OutboxController@actions')->middleware('ver
 
 Route::resource('outboxes', 'OutboxController');
 
-
-
 Route::resource('outboxProcesses', 'OutboxProcessController');
 //TuanAnh
-
 
 Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData')->middleware('verified');
 //Notification dashboard
@@ -79,30 +76,30 @@ Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData')->midd
 //THƯ ĐẾN VÀ ĐI
 
 //Route::get('/dashboard', 'InboxController@showinbox')->middleware('verified');
-Route::get('/markAsRead/{id}', function($id){
-    $id = auth()->user()->unreadNotifications[0]->id;
-    auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
-	return redirect()->back();
-})->name('mark');
-//Create Notification insert into database
-Route::get('/notify', function () {  
-    $users = \App\User::all();
-    $details = [
-        'body' => 'hello'
-    ];
-    Notification::send($users, new \App\Notifications\Inboxes($details));
-    // $users->notify(new \App\Notifications\Inboxes($details));
-    $notification = array(
-        'message' => 'Bạn có thông báo mới', 
-        'alert-type' => 'success'
-    );
-    return redirect()->back()->with($notification);
-});
-//Test Notification realtime
-Route::get('/realtime', 'InboxController@realtime');
-Route::get('/sendNotification', 'InboxController@sendNotification')->name('send');
-Route::post('/postNotification', 'InboxController@postNotification')->name('postMessage');
-//chi tiet thu chua gui
+// Route::get('/markAsRead/{id}', function($id){
+//     $id = auth()->user()->unreadNotifications[0]->id;
+//     auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+// 	return redirect()->back();
+// })->name('mark');
+// //Create Notification insert into database
+// Route::get('/notify', function () {  
+//     $users = \App\User::all();
+//     $details = [
+//         'body' => 'hello'
+//     ];
+//     Notification::send($users, new \App\Notifications\Inboxes($details));
+//     // $users->notify(new \App\Notifications\Inboxes($details));
+//     $notification = array(
+//         'message' => 'Bạn có thông báo mới', 
+//         'alert-type' => 'success'
+//     );
+//     return redirect()->back()->with($notification);
+// });
+// //Test Notification realtime
+// Route::get('/realtime', 'InboxController@realtime');
+// Route::get('/sendNotification', 'InboxController@sendNotification')->name('send');
+// Route::post('/postNotification', 'InboxController@postNotification')->name('postMessage');
+// //chi tiet thu chua gui
 
 
 Route::get('/test', function () {  
@@ -119,15 +116,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('backups/{fileName}/dl', ['as'=>'backups.download', 'uses'=>'BackupsController@download']);
     Route::resource('backups','BackupsController');
    
-   // Config::set('app.enable_verification', true); 
-    // $environment = config('app.enable_verification');
-    // dd($environment);
-
-//     config(['world.name' => 'Mundo Hurlingham']);
-
-// config(['world.name' => 'Test']);
-
-//echo config('app.DoThuy');
+   
 
 });
 Route::get('services/stop/{id}', 'ServiceController@stop')->middleware('verified')->name('services.stop');

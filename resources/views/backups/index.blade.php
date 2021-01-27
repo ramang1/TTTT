@@ -3,7 +3,7 @@
 @section('title',trans('backup.index_title'))
 
 @section('content')
-<div></div>
+<div class="content">
 <h1 class="page-header"><b>SAO LƯU VÀ PHỤC HỒI CƠ SỞ DỮ LIỆU</b></h1>
 <div class="row">
     <div class="col-md-8">
@@ -51,5 +51,6 @@
     <div class="col-md-4">
         @include('backups.forms')
     </div>
+</div>
 </div>
 @endsection
