@@ -26,7 +26,9 @@ class ServiceDataTable extends DataTable
 
             $commandCMD = $result->path;
             $commandCMD = sprintf($commandCMD, 'status');
-            $process = new Process([$commandCMD]);
+            $commandCMD = $commandCMD . ' | grep active';
+           // $process = new Process([$commandCMD]);
+            $process = Process::fromShellCommandLine($commandCMD);
             $process->run();          
             // executes after the command finishes
             if (!$process->isSuccessful()) {
