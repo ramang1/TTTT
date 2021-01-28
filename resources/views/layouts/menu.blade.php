@@ -28,6 +28,10 @@
 <li class="{{ Request::is('services*') ? 'active' : '' }}">
     <a href="{{ route('services.index') }}"><i class="fa fa-edit"></i><span>Services</span></a>
 </li>
+<li class="{{ Request::is('logs*') ? 'active' : '' }}">
+    <a href="{{ route('logs.index') }}"><i class="fa fa-history"></i><span>Nhật ký</span></a>
+</li>
+
 <li class="{{ Request::is('settings*') ? 'active' : '' }}">
     <a href="{{ route('settings.index') }}"><i class="fa fa-cog"></i><span>Settings</span></a>
 </li>

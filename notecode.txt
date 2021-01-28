@@ -5,3 +5,4 @@ php artisan migrate             //Sinh lai toan bo table cho DB
 php artisan migrate   --path=database/migrations/2021_01_20_040128_create_services_table.php //sinh table cho 1 bang cu the
 php artisan db:seed             //sinh db ngau nhien
 
+composer install --ignore-platform-reqs --cai dat composer bo qua thong bao loi

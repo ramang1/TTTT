@@ -127,3 +127,4 @@ Route::get('settings/update', 'SettingController@update')->middleware('verified'
 Route::get('settings', 'SettingController@index')->middleware('verified')->middleware('verified')->name('settings.index');
 
 Route::resource('services', 'ServiceController');
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('verified')->name('logs.index');

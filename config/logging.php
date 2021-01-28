@@ -37,8 +37,10 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily'],
+            'path' => storage_path('logs/TTMD.log'),
             'ignore_exceptions' => false,
+            'level' => 'debug',
         ],
 
         'single' => [
