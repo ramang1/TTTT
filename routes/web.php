@@ -111,18 +111,16 @@ Route::get('/test', function () {
 
 //BackUp DB
 Route::group(['middleware' => 'auth'], function() {
-    Route::post('backups/upload', ['as'=>'backups.upload', 'uses'=>'BackupsController@upload']);
-    Route::post('backups/{fileName}/restore', ['as'=>'backups.restore', 'uses'=>'BackupsController@restore']);
-    Route::get('backups/{fileName}/dl', ['as'=>'backups.download', 'uses'=>'BackupsController@download']);
-    Route::resource('backups','BackupsController');
+    Route::post('backups/upload', ['as'=>'backups.upload', 'uses'=>'BackupsController@upload'])->middleware(['auth', 'password.confirm']);
+    Route::post('backups/{fileName}/restore', ['as'=>'backups.restore', 'uses'=>'BackupsController@restore'])->middleware(['auth', 'password.confirm']);
+    Route::get('backups/{fileName}/dl', ['as'=>'backups.download', 'uses'=>'BackupsController@download'])->middleware(['auth', 'password.confirm']);
+    Route::resource('backups','BackupsController')->middleware(['auth', 'password.confirm']);
    
-   
-
 });
-Route::get('services/stop/{id}', 'ServiceController@stop')->middleware('verified')->name('services.stop');
-Route::get('services/restart/{id}', 'ServiceController@restart')->middleware('verified')->name('services.restart');
-Route::get('services/start/{id}', 'ServiceController@start')->middleware('verified')->middleware('verified')->name('services.start');
-Route::get('settings/update', 'SettingController@update')->middleware('verified')->middleware('verified')->name('settings.update');
+Route::get('services/stop/{id}', 'ServiceController@stop')->middleware('verified')->name('services.stop')->middleware(['auth', 'password.confirm']);
+Route::get('services/restart/{id}', 'ServiceController@restart')->middleware('verified')->name('services.restart')->middleware(['auth', 'password.confirm']);
+Route::get('services/start/{id}', 'ServiceController@start')->middleware('verified')->middleware('verified')->name('services.start')->middleware(['auth', 'password.confirm']);
+Route::get('settings/update', 'SettingController@update')->middleware('verified')->middleware('verified')->name('settings.update')->middleware(['auth', 'password.confirm']);
 
 Route::get('settings', 'SettingController@index')->middleware('verified')->middleware('verified')->name('settings.index');
 
