@@ -113,7 +113,7 @@
                 <th><b>Người gửi mail<b></th>
                 <th><b>Kích thước</b></th>
                 <th><b>Kiểu nén</b></th>
-                <th><b>Ngày nhận</b></th>
+                <th><b>Ngày tạo</b></th>
               </tr>
             </thead>
             <tbody>

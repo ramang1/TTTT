@@ -34,7 +34,7 @@
 
       <div class="inner">
         <h3 id ="totalOutBox">{!!$totalOutbox!!}</h3>
-        <p>Tổng thư đến</p>
+        <p>Tổng thư đi</p>
       </div>
       <div class="icon">
         <i class="ion ion ion-email"></i>
@@ -51,7 +51,7 @@
     <div class="small-box bg-green">
       <div class="inner">
         <h3 id = "totalInbox">{!! $totalInbox !!}</h3>
-        <p>Tổng thư đi</p>
+        <p>Tổng thư đến</p>
       </div>
       <div class="icon">
         <i class="ion ion ion-email"></i>
