@@ -73,7 +73,15 @@ class DashboardController extends Controller
                 ->where('action', '=', 'giai_nen_zip')
                 ->orWhere('action', '=', 'giai_nen_rar');
         })->count();
-
+        //Tong SL Tuyen
+        $ChannelsAll = DB::table('channels')->count();
+        //Tong SL DV
+        $ContactsAll = DB::table('contacts')->count();
+        //Tong SL Ủe
+        $UsersAll = DB::table('users')->count();
+        //Tong SL thu gui va nhan
+        $InboxesAll = DB::table('inboxes')->count();
+        $OutboxesAll = DB::table('outboxes')->count();
 
         //Dem so mail chua gui
         $Unsend = Outbox::whereNotIn('id', function ($process_hash) {
@@ -119,6 +127,11 @@ class DashboardController extends Controller
             ->with('Unsend', $Unsend)
             ->with('Unread', $Unread)
             ->with('contactMailDetail',$contactMailDetail)
+            ->with('ChannelsAll',$ChannelsAll)
+            ->with('ContactsAll',$ContactsAll)
+            ->with('UsersAll',$UsersAll)
+            ->with('InboxesAll',$InboxesAll)
+            ->with('OutboxesAll',$OutboxesAll)
             ->with('userMailDetail',$userMailDetail);
     }
     //Tra ve tong so mail den, di, chua doc
@@ -168,5 +181,9 @@ class DashboardController extends Controller
 
         \Debugbar::info($contactInboxDetail);
         return response()->json(array('totalInbox' => $totalInbox, 'totalOutbox' => $totalOutbox, 'totalUnsend' => $totalUnsend, 'totalUnread' => $totalUnread, 'contactInboxDetail' => $contactInboxDetail));
+    }
+    //information
+    public function information(){
+        return view('information');
     }
 }

@@ -113,7 +113,7 @@
                 <th><b>Người gửi mail<b></th>
                 <th><b>Kích thước</b></th>
                 <th><b>Kiểu nén</b></th>
-                <th><b>Ngày tạo</b></th>
+                <th><b>Ngày nhận</b></th>
               </tr>
             </thead>
             <tbody>
@@ -147,6 +147,50 @@
 
 
   <div class="col-md-4">
+    <div class="info-box bg-gray">
+      <span class="info-box-icon"><i class="ion-ios-compose-outline"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text"><b>Số lượng Tuyến</b></span>
+        <span class="info-box-number"><a>{{$ChannelsAll}}</a></span>
+        <div class="progress">
+        </div>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+    <div class="info-box bg-gray">
+      <span class="info-box-icon"><i class="ion-ios-people"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text"><b>Tổng số lượng Đơn vị</b></span>
+        <span class="info-box-number"><a>{{$ContactsAll}}</a></span>
+        <div class="progress">
+        </div>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+    <div class="info-box bg-gray">
+      <span class="info-box-icon"><i class="ion-ios-contact"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text"><b>Số lượng người dùng</b></span>
+        <span class="info-box-number"><a>{{$UsersAll}}</a></span>
+        <div class="progress">
+        </div>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+    <div class="info-box bg-gray">
+      <span class="info-box-icon"><i class="ion-email"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text"><b>Tổng số lượng thư gửi/nhận</b></span>
+        <span class="info-box-number"><a>{{$InboxesAll}}/{{$OutboxesAll}}</a></span>
+        <div class="progress">
+        </div>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
 
     <div class="box box-solid">
       <div class="box-header with-border">
@@ -158,7 +202,7 @@
         </div>
       </div>
       <div class="box-body no-padding">
-        @foreach ($contactMailDetail as $data)
+        @foreach ($contactMailDetail as $data) 
         <ul class="nav nav-pills nav-stacked">
           <li class="list-group-item"><a href="#"> {{$data->name}}
               <span class="label label-danger pull-right">{{$data->DIENDI}}</span><span class="label label-primary pull-right">{{$data->DIENDEN}}</span></a></li>
@@ -190,13 +234,6 @@
           @foreach ($userMailDetail as $data)
           <li class="list-group-item"><a href="#"> {{$data->name}}
             <span class="label label-danger pull-right">{{$data->TRUYENDIEN}}</span><span class="label label-primary pull-right">{{$data->NHANDIEN}}</span></a></li>
-          {{-- <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-              <span class="label label-primary pull-right">12</span></a></li>
-          <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-          <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-          <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a>
-          </li>
-          <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li> --}}
           @endforeach
         </ul>
             
@@ -207,73 +244,50 @@
     </div>
 
     <!-- Info Boxes Style 2 -->
-    <div class="info-box bg-yellow">
-      <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-
+    
+    {{-- <div class="info-box bg-gray">
+      <span class="info-box-icon"><i class="ion-ios-compose-outline"></i></span>
       <div class="info-box-content">
         <span class="info-box-text">Số lượng Tuyến</span>
-        <span class="info-box-number">{{$totalUnread_inbox->count()}</span>
-
+        <span class="info-box-number"><a>{{$ChannelsAll}}</a></span>
         <div class="progress">
-          <div class="progress-bar" style="width: 50%"></div>
         </div>
-        <span class="progress-description">
-              50% Increase in 30 Days
-            </span>
       </div>
       <!-- /.info-box-content -->
     </div>
     <!-- /.info-box -->
-    <div class="info-box bg-green">
-      <span class="info-box-icon"><i class="ion ion-ios-heart-outline"></i></span>
-
+    <div class="info-box bg-gray">
+      <span class="info-box-icon"><i class="ion-ios-people"></i></span>
       <div class="info-box-content">
-        <span class="info-box-text">Tổng số lượng Đơn vị có liên lạc</span>
-        <span class="info-box-number">92,050</span>
-
+        <span class="info-box-text">Tổng số lượng Đơn vị</span>
+        <span class="info-box-number"><a>{{$ContactsAll}}</a></span>
         <div class="progress">
-          <div class="progress-bar" style="width: 20%"></div>
         </div>
-        <span class="progress-description">
-              20% Increase in 30 Days
-            </span>
       </div>
       <!-- /.info-box-content -->
     </div>
     <!-- /.info-box -->
-    <div class="info-box bg-red">
-      <span class="info-box-icon"><i class="ion ion-ios-cloud-download-outline"></i></span>
-
+    <div class="info-box bg-gray">
+      <span class="info-box-icon"><i class="ion-ios-contact"></i></span>
       <div class="info-box-content">
-        <span class="info-box-text">Số lượng ID đơn vị hiện tại</span>
-        <span class="info-box-number">114,381</span>
-
+        <span class="info-box-text">Số lượng người dùng</span>
+        <span class="info-box-number"><a>{{$UsersAll}}</a></span>
         <div class="progress">
-          <div class="progress-bar" style="width: 70%"></div>
         </div>
-        <span class="progress-description">
-              70% Increase in 30 Days
-            </span>
       </div>
       <!-- /.info-box-content -->
     </div>
     <!-- /.info-box -->
-    <div class="info-box bg-aqua">
-      <span class="info-box-icon"><i class="ion-ios-chatbubble-outline"></i></span>
-
+    <div class="info-box bg-gray">
+      <span class="info-box-icon"><i class="ion-email"></i></span>
       <div class="info-box-content">
-        <span class="info-box-text">Tổng số lượng thư gửi/nhận trong ngày</span>
-        <span class="info-box-number">163,921</span>
-
+        <span class="info-box-text">Tổng số lượng thư gửi/nhận</span>
+        <span class="info-box-number"><a>{{$InboxesAll}}/{{$OutboxesAll}}</a></span>
         <div class="progress">
-          <div class="progress-bar" style="width: 40%"></div>
         </div>
-        <span class="progress-description">
-              40% Increase in 30 Days
-            </span>
       </div>
       <!-- /.info-box-content -->
-    </div>
+    </div> --}}
     <!-- /.info-box -->
 
     
