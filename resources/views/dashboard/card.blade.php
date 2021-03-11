@@ -35,7 +35,7 @@
             <tbody>
               @foreach ($showinbox as $data)
               <tr>
-                <td><a href="{{URL::to('/inboxes/'.$data->id)}}">{{$data->name}}</a></td>
+                <td><a href="{{URL::to('/inboxes/'.$data->inboxes_id)}}">{{$data->name}}</a></td>
                 <td><a href="{{URL::to('/users')}}">{{$data->contacts_name}}</a></td>
                 <td><a href="{{URL::to('/users')}}">{{$data->users_name}}</a></td>
                 <td>{{($data->size)}}</td>

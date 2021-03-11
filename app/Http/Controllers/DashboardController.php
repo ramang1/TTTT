@@ -49,15 +49,15 @@ class DashboardController extends Controller
         $showinbox = DB::table('inboxes')->leftjoin('process_inbox', 'process_inbox.inboxes_id', '=', 'inboxes.id')
             ->join('contacts', 'contacts.id', '=', 'inboxes.contact_id')
             ->join('users', 'users.id', '=', 'inboxes.user_id')
-            ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as id, process_inbox.action as action')
-            ->orderBy('created_at', 'desc')->take(10)->get();
+            ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as inboxes_id, process_inbox.action as action')
+            ->orderBy('created_at', 'desc')->groupBy('inboxes.id')->take(10)->get();
         //Lay 10 mail di moi nhat trong ngay
         $showoutbox = DB::table('outboxes')
             ->join('contacts', 'contacts.id', '=', 'outboxes.contact_id')
             ->join('users', 'users.id', '=', 'outboxes.user_id')
             ->leftjoin('outbox_process', 'outbox_process.id', '=', 'outboxes.type')
             ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action as action, outboxes.id as outboxes_id')
-            ->orderBy('created_at', 'desc')->take(10)->get();
+            ->orderBy('created_at', 'desc')->groupBy('outboxes.id')->take(10)->get();
 
         //Dem tong so mail di, den trong ngay
         $totalInbox = Inbox::whereDate('created_at', Carbon::today())->count();
