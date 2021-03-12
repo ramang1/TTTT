@@ -128,3 +128,6 @@ Route::resource('services', 'ServiceController');
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('verified')->name('logs.index');
 //Gioi thieu Website
 Route::get('/information','DashboardController@information');
+//Xem va chinh sua User
+Route::get('/userdetails','UserController@userdetails')->middleware('verified');
+Route::post('/update-userdetails/{id}','UserController@update_userdetails')->middleware('verified');

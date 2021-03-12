@@ -6,8 +6,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/a/a1/Man_Utd_FC_.svg/1200px-Man_Utd_FC_.svg.png" class="img-circle"
-                     alt="User Image"/>
+                <img src="uploads/users/{{Auth::user()->name}}.png" width="50" height="35"/>
             </div>
             <div class="pull-left info">
                 @if (Auth::guest())

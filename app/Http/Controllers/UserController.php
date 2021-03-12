@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Hash;
+use DB;
+use Illuminate\Support\Facades\Redirect;
+use Auth;
+use Session;
 
 class UserController extends AppBaseController
 {
@@ -158,4 +162,24 @@ class UserController extends AppBaseController
 
         return redirect(route('users.index'));
     }
+    //Show userdetails
+    public function userdetails(){
+        return view('users.userdetails');
+    }
+    //Update Userdetails
+    public function update_userdetails(Request $request,$id){
+        $data = array ();
+        $data['name'] = $request -> name;
+        $data['email'] = $request -> email;
+        $get_image = $request ->file ('picture');
+            if($get_image){
+                $get_name_image = Auth::user($id)->name;
+                $new_image = $get_name_image.'.'.'png';
+                $get_image->move('uploads/users',$new_image);
+            }
+        DB::table('users')->where('id',$id)->update($data);
+        Session::put('message','Đã thay đổi thông tin tài khoản');
+        return Redirect::to('userdetails');
+    }
+
 }

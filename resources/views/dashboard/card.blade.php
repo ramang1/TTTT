@@ -147,7 +147,7 @@
 
 
   <div class="col-md-4">
-    <div class="info-box bg-gray">
+    <div class="info-box bg-red">
       <span class="info-box-icon"><i class="ion-ios-compose-outline"></i></span>
       <div class="info-box-content">
         <span class="info-box-text"><b>Số lượng Tuyến</b></span>
@@ -158,7 +158,7 @@
       <!-- /.info-box-content -->
     </div>
     <!-- /.info-box -->
-    <div class="info-box bg-gray">
+    <div class="info-box bg-orange">
       <span class="info-box-icon"><i class="ion-ios-people"></i></span>
       <div class="info-box-content">
         <span class="info-box-text"><b>Tổng số lượng Đơn vị</b></span>
@@ -169,7 +169,7 @@
       <!-- /.info-box-content -->
     </div>
     <!-- /.info-box -->
-    <div class="info-box bg-gray">
+    <div class="info-box bg-aqua">
       <span class="info-box-icon"><i class="ion-ios-contact"></i></span>
       <div class="info-box-content">
         <span class="info-box-text"><b>Số lượng người dùng</b></span>
@@ -180,7 +180,7 @@
       <!-- /.info-box-content -->
     </div>
     <!-- /.info-box -->
-    <div class="info-box bg-gray">
+    <div class="info-box bg-green">
       <span class="info-box-icon"><i class="ion-email"></i></span>
       <div class="info-box-content">
         <span class="info-box-text"><b>Tổng số lượng thư gửi/nhận</b></span>
