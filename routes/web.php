@@ -126,3 +126,5 @@ Route::get('settings', 'SettingController@index')->middleware('verified')->middl
 
 Route::resource('services', 'ServiceController');
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('verified')->name('logs.index');
+//Gioi thieu Website
+Route::get('/information','DashboardController@information');

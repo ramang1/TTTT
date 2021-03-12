@@ -103,7 +103,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2020 <a href="#">Cục QLKTNVMM</a>.</strong>
+            <strong>Copyright © 2020 <a href="{{URL::to('/information')}}">Cục QLKTNVMM</a>.</strong>
         </footer>
 
     </div>
