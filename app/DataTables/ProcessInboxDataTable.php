@@ -18,7 +18,7 @@ class ProcessInboxDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('process', 'process_inboxes.datatables_actions')->rawColumns(['process_inboxes.datatables_actions', 'process']);
+        return $dataTable->addColumn('action', 'process_inboxes.datatables_actions');//->rawColumns(['process_inboxes.datatables_actions', 'process']);
     }
 
     /**
@@ -70,11 +70,12 @@ class ProcessInboxDataTable extends DataTable
             // 'user_id',
             // 'note',
             // 'description',
-            ['data' => 'action','title'=>'Trạng thái'],
-            ['data' => 'inbox_id','title'=>'Mã thư đến'],
+            ['data' => 'action_type','title'=>'Trạng thái'],
+            ['data' => 'inboxes_id','title'=>'Mã thư đến'],
             ['data' => 'user_id','title'=>'Mã người gửi'],
             ['data' => 'note','title'=>'Ghi chú'],
             ['data' => 'description','title'=>'Mô tả'],
+            ['data' => 'created_at','title'=>'Thời gian'],
         ];
     }
 
