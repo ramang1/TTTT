@@ -33,7 +33,7 @@
                         </div> --}}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ảnh tài khoản</label>
-                            <img src="uploads/users/{{Auth::user()->name}}.png" width="400" height="300"/>
+                            <img src="uploads/users/{{Auth::user()->id}}.png" width="400" height="300"/>
                             <input type="file" name="picture" class="form-control" id="exampleInputEmail1" >
                         {{-- <img src="{{URL::to('uploads/product/'.$pro->product_image)}}" width="150" height="160"> --}}
                         </div>

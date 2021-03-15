@@ -6,7 +6,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="uploads/users/{{Auth::user()->name}}.png" width="50" height="35"/>
+                <img src="uploads/users/{{Auth::user()->id}}.png" width="50" height="35"/>
             </div>
             <div class="pull-left info">
                 @if (Auth::guest())

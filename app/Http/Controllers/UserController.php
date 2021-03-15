@@ -173,7 +173,7 @@ class UserController extends AppBaseController
         $data['email'] = $request -> email;
         $get_image = $request ->file ('picture');
             if($get_image){
-                $get_name_image = Auth::user($id)->name;
+                $get_name_image = Auth::user($id)->id;
                 $new_image = $get_name_image.'.'.'png';
                 $get_image->move('uploads/users',$new_image);
             }

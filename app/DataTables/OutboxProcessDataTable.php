@@ -18,7 +18,7 @@ class OutboxProcessDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'outbox_processes.datatables_actions');
+        return $dataTable->addColumn('process', 'outbox_processes.datatables_actions')->rawColumns(['outbox_processes.datatables_actions', 'process']);
     }
 
     /**
@@ -65,11 +65,16 @@ class OutboxProcessDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'action',
-            'outbox_id',
-            'user_id',
-            'note',
-            'description'
+            // 'action',
+            // 'outbox_id',
+            // 'user_id',
+            // 'note',
+            // 'description'
+            ['data' => 'action','title'=>'Trạng thái'],
+            ['data' => 'outbox_id','title'=>'Mã thư đi'],
+            ['data' => 'user_id','title'=>'Mã người gửi'],
+            ['data' => 'note','title'=>'Ghi chú'],
+            ['data' => 'description','title'=>'Mô tả'],
         ];
     }
 
