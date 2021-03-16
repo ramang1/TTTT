@@ -47,7 +47,7 @@
         },
         columns: [{
             name: "action",
-            data: "action",
+            data: "action_type",
             title: "Action",
             orderable: true,
             searchable: true

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Config;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Spatie\Valuestore\Valuestore;
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,10 +104,13 @@ Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData')->midd
 
 
 Route::get('/test', function () {  
-    $valuestore =  Valuestore::make(storage_path('app/settings.json'));
-    $valuestore->put('keytest', 'valuetest');
-    $valuestore->put('keytest2', 'valuetest');
-    dd($valuestore->get('keytest')); // Returns 'value'
+    // $valuestore =  Valuestore::make(storage_path('app/settings.json'));
+    // $valuestore->put('keytest', 'valuetest');
+    // $valuestore->put('keytest2', 'valuetest');
+    // dd($valuestore->get('keytest')); // Returns 'value'
+
+    //dd(Carbon::today()->timezone('Asia/Ho_Chi_Minh'));
+    dd(Carbon::today());
 });
 
 //BackUp DB
