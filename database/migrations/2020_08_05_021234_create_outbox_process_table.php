@@ -19,7 +19,7 @@ class CreateOutboxProcessTable extends Migration
             //Sau khi nén rar hoặc zip xong, người dùng thực hiện truyền mail
             //Các thông tin của việc truyền sẽ được lưu trong bảng này
             $table->id();
-            $table->enum('action', ['nen_zip','gui_mai','nen_rar'])->comment = 'nén file hay truyền file';
+            $table->enum('action_type', ['nen_zip','gui_mai','nen_rar'])->comment = 'nén file hay truyền file';
             $table->unsignedBigInteger('outbox_id')->comment = 'id của outbox, Hash của file';//->unique()->comment = 'id của outbox, Hash của file';
             //Ma nguoi gui
             $table->unsignedBigInteger('user_id')->comment = 'mã người gửi, nén';

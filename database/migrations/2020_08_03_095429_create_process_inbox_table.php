@@ -18,7 +18,7 @@ class CreateProcessInboxTable extends Migration
             //Khi người dùng thao tác với file nhận về
             //Các thông tin thao tác sẽ được lưu vào bảng này
             $table->id();
-            $table->enum('action', ['giai_nen_zip','nhan_mai','giai_nen_rar'])->comment = 'Giải nén zip, rar hay nhận mail';
+            $table->enum('action_type', ['giai_nen_zip','nhan_mai','giai_nen_rar'])->comment = 'Giải nén zip, rar hay nhận mail';
             $table->unsignedBigInteger('inboxes_id')->comment = 'id của inbox, hash của file';
             $table->unsignedBigInteger('user_id')->comment = 'id của người thực hiện';
             $table->string('note')->nullable()->comment = "Dự phòng";

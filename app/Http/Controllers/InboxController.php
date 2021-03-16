@@ -117,8 +117,8 @@ class InboxController extends AppBaseController
                 ->select('inboxes_id')
                 ->from('process_inbox')
                 ->whereNull('deleted_at')
-                ->where('action', '=', 'giai_nen_zip')
-                ->orWhere('action', '=', 'giai_nen_rar');
+                ->where('action_type', '=', 'giai_nen_zip')
+                ->orWhere('action_type', '=', 'giai_nen_rar');
                });
         }
         if ($startDate == 0 && $endDate == 0){
@@ -272,8 +272,8 @@ class InboxController extends AppBaseController
             ->select('inboxes_id')
             ->from('process_inbox')
             ->whereNull('deleted_at')
-            ->where('action', '=', 'giai_nen_zip')
-            ->orWhere('action', '=', 'giai_nen_rar');
+            ->where('action_type', '=', 'giai_nen_zip')
+            ->orWhere('action_type', '=', 'giai_nen_rar');
            })->orderBy('created_at','desc')->limit(10)->get();
            for ( $i =0; $i< sizeof($data); $i++){
             $data[$i]->timeCarbon =  $data[$i]->created_at->diffForHumans();
@@ -345,8 +345,8 @@ class InboxController extends AppBaseController
             ->select('inboxes_id')
             ->from('process_inbox')
             ->whereNull('deleted_at')
-            ->where('action', '=', 'giai_nen_zip')
-            ->orWhere('action', '=', 'giai_nen_rar');
+            ->where('action_type', '=', 'giai_nen_zip')
+            ->orWhere('action_type', '=', 'giai_nen_rar');
            })->get();
 
         return view('unread.index')->with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox );

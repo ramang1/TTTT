@@ -64,8 +64,8 @@ class OutboxController extends AppBaseController
                     ->select('id')
                     ->from('outbox_process')
                     ->whereNull('deleted_at')
-                    ->where('action', '=', 'nen_zip')
-                    ->orWhere('action', '=', 'nen_rar');
+                    ->where('action_type', '=', 'nen_zip')
+                    ->orWhere('action_type', '=', 'nen_rar');
             });
         }
         if ($startDate == 0 && $endDate == 0) {
@@ -281,8 +281,8 @@ class OutboxController extends AppBaseController
                 ->select('id')
                 ->from('outbox_process')
                 ->whereNull('deleted_at')
-                ->where('action', '=', 'nen_zip')
-                ->orWhere('action', '=', 'nen_rar');
+                ->where('action_type', '=', 'nen_zip')
+                ->orWhere('action_type', '=', 'nen_rar');
         })->get();
 
         return view('outboxes.unsend')->with('contacts', $contacts)->with('totalUnsend_outbox', $totalUnsend_outbox);

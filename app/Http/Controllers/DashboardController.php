@@ -149,8 +149,8 @@ class DashboardController extends Controller
                 ->select('inboxes_id')
                 ->from('process_inbox')
                 ->whereNull('deleted_at')
-                ->where('action', '=', 'giai_nen_zip')
-                ->orWhere('action', '=', 'giai_nen_rar');
+                ->where('action_type', '=', 'giai_nen_zip')
+                ->orWhere('action_type', '=', 'giai_nen_rar');
         })->count();
 
 
@@ -160,8 +160,8 @@ class DashboardController extends Controller
                 ->select('id')
                 ->from('outbox_process')
                 ->whereNull('deleted_at')
-                ->where('action', '=', 'nen_zip')
-                ->orWhere('action', '=', 'nen_rar');
+                ->where('action_type', '=', 'nen_zip')
+                ->orWhere('action_type', '=', 'nen_rar');
         })->count();
 
 
