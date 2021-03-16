@@ -1,5 +1,5 @@
 <li class="{{ Request::is('dashboard*') ? 'active' : '' }}">
-    <a href="/dashboard"><i class="fa fa-dashboard"></i><span>Bảng điều khiển</span></a>
+    <a href="{!! route('dashboard.index') !!}"><i class="fa fa-dashboard"></i><span>Bảng điều khiển</span></a>
 </li>
 
 <li class="{{ Request::is('users*') ? 'active' : '' }}">

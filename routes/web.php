@@ -24,7 +24,7 @@ use Carbon\Carbon;
 
 Auth::routes(['verify' => true]);
 
-Route::get('/dashboard', 'DashboardController@index')->middleware('verified');
+Route::get('/dashboard', 'DashboardController@index')->middleware('verified')->name('dashboard.index');
 Route::get('/', 'DashboardController@index')->middleware('verified');
 
 // Route::get('/dashboard/get_total', 'DashboardController@get_total')->middleware('verified');
@@ -33,7 +33,7 @@ Route::resource('users', 'UserController')->middleware('auth');
 Route::resource('contacts', 'ContactController')->middleware('auth');
 
 Route::resource('channels', 'ChannelController');
-Route::get('inboxes/unreads', 'InboxController@index');
+Route::get('inboxes/unreads', 'InboxController@index')->name('inboxes.unreads');
 Route::get('inboxes/actions/{id}', 'InboxController@actions')->middleware('verified');
 
 Route::resource('inboxes', 'InboxController');
@@ -62,7 +62,7 @@ Route::post(
 
 
 Route::resource('processInboxes', 'ProcessInboxController');
-Route::get('outboxes/unsends', 'OutboxController@index');
+Route::get('outboxes/unsends', 'OutboxController@index')->name('outboxes.unsends');
 
 Route::get('outboxes/actions/{id}', 'OutboxController@actions')->middleware('verified');
 
@@ -72,35 +72,7 @@ Route::resource('outboxProcesses', 'OutboxProcessController');
 //TuanAnh
 
 Route::get('/checkmail','InboxController@CheckMail')->name('mail.getData')->middleware('verified');
-//Notification dashboard
-// Route::get('/', 'InboxController@notificationmail');
-//THƯ ĐẾN VÀ ĐI
 
-//Route::get('/dashboard', 'InboxController@showinbox')->middleware('verified');
-// Route::get('/markAsRead/{id}', function($id){
-//     $id = auth()->user()->unreadNotifications[0]->id;
-//     auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
-// 	return redirect()->back();
-// })->name('mark');
-// //Create Notification insert into database
-// Route::get('/notify', function () {  
-//     $users = \App\User::all();
-//     $details = [
-//         'body' => 'hello'
-//     ];
-//     Notification::send($users, new \App\Notifications\Inboxes($details));
-//     // $users->notify(new \App\Notifications\Inboxes($details));
-//     $notification = array(
-//         'message' => 'Bạn có thông báo mới', 
-//         'alert-type' => 'success'
-//     );
-//     return redirect()->back()->with($notification);
-// });
-// //Test Notification realtime
-// Route::get('/realtime', 'InboxController@realtime');
-// Route::get('/sendNotification', 'InboxController@sendNotification')->name('send');
-// Route::post('/postNotification', 'InboxController@postNotification')->name('postMessage');
-// //chi tiet thu chua gui
 
 
 Route::get('/test', function () {  
