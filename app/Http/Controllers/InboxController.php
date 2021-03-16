@@ -310,7 +310,7 @@ class InboxController extends AppBaseController
     public function CheckMail()
     {
         $data = DB::table('process_inbox')->join('inboxes', 'process_inbox.inboxes_id', '=', 'inboxes.id')
-            ->select(['process_inbox.action', 'process_inbox.note', 'process_inbox.description', 'inboxes.name', 'process_inbox.created_at'])->orderBy('created_at','desc');
+            ->select(['process_inbox.action_type', 'process_inbox.note', 'process_inbox.description', 'inboxes.name', 'process_inbox.created_at'])->orderBy('created_at','desc');
 
         return Datatables::of($data)
             // ->editColumn('title', '{!! str_limit($title, 60) !!}')

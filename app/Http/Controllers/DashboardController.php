@@ -36,8 +36,8 @@ class DashboardController extends Controller
                 ->select('inboxes_id')
                 ->from('process_inbox')
                 ->whereNull('deleted_at')
-                ->where('action', '=', 'giai_nen_zip')
-                ->orWhere('action', '=', 'giai_nen_rar');
+                ->where('action_type', '=', 'giai_nen_zip')
+                ->orWhere('action_type', '=', 'giai_nen_rar');
         })->get();
 
         return view('dashboard.index')->with('totalUnread_inbox', $totalUnread_inbox); //with('contacts', $contacts)->with('totalUnread_inbox',$totalUnread_inbox )->with('mails',$mails);
@@ -49,14 +49,14 @@ class DashboardController extends Controller
         $showinbox = DB::table('inboxes')->leftjoin('process_inbox', 'process_inbox.inboxes_id', '=', 'inboxes.id')
             ->join('contacts', 'contacts.id', '=', 'inboxes.contact_id')
             ->join('users', 'users.id', '=', 'inboxes.user_id')
-            ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as inboxes_id, process_inbox.action as action')
+            ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as inboxes_id, process_inbox.action_type as action')
             ->orderBy('created_at', 'desc')->groupBy('inboxes.id')->take(10)->get();
         //Lay 10 mail di moi nhat trong ngay
         $showoutbox = DB::table('outboxes')
             ->join('contacts', 'contacts.id', '=', 'outboxes.contact_id')
             ->join('users', 'users.id', '=', 'outboxes.user_id')
             ->leftjoin('outbox_process', 'outbox_process.id', '=', 'outboxes.type')
-            ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action as action, outboxes.id as outboxes_id')
+            ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action_type as action, outboxes.id as outboxes_id')
             ->orderBy('created_at', 'desc')->groupBy('outboxes.id')->take(10)->get();
 
         //Dem tong so mail di, den trong ngay
@@ -70,8 +70,8 @@ class DashboardController extends Controller
                 ->select('inboxes_id')
                 ->from('process_inbox')
                 ->whereNull('deleted_at')
-                ->where('action', '=', 'giai_nen_zip')
-                ->orWhere('action', '=', 'giai_nen_rar');
+                ->where('action_type', '=', 'giai_nen_zip')
+                ->orWhere('action_type', '=', 'giai_nen_rar');
         })->count();
         //Tong SL Tuyen
         $ChannelsAll = DB::table('channels')->count();
@@ -89,8 +89,8 @@ class DashboardController extends Controller
                 ->select('id')
                 ->from('outbox_process')
                 ->whereNull('deleted_at')
-                ->where('action', '=', 'nen_zip')
-                ->orWhere('action', '=', 'nen_rar');
+                ->where('action_type', '=', 'nen_zip')
+                ->orWhere('action_type', '=', 'nen_rar');
         })->count();
 
         //Dem so mail gui den/di trong ngay cua moi nguoi dung trong he thong
