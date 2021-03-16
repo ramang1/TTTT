@@ -39,8 +39,8 @@ Route::get('inboxes/actions/{id}', 'InboxController@actions')->middleware('verif
 Route::resource('inboxes', 'InboxController');
 
 
-Route::get('inboxesdata', 'InboxController@data');
-Route::get('outboxesdata', 'OutboxController@data');
+Route::get('inboxesdata', 'InboxController@data')->name('inboxesdata');
+Route::get('outboxesdata', 'OutboxController@data')->name('outboxesdata');
 
 
 

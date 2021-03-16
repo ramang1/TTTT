@@ -61,7 +61,7 @@
     serverSide: true,
     processing: true,
     ajax: {
-      url: "/inboxesdata",
+      url: "{{ route('inboxesdata') }}",
       type: "GET",
       data: function(d) {
         d.startDate = startDate;

@@ -60,7 +60,7 @@
   serverSide: true,
   processing: true,
   ajax: {
-    url: "/outboxesdata",
+    url: "{{ route('outboxesdata') }}",
     type: "GET",
     data: function(d) {
       d.url = window.location.pathname;
