@@ -41,7 +41,8 @@
         serverSide: true,
         processing: true,
         ajax: {
-            url: "/inboxes/actions/{{$inbox->id}}",
+            
+            url: "{{ route('inboxes.index') }}/actions/{{$inbox->id}}",
             type: "GET"
         },
         columns: [{

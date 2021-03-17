@@ -42,7 +42,7 @@
         serverSide: true,
         processing: true,
         ajax: {
-            url: "/outboxes/actions/{{$outbox->id}}",
+            url: "{{ route('outboxes.index') }}/actions/{{$outbox->id}}",
             type: "GET"
         },
         columns: [{

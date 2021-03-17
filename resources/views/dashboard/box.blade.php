@@ -39,8 +39,6 @@
       <div class="icon">
         <i class="ion ion ion-email"></i>
       </div>
-      <!-- <a href="/outboxes" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a> -->
-       <!-- <a href="/outboxTotal" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a> -->
        <a href="{{ route('outboxes.index') }}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
