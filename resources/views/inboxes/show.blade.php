@@ -17,6 +17,9 @@
     <div class="box box-primary">
         <section class="content-header">
             <h3 class="box-title">Lịch sử xử lý</h3>
+            
+           <a class="btn btn-primary pull-right" href="{{ route('processInboxes.create') }}/{{$inbox->id}}">Add New</a>
+     
         </section>
         <table class="table table-striped table-bordered" id="dataTableBuilder" width="100%">
             <thead>

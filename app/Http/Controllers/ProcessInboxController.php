@@ -10,7 +10,7 @@ use App\Repositories\ProcessInboxRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
-
+use App\Models\Inbox;
 class ProcessInboxController extends AppBaseController
 {
     /** @var  ProcessInboxRepository */
@@ -40,6 +40,25 @@ class ProcessInboxController extends AppBaseController
     public function create()
     {
         return view('process_inboxes.create');
+    }
+
+     /**
+     * set process action
+     *
+     * @return Response
+     */
+    public function setprocess($id)
+    {
+        //CHeck id trong bangr inbox co exxit
+        $isExites = Inbox::where('id', '=', $id)->count();
+
+        if ($isExites == 0) {
+            Flash::error('Inbox ID not found');
+
+            return redirect(route('inboxes.unreads'));
+        }
+        
+        return view('process_inboxes.create')->with(compact('id'));
     }
 
     /**

@@ -30,8 +30,8 @@ class ProcessInbox extends Model
 
 
     public $fillable = [
-        'action',
-        'inbox_hash',
+        'action_type',
+        'inboxes_id',
         'user_id',
         'note',
         'description'
@@ -44,7 +44,7 @@ class ProcessInbox extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'action' => 'string',
+        'action_type' => 'string',
         'inbox_hash' => 'string',
         'user_id' => 'integer',
         'note' => 'string',

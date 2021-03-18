@@ -28,7 +28,7 @@ class OutboxProcess extends Model
 
 
     public $fillable = [
-        'action',
+        'action_type',
         'outbox_id',
         'user_id',
         'note',
@@ -42,7 +42,7 @@ class OutboxProcess extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'action' => 'integer',
+        'action_type' => 'string',
         'outbox_hash' => 'string',
         'user_id' => 'integer',
         'note' => 'string',

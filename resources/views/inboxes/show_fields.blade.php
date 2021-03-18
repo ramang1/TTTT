@@ -1,5 +1,9 @@
 <!-- Hash Field -->
 <div class="form-group">
+    {!! Form::label('id', 'id:') !!}
+    <p>{{ $inbox->id }}</p>
+</div>
+<div class="form-group">
     {!! Form::label('hash', 'Hash:') !!}
     <p>{{ $inbox->hash }}</p>
 </div>

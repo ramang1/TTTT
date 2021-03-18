@@ -1,3 +1,7 @@
+<div class="form-group">
+    {!! Form::label('id', 'id:') !!}
+    <p>{{ $outbox->id }}</p>
+</div>
 <!-- Has Field -->
 <div class="form-group">
     {!! Form::label('hash', 'Hash:') !!}

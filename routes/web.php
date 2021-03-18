@@ -60,7 +60,7 @@ Route::post(
 )->name('io_generator_builder_generate_from_file');
 
 
-
+Route::get('processInboxes/create/{id}', 'ProcessInboxController@setprocess')->name('set.processinboxes');
 Route::resource('processInboxes', 'ProcessInboxController');
 Route::get('outboxes/unsends', 'OutboxController@index')->name('outboxes.unsends');
 
@@ -68,6 +68,7 @@ Route::get('outboxes/actions/{id}', 'OutboxController@actions')->middleware('ver
 
 Route::resource('outboxes', 'OutboxController');
 
+Route::get('outboxProcesses/create/{id}', 'OutboxProcessController@setprocess')->name('set.outboxprocess');
 Route::resource('outboxProcesses', 'OutboxProcessController');
 //TuanAnh
 

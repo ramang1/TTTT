@@ -10,7 +10,7 @@ use App\Repositories\OutboxProcessRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
-
+use App\Models\Outbox;
 class OutboxProcessController extends AppBaseController
 {
     /** @var  OutboxProcessRepository */
@@ -40,6 +40,24 @@ class OutboxProcessController extends AppBaseController
     public function create()
     {
         return view('outbox_processes.create');
+    }
+/**
+     * set process action
+     *
+     * @return Response
+     */
+    public function setprocess($id)
+    {
+        //CHeck id trong bangr inbox co exxit
+        $isExites = Outbox::where('id', '=', $id)->count();
+
+        if ($isExites == 0) {
+            Flash::error('Outbox ID not found');
+
+            return redirect(route('outboxes.unreads'));
+        }
+        
+        return view('outbox_processes.create')->with(compact('id'));
     }
 
     /**
