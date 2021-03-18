@@ -1,19 +1,15 @@
 <!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{{ $processInbox->id }}</p>
-</div>
 
 <!-- Process Type Field -->
 <div class="form-group">
-    {!! Form::label('action', 'Process Type:') !!}
-    <p>{{ $processInbox->action }}</p>
+    {!! Form::label('action_type', 'Process Type:') !!}
+    <p>{{ $processInbox->action_type }}</p>
 </div>
 
 <!-- Inbox Hash Field -->
 <div class="form-group">
-    {!! Form::label('inbox_hash', 'Inbox Hash:') !!}
-    <p>{{ $processInbox->inbox_hash }}</p>
+    {!! Form::label('inbox_id', 'Inbox id:') !!}
+    <p>{{ $processInbox->inboxes_id }}</p>
 </div>
 
 <!-- User Id Field -->

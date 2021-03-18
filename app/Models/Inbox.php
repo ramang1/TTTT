@@ -50,7 +50,7 @@ class Inbox extends Model
         'name' => 'string',
         'path' => 'string',
         'size' => 'string',
-        'type' => 'integer',
+        'type' => 'enum',
         'contact_id' => 'integer'
     ];
 

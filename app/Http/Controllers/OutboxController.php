@@ -176,6 +176,12 @@ class OutboxController extends AppBaseController
             ->where('outbox_id', '=', $id);
             // ->orderBy('created_at', 'desc');
         return Datatables::of($data)
+        ->editColumn('user_id', function ($resultUser) {
+            $idUser = $resultUser->user_id;
+            $User = \App\User::where('id', '=', $idUser)->pluck('name');
+            // return $nameID->name;
+            return $User[0];
+        })
             //->addColumn('action', 'inboxes.datatables_actions')
             ->make(true);
     }

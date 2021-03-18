@@ -22,9 +22,10 @@
             <thead>
                 <tr>
                     <th title="Action">Action</th>
-                    <th title="User Id">User Id</th>
+                    <th title="User Id">User</th>
                     <th title="Note">Note</th>
                     <th title="Description">Description</th>
+                    <th title="Created at">Created at</th>
                 </tr>
             </thead>
         </table>
@@ -49,6 +50,13 @@
             name: "action",
             data: "action_type",
             title: "Action",
+            orderable: true,
+            searchable: true
+        },
+        {
+            name: "user_id",
+            data: "user_id",
+            title: "User",
             orderable: true,
             searchable: true
         }, {

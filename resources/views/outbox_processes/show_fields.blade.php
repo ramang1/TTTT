@@ -1,18 +1,13 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{{ $outboxProcess->id }}</p>
-</div>
 
 <!-- Action Field -->
 <div class="form-group">
-    {!! Form::label('action', 'Action:') !!}
-    <p>{{ $outboxProcess->action }}</p>
+    {!! Form::label('action_type', 'Action Type:') !!}
+    <p>{{ $outboxProcess->action_type }}</p>
 </div>
 
 <!-- Outbox Hash Field -->
 <div class="form-group">
-    {!! Form::label('outbox_id', 'Outbox Hash:') !!}
+    {!! Form::label('outbox_id', 'Outbox ID:') !!}
     <p>{{ $outboxProcess->outbox_id }}</p>
 </div>
 

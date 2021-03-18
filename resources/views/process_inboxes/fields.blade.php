@@ -1,13 +1,13 @@
 <!-- Process Type Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('action', 'Process Type:') !!}
-    {!! Form::text('action', null, ['class' => 'form-control']) !!}
+    {!! Form::label('action_type', 'Action Type:') !!}
+    {!! Form::text('action_type', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Inbox Hash Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('inbox_id', 'Inbox Hash:') !!}
-    {!! Form::text('inbox_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('inboxes_id', 'Inbox ID:') !!}
+    {!! Form::text('inboxes_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- User Id Field -->

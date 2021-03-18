@@ -17,7 +17,7 @@ class ProcessInboxRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'action',
+        'action_type',
         'inbox_id',
         'user_id',
         'note',
