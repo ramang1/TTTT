@@ -15,7 +15,7 @@
     {!!Form::label('type', 'Channel Type:') !!}
     <br>
     @foreach($types as $type)
-    <input type="radio" id={{$type}} name="type" value={{$type}}>
+    <input type="radio" id={{$type}} name="type" value={{$type}} checked>
     <label for="{{$type}}">{{$type}}</label><br>
     @endforeach
 

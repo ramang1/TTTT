@@ -46,7 +46,7 @@ class OutboxProcess extends Model
         'outbox_hash' => 'string',
         'user_id' => 'integer',
         'note' => 'string',
-        'description' => 'integer'
+        'description' => 'string'
     ];
 
     /**
