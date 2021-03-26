@@ -52,11 +52,10 @@ class DashboardController extends Controller
             ->selectRaw('contacts.name as contacts_name, users.name as users_name,inboxes.name as name, inboxes.size as size, inboxes.created_at as created_at, process_inbox.inboxes_id as inboxes_id, inboxes.id as inboxes_id, process_inbox.action_type as action')
             ->orderBy('created_at', 'desc')->groupBy('inboxes.id')->take(10)->get();
         //Lay 10 mail di moi nhat trong ngay
-        $showoutbox = DB::table('outboxes')
+        $showoutbox = DB::table('outboxes')->leftjoin('outbox_process', 'outbox_process.id', '=', 'outboxes.type')
             ->join('contacts', 'contacts.id', '=', 'outboxes.contact_id')
-            ->join('users', 'users.id', '=', 'outboxes.user_id')
-            ->leftjoin('outbox_process', 'outbox_process.id', '=', 'outboxes.type')
-            ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.action_type as action, outboxes.id as outboxes_id')
+            ->join('users', 'users.id', '=', 'outboxes.user_id')                 
+            ->selectRaw('contacts.name as contacts_name, users.name as users_name,outboxes.name as name, outboxes.size as size, outboxes.created_at as created_at,outbox_process.outbox_id as outboxes_id,outboxes.id as outboxes_id,outbox_process.action_type as action')
             ->orderBy('created_at', 'desc')->groupBy('outboxes.id')->take(10)->get();
 
         //Dem tong so mail di, den trong ngay

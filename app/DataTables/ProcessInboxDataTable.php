@@ -5,6 +5,9 @@ namespace App\DataTables;
 use App\Models\ProcessInbox;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use App\Models\Inbox;
+use DB;
+use Carbon\Carbon;
 
 class ProcessInboxDataTable extends DataTable
 {
@@ -18,7 +21,26 @@ class ProcessInboxDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'process_inboxes.datatables_actions');//->rawColumns(['process_inboxes.datatables_actions', 'process']);
+        return $dataTable
+        ->addColumn('action', 'process_inboxes.datatables_actions')
+        ->editColumn('inboxes_id', function ($resultInbox) {
+            $idInbox = $resultInbox->inboxes_id;
+            $Inbox = Inbox::where('id', '=', $idInbox)->pluck('name');
+            return $Inbox[0];
+        })
+        ->editColumn('user_id', function ($resultUser) {
+            $idUser = $resultUser->user_id;
+            $User = DB::table('users')->where('id', '=', $idUser)->pluck('name');
+            return $User[0];
+        })
+        ->editColumn('created_at', function ($data) {
+            if($data->created_at == null) {
+                return $data->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+        ;
     }
 
     /**
@@ -71,8 +93,8 @@ class ProcessInboxDataTable extends DataTable
             // 'note',
             // 'description',
             ['data' => 'action_type','title'=>'Trạng thái'],
-            ['data' => 'inboxes_id','title'=>'Mã thư đến'],
-            ['data' => 'user_id','title'=>'Mã người gửi'],
+            ['data' => 'inboxes_id','title'=>'Tên thư đến'],
+            ['data' => 'user_id','title'=>'Tên người gửi'],
             ['data' => 'note','title'=>'Ghi chú'],
             ['data' => 'description','title'=>'Mô tả'],
             ['data' => 'created_at','title'=>'Thời gian'],

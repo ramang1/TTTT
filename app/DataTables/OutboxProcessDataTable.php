@@ -5,6 +5,9 @@ namespace App\DataTables;
 use App\Models\OutboxProcess;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
+use App\Models\Outbox;
+use DB;
+use Carbon\Carbon;
 
 class OutboxProcessDataTable extends DataTable
 {
@@ -18,7 +21,25 @@ class OutboxProcessDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'outbox_processes.datatables_actions');//->rawColumns(['outbox_processes.datatables_actions', 'process']);
+        return $dataTable->addColumn('action', 'outbox_processes.datatables_actions')
+        ->editColumn('outbox_id', function ($resultOutbox) {
+            $idOutbox = $resultOutbox->outbox_id;
+            $Outbox = Outbox::where('id', '=', $idOutbox)->pluck('name');
+            return $Outbox[0];
+        })
+        ->editColumn('user_id', function ($resultUser) {
+            $idUser = $resultUser->user_id;
+            $User = DB::table('users')->where('id', '=', $idUser)->pluck('name');
+            return $User[0];
+        })
+        ->editColumn('created_at', function ($data) {
+            if($data->created_at == null) {
+                return $data->created_at ?  : 'Unknown';
+            }
+                Carbon::setLocale('vi');
+                return $data->created_at ? with(new Carbon($data->created_at))->diffForHumans() : '';
+            })
+        ;//->rawColumns(['outbox_processes.datatables_actions', 'process']);
     }
 
     /**
@@ -71,8 +92,8 @@ class OutboxProcessDataTable extends DataTable
             // 'note',
             // 'description'
             ['data' => 'action_type','title'=>'Trạng thái'],
-            ['data' => 'outbox_id','title'=>'Mã thư đi'],
-            ['data' => 'user_id','title'=>'Mã người gửi'],
+            ['data' => 'outbox_id','title'=>'Tên thư đi'],
+            ['data' => 'user_id','title'=>'Tên người gửi'],
             ['data' => 'note','title'=>'Ghi chú'],
             ['data' => 'description','title'=>'Mô tả'],
             ['data' => 'created_at','title'=>'Thời gian'],

@@ -112,19 +112,46 @@
                 <th><b>Người nhận mail<b></th>
                 <th><b>Người gửi mail<b></th>
                 <th><b>Kích thước</b></th>
+                <th><b>Trạng thái</b></th>
                 <th><b>Kiểu nén</b></th>
                 <th><b>Ngày nhận</b></th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($showoutbox as $data)
+              @foreach ($showoutbox as $key => $data1)
               <tr>
-                <td><a href="{{URL::to('/outboxes/'.$data->outboxes_id)}}">{{$data->name}}</a></td>
-                <td><a href="{{URL::to('/users')}}">{{$data->contacts_name}}</a></td>
-                <td><a href="{{URL::to('/users')}}">{{$data->users_name}}</a></td>
-                <td>{{($data->size)}}</td>
-                <td><span class="label label-success">{{($data->action)}}</span></td>
-                <td>{{Carbon\Carbon::parse($data->created_at)->diffForHumans()}}</td>
+                <td><a href="{{URL::to('/outboxes/'.$data1->outboxes_id)}}">{{$data->name}}</a></td>
+                <td><a href="{{URL::to('/users')}}">{{$data1->contacts_name}}</a></td>
+                <td><a href="{{URL::to('/users')}}">{{$data1->users_name}}</a></td>
+                <td>{{($data1->size)}}</td>
+                {{-- <td><span class="label label-success">{{($data->action)}}</span></td> --}}
+                <td>
+                  <?php
+                  if ($data1->action == 'nen_zip' || $data1->action == 'nen_rar') {
+                  ?>
+                    <a><span class="label label-success">Đã nén</span></a>
+                  <?php
+                  } else {
+                  ?>
+                    <a><span class="label label-danger">Chưa nén</span></a>
+                  <?php
+                  }
+                  ?>
+                </td>
+                <td>
+                  <?php
+                  if ($data1->action == NULL) {
+                  ?>
+                    <a><span class="label label-danger">Chưa xử lý</span></a>
+                  <?php
+                  } else {
+                  ?>
+                    <a><span class="label label-success">{{$data1->action}}</span></a>
+                  <?php
+                  }
+                  ?>
+                </td>
+                <td>{{Carbon\Carbon::parse($data1->created_at)->diffForHumans()}}</td>
               </tr>
               @endforeach
             </tbody>
