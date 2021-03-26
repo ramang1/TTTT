@@ -139,7 +139,9 @@
       </div>
       <!-- /.box-footer -->
     </div>
-
+    <div class="box box-info">
+    <iframe src="{{URL::to('/logs')}}" width="100%" height="600"></iframe>
+    </div>
   </div>
   <!-- /.col -->
 
