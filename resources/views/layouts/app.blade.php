@@ -56,14 +56,14 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="uploads/users/{{Auth::user()->id}}.png" width="50" height="35"/>
+                                <img src="{{asset('uploads/users/')}}/{{Auth::user()->id}}.png" width="40" height="50" alt="Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="uploads/users/{{Auth::user()->id}}.png" width="50" height="35"/>
+                                    <img src="{{asset('uploads/users/')}}/{{Auth::user()->id}}.png" width="40" height="50" alt="Image"/>
                                     <p>
                                         {{ Auth::user()->name }}
                                         <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
