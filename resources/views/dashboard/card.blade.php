@@ -52,19 +52,7 @@
                   }
                   ?>
                 </td>
-                <td>
-                  <?php
-                  if ($data->action == NULL) {
-                  ?>
-                    <a><span class="label label-danger">Chưa xử lý</span></a>
-                  <?php
-                  } else {
-                  ?>
-                    <a><span class="label label-success">{{$data->action}}</span></a>
-                  <?php
-                  }
-                  ?>
-                </td>
+                <td>{{$data->type}}</td>
                 {{-- <td><span class="label label-success">{{($data->action)}}</span></td> --}}
                 <td>{{Carbon\Carbon::parse($data->created_at)->diffForHumans()}}</td>
               </tr>
@@ -138,10 +126,9 @@
                   }
                   ?>
                 </td>
-                <td>
-                  <?php
-                  if ($data1->action == NULL) {
-                  ?>
+                <td>{{$data1->type}}</td>
+                {{-- <td>
+                  <?php if ($data1->action == NULL) { ?>
                     <a><span class="label label-danger">Chưa xử lý</span></a>
                   <?php
                   } else {
@@ -150,7 +137,7 @@
                   <?php
                   }
                   ?>
-                </td>
+                </td> --}}
                 <td>{{Carbon\Carbon::parse($data1->created_at)->diffForHumans()}}</td>
               </tr>
               @endforeach
