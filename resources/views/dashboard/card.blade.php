@@ -36,8 +36,8 @@
               @foreach ($showinbox as $data)
               <tr>
                 <td><a href="{{URL::to('/inboxes/'.$data->inboxes_id)}}">{{$data->name}}</a></td>
-                <td><a href="{{URL::to('/users')}}">{{$data->contacts_name}}</a></td>
-                <td><a href="{{URL::to('/users')}}">{{$data->users_name}}</a></td>
+                <td><a href="{{URL::to('/contacts/'.$data->contacts_id)}}">{{$data->contacts_name}}</a></td>
+                <td><a href="{{URL::to('/users/'.$data->users_id)}}">{{$data->users_name}}</a></td>
                 <td>{{($data->size)}}</td>
                 <td>
                   <?php
@@ -110,8 +110,8 @@
               <tr>
 
                 <td><a href="{{URL::to('/outboxes/'.$data->outboxes_id)}}">{{$data->name}}</a></td>
-                <td><a href="{{URL::to('/users')}}">{{$data->contacts_name}}</a></td>
-                <td><a href="{{URL::to('/users')}}">{{$data->users_name}}</a></td>
+                <td><a href="{{URL::to('/contacts/'.$data->contacts_id)}}">{{$data->contacts_name}}</a></td>
+                <td><a href="{{URL::to('/users/'.$data->users_id)}}">{{$data->users_name}}</a></td>
                 <td>{{($data->size)}}</td>
                 {{-- <td><span class="label label-success">{{($data->action)}}</span></td> --}}
                 <td>
@@ -168,7 +168,7 @@
       <span class="info-box-icon"><i class="ion-ios-compose-outline"></i></span>
       <div class="info-box-content">
         <span class="info-box-text"><b>Số lượng Tuyến</b></span>
-        <span class="info-box-number"><a>{{$ChannelsAll}}</a></span>
+        <span class="info-box-number"><h3>{{$ChannelsAll}}</h3></span>
         <div class="progress">
         </div>
       </div>
@@ -179,7 +179,7 @@
       <span class="info-box-icon"><i class="ion-ios-people"></i></span>
       <div class="info-box-content">
         <span class="info-box-text"><b>Tổng số lượng Đơn vị</b></span>
-        <span class="info-box-number"><a>{{$ContactsAll}}</a></span>
+        <span class="info-box-number"><h3>{{$ContactsAll}}</h3></span>
         <div class="progress">
         </div>
       </div>
@@ -190,7 +190,7 @@
       <span class="info-box-icon"><i class="ion-ios-contact"></i></span>
       <div class="info-box-content">
         <span class="info-box-text"><b>Số lượng người dùng</b></span>
-        <span class="info-box-number"><a>{{$UsersAll}}</a></span>
+        <span class="info-box-number"><h3>{{$UsersAll}}</h3></span>
         <div class="progress">
         </div>
       </div>
@@ -201,7 +201,7 @@
       <span class="info-box-icon"><i class="ion-email"></i></span>
       <div class="info-box-content">
         <span class="info-box-text"><b>Tổng số lượng thư gửi/nhận</b></span>
-        <span class="info-box-number"><a>{{$InboxesAll}}/{{$OutboxesAll}}</a></span>
+        <span class="info-box-number"><h3>{{$InboxesAll}}/{{$OutboxesAll}}</h3></span>
         <div class="progress">
         </div>
       </div>
