@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Danh sách các bản sao lưu</h3></div>
+            <div class="panel-heading"><h3 class="panel-title"><b>Danh sách các bản sao lưu</b></h3></div>
             <table class="table table-condensed">
                 <thead>
                     <th>STT</th>
@@ -28,20 +28,20 @@
                             <a href="{{ route('backups.index', ['action' => 'restore', 'file_name' => $backup->getFilename()]) }}"
                                 id="restore_{{ str_replace('.gz', '', $backup->getFilename()) }}"
                                 class="btn btn-warning btn-xs"
-                                title="{{ trans('backup.download') }}"><i class="fa fa-rotate-left"></i></a>
+                                title="{{ trans('Khôi phục tại thời điểm này') }}"><i class="fa fa-rotate-left"></i></a>
                             <a href="{{ route('backups.download', [$backup->getFilename()]) }}"
                                 id="download_{{ str_replace('.gz', '', $backup->getFilename()) }}"
                                 class="btn btn-info btn-xs"
-                                title="{{ trans('backup.download') }}"><i class="fa fa-download"></i></a>
+                                title="{{ trans('Tải về bản sao lưu') }}"><i class="fa fa-download"></i></a>
                             <a href="{{ route('backups.index', ['action' => 'delete', 'file_name' => $backup->getFilename()]) }}"
                                 id="del_{{ str_replace('.gz', '', $backup->getFilename()) }}"
                                 class="btn btn-danger btn-xs"
-                                title="{{ trans('backup.delete') }}"><i class="fa fa-remove"></i></a>
+                                title="{{ trans('Xóa bản sao lưu') }}"><i class="fa fa-remove"></i></a>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="3">{{ trans('backup.empty') }}</td>
+                        <td colspan="3">{{ trans('Chưa có File Backup') }}</td>
                     </tr>
                     @endforelse
                 </tbody>
